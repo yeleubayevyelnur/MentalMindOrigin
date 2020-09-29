@@ -52,9 +52,9 @@ class MoodFragment : Fragment(), MoodResultListener {
         moodList.addAll(
             listOf(trevozhnyi, uverennyi, razdrazhennyi, spokoinyi, zloi, dobryi, odinokiy, lubimyi, ustavshiy, energechnyi, napryazhennyi, umirotvorennyi, podavlennyi, sobrannyi, rasstroennyi, dovolnyi, nikakoi, schastlivyi))
         moodAdapter = MoodAdapter(moodList)
-        moodAdapter.setMoodResultListener(this)
         rvMood.adapter = moodAdapter
         rvMood.layoutManager = GridLayoutManager(context, 2)
+        moodAdapter.setMoodResultListener(this)
     }
 
     companion object {
@@ -63,6 +63,5 @@ class MoodFragment : Fragment(), MoodResultListener {
 
     override fun onMoodClickedResult(moodData: MoodData) {
         (activity as? MainActivity)?.onBackPressed()
-        Toast.makeText(context , "Вы выбрали ${moodData.name}", Toast.LENGTH_SHORT).show()
     }
 }

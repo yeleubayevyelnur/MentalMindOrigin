@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
@@ -22,7 +23,7 @@ class MoodAdapter(private val moodData: ArrayList<MoodData>) :
     override fun onBindViewHolder(holder: MoodAdapter.ViewHolder, position: Int) {
         holder.ivMood.setImageDrawable(moodData[position].icon)
         holder.tvMood.text = moodData[position].name
-        holder.itemView.setOnClickListener {
+        holder.llContainer.setOnClickListener {
             moodClickListener.onMoodClickedResult(moodData[position])
         }
     }
@@ -38,5 +39,6 @@ class MoodAdapter(private val moodData: ArrayList<MoodData>) :
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val ivMood: ImageView = itemView.findViewById(R.id.ivMood)
         val tvMood: TextView = itemView.findViewById(R.id.tvMood)
+        val llContainer: LinearLayout = itemView.findViewById(R.id.llContainer)
     }
 }

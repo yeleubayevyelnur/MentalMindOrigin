@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,25 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.fragment_main.*
-import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.Page
-import kz.mentalmind.ui.main.*
 
-class CreateFragment : Fragment(), ItemResultListener {
+class MainItemFragment : Fragment(), ItemResultListener {
 
     private lateinit var pageAdapter: PageAdapter
-    private lateinit var potokAdapter: PotokAdapter
-    private lateinit var lubimoeAdapter: LubimoeAdapter
-    private lateinit var affirmationAdapter: AffirmationAdapter
     private var recommends: ArrayList<Page> = arrayListOf()
-    private var affirmations: ArrayList<Page> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_create, container, false)
+        return inflater.inflate(R.layout.fragment_main_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,38 +36,24 @@ class CreateFragment : Fragment(), ItemResultListener {
                 ex1, ex2, ex3
             )
         )
-        val aff1 = Page("", 1, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
-        val aff2 = Page("", 2, "", ResourcesCompat.getDrawable(resources, R.drawable.affir2, null))
-        val aff3 = Page("", 3, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
-        affirmations.addAll(
-            listOf(
-                aff1, aff2, aff3
-            )
-        )
-
     }
 
     private fun setAdapters(){
         setList()
         pageAdapter = PageAdapter(recommends)
         rvRecommend.adapter = pageAdapter
-        potokAdapter = PotokAdapter(recommends)
-        rvPotok.adapter = potokAdapter
-        lubimoeAdapter = LubimoeAdapter(recommends)
-        rvLovely.adapter = lubimoeAdapter
-        affirmationAdapter = AffirmationAdapter(affirmations)
-        rvAffirmations.adapter = affirmationAdapter
         pageAdapter.setItemResultListener(this)
-        potokAdapter.setItemResultListener(this)
-        lubimoeAdapter.setItemResultListener(this)
-        affirmationAdapter.setItemResultListener(this)
     }
 
     companion object {
+        fun newInstance() = MainItemFragment().apply {
+            arguments = Bundle().apply {
 
+            }
+        }
     }
 
     override fun onItemClickedResult(page: Page) {
-        (activity as? MainActivity)?.replaceFragment(MainItemFragment.newInstance(), MainItemFragment::class.simpleName)
+
     }
 }

@@ -7,22 +7,20 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import kz.mentalmind.R
 import kz.mentalmind.data.Page
-import kz.mentalmind.ui.main.mood.MoodResultListener
 
-class PageAdapter(private var pageList: ArrayList<Page>) :
-    RecyclerView.Adapter<PageAdapter.ViewHolder>() {
+class ItemAdapter(private var pageList: ArrayList<Page>) :
+    RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var itemResultListener: ItemResultListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_pages, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: PageAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
         holder.pageTitle.text = pageList[position].title
         holder.description.text = pageList[position].description
         holder.image.setImageDrawable(pageList[position].image)

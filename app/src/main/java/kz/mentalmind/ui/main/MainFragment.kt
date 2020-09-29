@@ -18,7 +18,9 @@ class MainFragment : Fragment(), ItemResultListener {
     private lateinit var pageAdapter: PageAdapter
     private lateinit var potokAdapter: PotokAdapter
     private lateinit var lubimoeAdapter: LubimoeAdapter
+    private lateinit var affirmationAdapter: AffirmationAdapter
     private var recommends: ArrayList<Page> = arrayListOf()
+    private var affirmations: ArrayList<Page> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,15 @@ class MainFragment : Fragment(), ItemResultListener {
                 ex1, ex2, ex3
             )
         )
+        val aff1 = Page("", 1, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
+        val aff2 = Page("", 2, "", ResourcesCompat.getDrawable(resources, R.drawable.affir2, null))
+        val aff3 = Page("", 3, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
+        affirmations.addAll(
+            listOf(
+                aff1, aff2, aff3
+            )
+        )
+
     }
 
     private fun setAdapters(){
@@ -59,9 +70,12 @@ class MainFragment : Fragment(), ItemResultListener {
         rvPotok.adapter = potokAdapter
         lubimoeAdapter = LubimoeAdapter(recommends)
         rvLovely.adapter = lubimoeAdapter
+        affirmationAdapter = AffirmationAdapter(affirmations)
+        rvAffirmations.adapter = affirmationAdapter
         pageAdapter.setItemResultListener(this)
         potokAdapter.setItemResultListener(this)
         lubimoeAdapter.setItemResultListener(this)
+        affirmationAdapter.setItemResultListener(this)
     }
 
     companion object {
@@ -69,6 +83,6 @@ class MainFragment : Fragment(), ItemResultListener {
     }
 
     override fun onItemClickedResult(page: Page) {
-
+        (activity as? MainActivity)?.replaceFragment(MainItemFragment.newInstance(), MainItemFragment::class.simpleName)
     }
 }

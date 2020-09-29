@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
@@ -23,6 +24,9 @@ class LubimoeAdapter(private var pageList: ArrayList<Page>) :
         holder.pageTitle.text = pageList[position].title
         holder.description.text = pageList[position].description
         holder.image.setImageDrawable(pageList[position].image)
+        holder.llContainer.setOnClickListener {
+            itemResultListener.onItemClickedResult(pageList[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -37,5 +41,6 @@ class LubimoeAdapter(private var pageList: ArrayList<Page>) :
         val pageTitle: TextView = itemView.findViewById(R.id.tvPageTitle)
         val description: TextView = itemView.findViewById(R.id.tvPageDescription)
         val image: ImageView = itemView.findViewById(R.id.ivPages)
+        val llContainer: LinearLayout = itemView.findViewById(R.id.llContainer)
     }
 }
