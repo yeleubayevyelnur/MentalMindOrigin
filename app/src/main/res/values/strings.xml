@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mental Mind</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Bottom Navigation Strings-->
+    <string name="menu_home">Главная</string>
+    <string name="menu_instruments">Инструменты</string>
+    <string name="menu_create">Созидай</string>
+    <string name="menu_profile">Профиль</string>
+
+    <string name="enter_with_email">Войти с помощью Email</string>
+    <string name="enter_with_google">Войти с помощью Google</string>
+    <string name="do_not_have_acc_do_registration">У вас нет аккаунта? <b>Зарегистрируйтесь</b></string>
+    <string name="enter">Войти</string>
+    <string name="registration">Регистрация</string>
+    <string name="next">Далее</string>
+    <string name="reply_your_password">Повторите свой пароль</string>
+    <string name="reply_password">Повторите пароль</string>
+    <string name="enter_your_password">Введите свой пароль</string>
+    <string name="password">Пароль</string>
+    <string name="enter_your_email">Введите свой E-mail</string>
+    <string name="email">Электронная почта</string>
+    <string name="forgot_password">Забыли пароль</string>
+    <string name="pass_recovery_description">Введите адрес электронной почты, и мы отправим Вам ссылку для восстановления доступа к аккаунту</string>
+    <string name="what_are_you_now">Какой ты сейчас?</string>
+    <string name="main">Главная</string>
+</resources>
