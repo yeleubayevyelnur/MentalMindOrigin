@@ -19,12 +19,16 @@ class InstrumentsFragment : Fragment(), ItemResultListener {
     private lateinit var lubimoeAdapter: LubimoeAdapter
     private var recommends: ArrayList<Page> = arrayListOf()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as? MainActivity)?.hideActionBar()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_instruments, container, false)
-        (activity as? MainActivity)?.hideActionBar()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

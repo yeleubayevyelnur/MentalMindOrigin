@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:background="@drawable/bg_mood_type"
-    android:orientation="horizontal">
+    android:foreground="?selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="8dp">
 
     <ImageView
+        android:id="@+id/ivMood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:id="@+id/ivMood"/>
+        android:layout_gravity="center_vertical" />
 
     <TextView
+        android:id="@+id/tvMood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMood"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_normal"
-        android:maxLines="1"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="8dp"
-        android:text="@string/menu_create"/>
+        android:maxLines="1"
+        android:text="@string/menu_create"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_normal" />
 </LinearLayout>

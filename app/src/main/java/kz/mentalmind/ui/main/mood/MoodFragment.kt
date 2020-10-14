@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_mood.*
@@ -27,10 +26,11 @@ class MoodFragment : Fragment(), MoodResultListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnBack.setOnClickListener { (activity as? MainActivity)?.onBackPressed() }
         setAdapter()
     }
 
-    private fun setAdapter() {
+    private fun setList(){
         val trevozhnyi = MoodData(1, ResourcesCompat.getDrawable(resources, R.drawable.trevozhnyi, null), "Тревожный")
         val uverennyi = MoodData(2, ResourcesCompat.getDrawable(resources, R.drawable.uverennyi, null), "Уверенный")
         val razdrazhennyi = MoodData(3, ResourcesCompat.getDrawable(resources, R.drawable.razdrazhennyi, null), "Раздраженный")
@@ -49,16 +49,15 @@ class MoodFragment : Fragment(), MoodResultListener {
         val dovolnyi = MoodData(16, ResourcesCompat.getDrawable(resources, R.drawable.dovolnyi, null), "Довольный")
         val nikakoi = MoodData(17, ResourcesCompat.getDrawable(resources, R.drawable.nikakoy, null), "Никакой")
         val schastlivyi = MoodData(18, ResourcesCompat.getDrawable(resources, R.drawable.schastlivyi, null), "Счастливый")
-        moodList.addAll(
-            listOf(trevozhnyi, uverennyi, razdrazhennyi, spokoinyi, zloi, dobryi, odinokiy, lubimyi, ustavshiy, energechnyi, napryazhennyi, umirotvorennyi, podavlennyi, sobrannyi, rasstroennyi, dovolnyi, nikakoi, schastlivyi))
+        moodList.addAll(listOf(trevozhnyi, uverennyi, razdrazhennyi, spokoinyi, zloi, dobryi, odinokiy, lubimyi, ustavshiy, energechnyi, napryazhennyi, umirotvorennyi, podavlennyi, sobrannyi, rasstroennyi, dovolnyi, nikakoi, schastlivyi))
+    }
+
+    private fun setAdapter() {
+        setList()
         moodAdapter = MoodAdapter(moodList)
         rvMood.adapter = moodAdapter
         rvMood.layoutManager = GridLayoutManager(context, 2)
         moodAdapter.setMoodResultListener(this)
-    }
-
-    companion object {
-
     }
 
     override fun onMoodClickedResult(moodData: MoodData) {
