@@ -1,19 +1,28 @@
 package kz.mentalmind.data.api
 
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import io.reactivex.Observable
+import io.reactivex.Single
+import kz.mentalmind.data.entrance.LoginResponse
+import kz.mentalmind.data.entrance.PassRecoveryData
+import kz.mentalmind.data.entrance.RegisterData
+import retrofit2.http.*
 
 interface ApiService {
     /** Регистрация и Логин пользователя */
     @FormUrlEncoded
     @POST("users/register/")
-    fun register()
+    fun register(
+        @Header("Accept-Language") language: String,
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Observable<RegisterData>
 
     @FormUrlEncoded
     @POST("users/login/")
-    fun login()
+    fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Observable<LoginResponse>
 
     @FormUrlEncoded
     @POST("users/social_login/")
@@ -37,7 +46,9 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("users/reset_password/")
-    fun resetPassword()
+    fun resetPassword(
+        @Field("email")email: String
+    ): Single<PassRecoveryData>
 
     @GET("users/register/")
     fun userInfo()

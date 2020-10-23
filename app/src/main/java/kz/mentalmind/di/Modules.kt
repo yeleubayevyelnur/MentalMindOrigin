@@ -1,5 +1,6 @@
 package kz.mentalmind.di
 
+import android.preference.PreferenceManager
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import kz.mentalmind.data.api.ApiService
@@ -13,6 +14,7 @@ import kz.mentalmind.ui.main.MainViewModel
 import kz.mentalmind.ui.meditation.MeditationViewModel
 import kz.mentalmind.ui.profile.ProfileViewModel
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -21,13 +23,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
     single {
-        AuthRepository(get(), get(), get())
+        AuthRepository(apiService = get(), sPrefs = get(), gson = get())
     }
     single {
         MainRepository(get(), get(), get())
     }
     single {
         UserRepository(get(), get(), get())
+    }
+    single {
+        PreferenceManager.getDefaultSharedPreferences(androidContext())
     }
 }
 

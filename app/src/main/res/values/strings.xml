@@ -25,4 +25,12 @@
     <string name="pass_recovery_description">Введите адрес электронной почты, и мы отправим Вам ссылку для восстановления доступа к аккаунту</string>
     <string name="what_are_you_now">Какой ты сейчас?</string>
     <string name="main">Главная</string>
+
+    //OnBoardingText
+    <string name="ob_first_main_text">Освободи свой мозг\nот всех ограничений</string>
+    <string name="ob_first_secondary_text">С помощью простых и\nуникальных инструментов</string>
+    <string name="ob_second_main_text">Ежедневная проработка\nкаждый день</string>
+    <string name="ob_second_secondary_text">Три минуты вернут тебя\nв потоковое состояние</string>
+    <string name="ob_third_main_text">Позволь удивительным\nпеременам войти\nв твою жизнь</string>
+    <string name="ob_third_secondary_text">Сделай правильный выбор,\nначни использовать приложение\nуже сейчас!</string>
 </resources>

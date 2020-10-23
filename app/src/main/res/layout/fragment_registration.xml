@@ -38,6 +38,7 @@
             android:textColor="@color/white" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -51,11 +52,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password"
             android:layout_marginTop="12dp"
+            android:text="@string/password"
             android:textColor="@color/white" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -74,6 +76,7 @@
             android:textColor="@color/white" />
 
         <EditText
+            android:id="@+id/repPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -93,8 +96,6 @@
             android:layout_marginEnd="16dp"
             android:text="@string/next" />
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
