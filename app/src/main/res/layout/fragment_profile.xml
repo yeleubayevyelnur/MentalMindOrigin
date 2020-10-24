@@ -9,38 +9,40 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title"
-            style="@style/PrimaryTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/main"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:foreground="?selectableItemBackground"
             android:src="@drawable/ic_settings"
             app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfilePhoto"
             android:layout_width="78dp"
             android:layout_height="78dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:elevation="4dp"
-            android:src="@color/cardview_dark_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:src="@color/cardview_dark_background" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -50,32 +52,40 @@
             app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
             app:layout_constraintTop_toTopOf="@id/ivProfilePhoto" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="sultan_0029@mail.ru"
             app:layout_constraintBottom_toBottomOf="@id/ivProfilePhoto"
             app:layout_constraintStart_toStartOf="@id/tvLogin"
-            app:layout_constraintTop_toBottomOf="@id/tvLogin" />
+            app:layout_constraintTop_toBottomOf="@id/tvLogin"
+            tools:text="sultan_0029@mail.ru" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvInstagram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="geminmay"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/mood_background"
+            android:gravity="center_horizontal"
+            android:padding="18dp"
             android:textColor="@color/white"
             android:textSize="@dimen/font_normal"
+            app:drawableStartCompat="@drawable/ic_instagram"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivProfilePhoto"
-            app:drawableStartCompat="@drawable/ic_instagram" />
+            tools:text="geminmay" />
 
         <LinearLayout
             android:id="@+id/llOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/bg_options_container"
             android:elevation="4dp"
             android:orientation="vertical"
@@ -84,7 +94,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvInstagram">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/faq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/help"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +114,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/changeLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/addPromocode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,18 +137,22 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNotifyMeditation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="@string/txt_notify_meditation"
+            app:layout_constraintEnd_toStartOf="@id/switchNotify"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llOptions" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchNotify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:checked="true"
             app:layout_constraintBottom_toBottomOf="@id/tvNotifyMeditation"
             app:layout_constraintEnd_toEndOf="parent"
@@ -147,12 +161,168 @@
             app:thumbTint="@color/white"
             app:track="@drawable/track" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvYourLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="44dp"
             android:text="@string/txt_level"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotifyMeditation" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLevelContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_options_container"
+            android:elevation="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="41dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvYourLevel">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivLevel"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/cardview_dark_background" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="41dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLevel"
+                tools:text="Новичок" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/countDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/mood_background"
+            android:gravity="center"
+            android:paddingStart="44dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="44dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="@id/clLevelContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="6 дней" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvYourOwnWay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/on_way_to_you"
+            app:layout_constraintEnd_toEndOf="@id/countDay"
+            app:layout_constraintStart_toStartOf="@id/countDay"
+            app:layout_constraintTop_toBottomOf="@id/countDay" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/countTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/mood_background"
+            android:gravity="center"
+            android:paddingStart="44dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="44dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="@id/clLevelContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="20 минут" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSelfStudy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="@id/countTime"
+            app:layout_constraintStart_toStartOf="@id/countTime"
+            app:layout_constraintTop_toBottomOf="@id/countTime"
+            tools:text="самопознание" />
+
+        <LinearLayout
+            android:id="@+id/llHistoryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSelfStudy">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/history" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFavMeditationsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llHistoryContainer">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_fav_meditations" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUnblock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/unblock_opportunities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llFavMeditationsContainer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/mood_background"
+            android:text="@string/txt_buy_subscription"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUnblock" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

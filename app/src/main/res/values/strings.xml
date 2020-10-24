@@ -44,4 +44,9 @@
     <string name="we_recommend_you">Мы рекомендуем вам</string>
     <string name="online_education">Онлайн обучение</string>
     <string name="online_meditate">Сейчас \nслушают медитации</string>
+    <string name="on_way_to_you">на пути к себе</string>
+    <string name="history">История</string>
+    <string name="txt_fav_meditations">Мои любимые медитации</string>
+    <string name="unblock_opportunities">Разблокируй безграничные возможности себя и приложения</string>
+    <string name="txt_buy_subscription">Купить подписку</string>
 </resources>
