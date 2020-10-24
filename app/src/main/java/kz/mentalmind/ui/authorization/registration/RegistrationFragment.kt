@@ -37,13 +37,13 @@ class RegistrationFragment : Fragment() {
 
     private fun registrationErrors() {
         when {
-            email.text.isEmpty() || password.text.isEmpty() || repPassword.text.isEmpty() -> {
+            email.text.isNullOrEmpty() || password.text.isNullOrEmpty() || repPassword.text.isNullOrEmpty() -> {
                 (activity as? AuthActivity)?.alertDialog(requireContext(), "Заполните поля")
             }
             password.text.toString() != repPassword.text.toString() -> {
                 (activity as? AuthActivity)?.alertDialog(requireContext(), "Пароли не совпадают")
             }
-            password.text.length < 8 -> {
+            password.text?.length ?: 0 < 8 -> {
                 (activity as? AuthActivity)?.alertDialog(
                     requireContext(),
                     "Длина пароля должна быть не менее 8 символов"
@@ -51,7 +51,7 @@ class RegistrationFragment : Fragment() {
             }
             else -> {
                 if (isValidPassword(password.text.toString())) {
-                   successPassCheck()
+                    successPassCheck()
                 } else {
                     (activity as? AuthActivity)?.alertDialog(
                         requireContext(),
@@ -62,18 +62,14 @@ class RegistrationFragment : Fragment() {
         }
     }
 
-    private fun successPassCheck(){
+    private fun successPassCheck() {
         authViewModel.register(email.text.toString(), repPassword.text.toString(), "kk-KZ")
         (activity as? AuthActivity)?.successDialog(requireContext(), "Поздравляю", "")
     }
 
-    private fun isValidPassword(password: String) : Boolean {
-            val passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])"
-            val passwordMatcher = Regex(passwordPattern)
-            return passwordMatcher.find(password) != null
-    }
-
-    companion object {
-
+    private fun isValidPassword(password: String): Boolean {
+        val passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])"
+        val passwordMatcher = Regex(passwordPattern)
+        return passwordMatcher.find(password) != null
     }
 }

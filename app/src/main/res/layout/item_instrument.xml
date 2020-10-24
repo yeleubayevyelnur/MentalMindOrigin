@@ -6,19 +6,18 @@
     android:layout_marginEnd="8dp"
     android:orientation="vertical">
 
-
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPageDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

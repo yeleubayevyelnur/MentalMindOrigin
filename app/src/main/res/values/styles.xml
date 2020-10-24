@@ -1,14 +1,13 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="EnterButtonText" parent="AppTheme">
+    <style name="EnterButtonText" parent="TextAppearance.AppCompat.Widget.Button">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorStrongGray</item>
     </style>
@@ -24,12 +23,10 @@
         <item name="android:textColor">@color/blackText</item>
     </style>
 
-    <!--Title Secondary text style -->
     <style name="SecondaryTitleText" parent="AppTheme">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
-
 
 </resources>
