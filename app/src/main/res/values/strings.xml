@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Mental Mind</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--    Bottom Navigation Strings-->
     <string name="menu_home">Главная</string>
     <string name="menu_instruments">Инструменты</string>
     <string name="menu_create">Созидай</string>
@@ -38,4 +36,6 @@
     <string name="online_meditate">Сейчас \nслушают медитации</string>
     <string name="stream_of_live">Поток жизни</string>
     <string name="favorite">Любимое</string>
+    <string name="what_do_you_feel">Какой ты сейчас</string>
+    <string name="will_be_available_later">Функционал будет доступен позже</string>
 </resources>

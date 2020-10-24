@@ -14,7 +14,6 @@ import kz.mentalmind.ui.main.mood.MoodFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment(), ItemResultListener {
-
     private val mainViewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 

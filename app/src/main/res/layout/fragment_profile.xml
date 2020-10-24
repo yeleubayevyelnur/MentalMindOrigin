@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Функционал будет доступен позже"/>
+        android:text="@string/will_be_available_later" />
 
 </FrameLayout>

@@ -17,7 +17,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/font_standart" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

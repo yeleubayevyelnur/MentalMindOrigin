@@ -55,7 +55,6 @@ class OnBoardingActivity : AppCompatActivity() {
             } else {
                 Intent(applicationContext, AuthActivity::class.java).also {
                     startActivity(it)
-//                    finish()
                 }
             }
         }
