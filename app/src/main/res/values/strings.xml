@@ -36,4 +36,6 @@
     <string name="we_recommend_you">Мы рекомендуем вам</string>
     <string name="online_education">Онлайн обучение</string>
     <string name="online_meditate">Сейчас \nслушают медитации</string>
+    <string name="stream_of_live">Поток жизни</string>
+    <string name="favorite">Любимое</string>
 </resources>

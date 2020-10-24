@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionResult
-import kz.mentalmind.data.TagsResult
 import kz.mentalmind.ui.main.mood.MoodFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,10 +18,7 @@ class MainFragment : Fragment(), ItemResultListener {
     private val mainViewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 
-    private lateinit var mainAdapter: MainAdapter
     private lateinit var collectionAdapter: CollectionAdapter
-    private var collections: ArrayList<CollectionResult> = arrayListOf()
-    private var tagList: ArrayList<TagsResult> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +34,6 @@ class MainFragment : Fragment(), ItemResultListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        collectionAdapter = CollectionAdapter(collections)
-        collectionAdapter.setItemResultListener(this)
-
-        mainAdapter = MainAdapter(tagList, collectionAdapter)
-        rvMain.adapter = mainAdapter
-
         observeData()
         mainViewModel.getCollections("ru")
         mainViewModel.getTags("ru")
@@ -65,7 +55,7 @@ class MainFragment : Fragment(), ItemResultListener {
         )
         compositeDisposable.add(
             mainViewModel.observeTagsSubject().subscribe({
-                mainAdapter.setNewData(it.tagsData.results)
+
             }, {
 
             })
