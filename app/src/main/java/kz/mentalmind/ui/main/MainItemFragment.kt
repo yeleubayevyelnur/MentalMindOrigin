@@ -1,11 +1,11 @@
 package kz.mentalmind.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.R
 import kz.mentalmind.data.Page
@@ -55,7 +55,7 @@ class MainItemFragment : Fragment() {
 
     private fun setAdapters() {
         setList()
-        rvRecommend.adapter = mainAdapter
+        rvRecommended.adapter = mainAdapter
     }
 
     companion object {

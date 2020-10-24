@@ -33,4 +33,7 @@
     <string name="ob_second_secondary_text">Три минуты вернут тебя\nв потоковое состояние</string>
     <string name="ob_third_main_text">Позволь удивительным\nпеременам войти\nв твою жизнь</string>
     <string name="ob_third_secondary_text">Сделай правильный выбор,\nначни использовать приложение\nуже сейчас!</string>
+    <string name="we_recommend_you">Мы рекомендуем вам</string>
+    <string name="online_education">Онлайн обучение</string>
+    <string name="online_meditate">Сейчас \nслушают медитации</string>
 </resources>
