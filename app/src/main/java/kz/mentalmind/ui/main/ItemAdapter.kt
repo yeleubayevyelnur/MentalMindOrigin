@@ -24,9 +24,6 @@ class ItemAdapter(private var pageList: ArrayList<Page>) :
         holder.pageTitle.text = pageList[position].title
         holder.description.text = pageList[position].description
         holder.image.setImageDrawable(pageList[position].image)
-        holder.llContainer.setOnClickListener {
-            itemResultListener.onItemClickedResult(pageList[position])
-        }
     }
 
     override fun getItemCount(): Int {

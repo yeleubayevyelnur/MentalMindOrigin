@@ -12,9 +12,9 @@ import kz.mentalmind.R
 import kz.mentalmind.data.Page
 import kz.mentalmind.ui.main.*
 
-class CreateFragment : Fragment(), ItemResultListener {
+class CreateFragment : Fragment() {
 
-    private lateinit var pageAdapter: PageAdapter
+    private lateinit var mainAdapter: MainAdapter
     private lateinit var potokAdapter: PotokAdapter
     private lateinit var lubimoeAdapter: LubimoeAdapter
     private lateinit var affirmationAdapter: AffirmationAdapter
@@ -55,25 +55,12 @@ class CreateFragment : Fragment(), ItemResultListener {
 
     private fun setAdapters(){
         setList()
-        pageAdapter = PageAdapter(recommends)
-        rvRecommend.adapter = pageAdapter
         potokAdapter = PotokAdapter(recommends)
-        rvPotok.adapter = potokAdapter
         lubimoeAdapter = LubimoeAdapter(recommends)
-        rvLovely.adapter = lubimoeAdapter
         affirmationAdapter = AffirmationAdapter(affirmations)
-        rvAffirmations.adapter = affirmationAdapter
-        pageAdapter.setItemResultListener(this)
-        potokAdapter.setItemResultListener(this)
-        lubimoeAdapter.setItemResultListener(this)
-        affirmationAdapter.setItemResultListener(this)
     }
 
     companion object {
 
-    }
-
-    override fun onItemClickedResult(page: Page) {
-        (activity as? MainActivity)?.replaceFragment(MainItemFragment.newInstance(), MainItemFragment::class.simpleName)
     }
 }

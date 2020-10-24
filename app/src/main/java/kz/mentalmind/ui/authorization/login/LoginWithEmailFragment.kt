@@ -43,11 +43,13 @@ class LoginWithEmailFragment : Fragment() {
             (activity as? AuthActivity)?.replaceFragment(PassResetFragment(), PassResetFragment::class.java.name)
         }
         btnNext.setOnClickListener {
-            if (enterLogin.text.isEmpty() || enterPassword.text.isEmpty()){
-                (activity as? AuthActivity)?.alertDialog(requireContext(), "Заполните все поля")
-            } else {
-                successLogin()
-            }
+
+        authViewModel.login("sultan_0029@mail.ru", "testUser1")
+//            if (enterLogin.text.isEmpty() || enterPassword.text.isEmpty()){
+//                (activity as? AuthActivity)?.alertDialog(requireContext(), "Заполните все поля")
+//            } else {
+//                successLogin()
+//            }
         }
     }
 

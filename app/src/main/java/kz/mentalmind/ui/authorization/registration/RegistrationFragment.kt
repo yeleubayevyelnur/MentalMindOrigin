@@ -64,7 +64,7 @@ class RegistrationFragment : Fragment() {
 
     private fun successPassCheck(){
         authViewModel.register(email.text.toString(), repPassword.text.toString(), "kk-KZ")
-        (activity as? AuthActivity)?.successDialog(requireContext(), "Поздравляю")
+        (activity as? AuthActivity)?.successDialog(requireContext(), "Поздравляю", "")
     }
 
     private fun isValidPassword(password: String) : Boolean {

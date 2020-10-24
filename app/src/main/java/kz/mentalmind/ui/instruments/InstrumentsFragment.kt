@@ -12,9 +12,9 @@ import kz.mentalmind.R
 import kz.mentalmind.data.Page
 import kz.mentalmind.ui.main.*
 
-class InstrumentsFragment : Fragment(), ItemResultListener {
+class InstrumentsFragment : Fragment() {
 
-    private lateinit var pageAdapter: PageAdapter
+    private lateinit var mainAdapter: MainAdapter
     private lateinit var potokAdapter: PotokAdapter
     private lateinit var lubimoeAdapter: LubimoeAdapter
     private var recommends: ArrayList<Page> = arrayListOf()
@@ -48,23 +48,11 @@ class InstrumentsFragment : Fragment(), ItemResultListener {
     }
 
     private fun setAdapters(){
-        setList()
-        pageAdapter = PageAdapter(recommends)
-        rvRecommend.adapter = pageAdapter
-        potokAdapter = PotokAdapter(recommends)
-        rvPotok.adapter = potokAdapter
-        lubimoeAdapter = LubimoeAdapter(recommends)
-        rvLovely.adapter = lubimoeAdapter
-        pageAdapter.setItemResultListener(this)
-        potokAdapter.setItemResultListener(this)
-        lubimoeAdapter.setItemResultListener(this)
+
     }
 
     companion object {
 
     }
 
-    override fun onItemClickedResult(page: Page) {
-        (activity as? MainActivity)?.replaceFragment(MainItemFragment.newInstance(), MainItemFragment::class.simpleName)
-    }
 }

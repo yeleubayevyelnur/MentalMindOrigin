@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main
 
-import kz.mentalmind.data.Page
+import kz.mentalmind.data.CollectionResult
 
 interface ItemResultListener {
-    fun onItemClickedResult(page: Page)
+    fun onItemClickedResult(collections: CollectionResult)
 }

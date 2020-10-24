@@ -25,7 +25,6 @@ class PotokAdapter(private var pageList: ArrayList<Page>) :
         holder.description.text = pageList[position].description
         holder.image.setImageDrawable(pageList[position].image)
         holder.llContainer.setOnClickListener {
-            itemResultListener.onItemClickedResult(pageList[position])
         }
     }
 

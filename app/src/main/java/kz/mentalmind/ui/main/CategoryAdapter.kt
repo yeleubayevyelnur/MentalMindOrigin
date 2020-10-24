@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.Category
 
-class CategoryAdapter(private var categoryList: ArrayList<Category>, private val pageAdapter: PageAdapter) :
+class CategoryAdapter(private var categoryList: ArrayList<Category>, private val mainAdapter: MainAdapter) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
@@ -17,7 +17,7 @@ class CategoryAdapter(private var categoryList: ArrayList<Category>, private val
 
     override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
         holder.title.text = categoryList[position].name
-        holder.rvPages.adapter = pageAdapter
+        holder.rvPages.adapter = mainAdapter
     }
 
     override fun getItemCount(): Int {

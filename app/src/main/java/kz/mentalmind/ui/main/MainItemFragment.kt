@@ -10,9 +10,9 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.R
 import kz.mentalmind.data.Page
 
-class MainItemFragment : Fragment(), ItemResultListener {
+class MainItemFragment : Fragment() {
 
-    private lateinit var pageAdapter: PageAdapter
+    private lateinit var mainAdapter: MainAdapter
     private var recommends: ArrayList<Page> = arrayListOf()
 
     override fun onCreateView(
@@ -27,10 +27,25 @@ class MainItemFragment : Fragment(), ItemResultListener {
         setAdapters()
     }
 
-    private fun setList(){
-        val ex1 = Page("Название инструмента", 1, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage1, null))
-        val ex2 = Page("Название инструмента", 2, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage2, null))
-        val ex3 = Page("Название инструмента", 3, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage3, null))
+    private fun setList() {
+        val ex1 = Page(
+            "Название инструмента",
+            1,
+            "Описание инструмента",
+            ResourcesCompat.getDrawable(resources, R.drawable.exampleimage1, null)
+        )
+        val ex2 = Page(
+            "Название инструмента",
+            2,
+            "Описание инструмента",
+            ResourcesCompat.getDrawable(resources, R.drawable.exampleimage2, null)
+        )
+        val ex3 = Page(
+            "Название инструмента",
+            3,
+            "Описание инструмента",
+            ResourcesCompat.getDrawable(resources, R.drawable.exampleimage3, null)
+        )
         recommends.addAll(
             listOf(
                 ex1, ex2, ex3
@@ -38,11 +53,9 @@ class MainItemFragment : Fragment(), ItemResultListener {
         )
     }
 
-    private fun setAdapters(){
+    private fun setAdapters() {
         setList()
-        pageAdapter = PageAdapter(recommends)
-        rvRecommend.adapter = pageAdapter
-        pageAdapter.setItemResultListener(this)
+        rvRecommend.adapter = mainAdapter
     }
 
     companion object {
@@ -51,9 +64,5 @@ class MainItemFragment : Fragment(), ItemResultListener {
 
             }
         }
-    }
-
-    override fun onItemClickedResult(page: Page) {
-
     }
 }

@@ -8,31 +8,30 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kz.mentalmind.data.CollectionResult
 import kz.mentalmind.R
-import kz.mentalmind.data.Page
-import kz.mentalmind.ui.main.mood.MoodResultListener
 
-class PageAdapter(private var pageList: ArrayList<Page>) :
-    RecyclerView.Adapter<PageAdapter.ViewHolder>() {
+class CollectionAdapter (private var collections: ArrayList<CollectionResult>) :
+    RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
     private lateinit var itemResultListener: ItemResultListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_pages, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: PageAdapter.ViewHolder, position: Int) {
-        holder.pageTitle.text = pageList[position].title
-        holder.description.text = pageList[position].description
-        holder.image.setImageDrawable(pageList[position].image)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.pageTitle.text = collections[position].name
+        holder.description.text = collections[position].description
         holder.llContainer.setOnClickListener {
-            itemResultListener.onItemClickedResult(pageList[position])
+            itemResultListener.onItemClickedResult(collections[position])
         }
+        Glide.with(holder.itemView).load(collections[position].file_image).into(holder.image)
     }
 
     override fun getItemCount(): Int {
-        return pageList.size
+        return collections.size
     }
 
     fun setItemResultListener(listener: ItemResultListener) {
@@ -44,5 +43,11 @@ class PageAdapter(private var pageList: ArrayList<Page>) :
         val description: TextView = itemView.findViewById(R.id.tvPageDescription)
         val image: ImageView = itemView.findViewById(R.id.ivPages)
         val llContainer: LinearLayout = itemView.findViewById(R.id.llContainer)
+    }
+
+    fun setNewData(newData: ArrayList<CollectionResult>){
+        collections.clear()
+        collections.addAll(newData)
+        notifyDataSetChanged()
     }
 }
