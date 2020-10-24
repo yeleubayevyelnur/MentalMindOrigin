@@ -9,7 +9,10 @@ import kz.mentalmind.data.CollectionResult
 import kz.mentalmind.R
 import kz.mentalmind.data.TagsResult
 
-class MainAdapter(private var tags: ArrayList<TagsResult>, private var collectionAdapter: CollectionAdapter) :
+class MainAdapter(
+    private var tags: ArrayList<TagsResult>,
+    private var collections: ArrayList<CollectionResult>
+) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
@@ -19,7 +22,7 @@ class MainAdapter(private var tags: ArrayList<TagsResult>, private var collectio
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
         holder.tagName.text = tags[position].name
-        holder.rvCollection.adapter = collectionAdapter
+        holder.rvCollection.adapter = CollectionAdapter(collections, tags[position].name)
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +34,7 @@ class MainAdapter(private var tags: ArrayList<TagsResult>, private var collectio
         val rvCollection: RecyclerView = itemView.findViewById(R.id.rvCollection)
     }
 
-    fun setNewData(tagList: ArrayList<TagsResult>){
+    fun setNewData(tagList: ArrayList<TagsResult>) {
         tags.clear()
         tags.addAll(tagList)
         notifyDataSetChanged()

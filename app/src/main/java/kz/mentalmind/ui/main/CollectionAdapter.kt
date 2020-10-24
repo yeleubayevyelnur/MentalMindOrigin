@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import kz.mentalmind.data.CollectionResult
 import kz.mentalmind.R
 
-class CollectionAdapter (private var collections: ArrayList<CollectionResult>) :
+class CollectionAdapter(
+    private var collections: ArrayList<CollectionResult>,
+    private var tag: String
+) :
     RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
     private lateinit var itemResultListener: ItemResultListener
@@ -45,9 +48,9 @@ class CollectionAdapter (private var collections: ArrayList<CollectionResult>) :
         val llContainer: LinearLayout = itemView.findViewById(R.id.llContainer)
     }
 
-    fun setNewData(newData: ArrayList<CollectionResult>){
+    fun setNewData(newData: ArrayList<CollectionResult>) {
         collections.clear()
-        collections.addAll(newData)
+        collections.addAll(newData.filter { it.tags.contains(tag) })
         notifyDataSetChanged()
     }
 }

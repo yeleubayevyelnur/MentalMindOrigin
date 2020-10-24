@@ -38,10 +38,10 @@ class MainFragment : Fragment(), ItemResultListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        collectionAdapter = CollectionAdapter(collections)
-        collectionAdapter.setItemResultListener(this)
+//        collectionAdapter =
+//        collectionAdapter.setItemResultListener(this)
 
-        mainAdapter = MainAdapter(tagList, collectionAdapter)
+        mainAdapter = MainAdapter(tagList, collections)
         rvMain.adapter = mainAdapter
 
 
