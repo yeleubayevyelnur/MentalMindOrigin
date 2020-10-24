@@ -2,12 +2,11 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.TagsResponse
-import kz.mentalmind.data.TagsResult
+import kz.mentalmind.data.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
+import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 
 interface ApiService {
@@ -53,8 +52,10 @@ interface ApiService {
         @Field("email")email: String
     ): Single<PassRecoveryData>
 
-    @GET("users/register/")
-    fun userInfo()
+    @GET("users/me/")
+    fun getUserInfo(
+        @Header("Authorization") token: String
+    ): Observable<ProfileResponse>
 
     @GET("users/me/subscription_status/")
     fun getSubscriptionStatus()
@@ -119,6 +120,14 @@ interface ApiService {
 
     @GET("api/v1/collection_types/")
     fun getCollectionTypes()
+
+    @GET("api/v1/levels/")
+    fun getLevels(): Observable<LevelsResponse>
+
+    @GET("api/v1/levels/{id}")
+    fun getLevelDetail(
+        @Path("id")id: Int
+    ): Observable<LevelDetailResponse>
 
     @FormUrlEncoded
     @POST("api/v1/help/")

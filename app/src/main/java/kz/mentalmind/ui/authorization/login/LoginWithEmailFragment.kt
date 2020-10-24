@@ -30,7 +30,9 @@ class LoginWithEmailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe ({
-                    (activity as? AuthActivity)?.openMainActivity()
+                (activity as? AuthActivity)?.openMainActivity()
+                authViewModel.saveUser(requireContext(), it.loginData.user)
+                authViewModel.saveToken(requireContext(), it.loginData.access_token)
             }, {
 
             })

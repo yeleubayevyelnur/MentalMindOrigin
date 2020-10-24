@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.authorization
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
@@ -9,6 +10,7 @@ import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
+import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.repository.AuthRepository
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -72,6 +74,22 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     fun observeLoginSubject(): Observable<LoginResponse>{
         return loginSubject
+    }
+
+    fun saveUser(context: Context, user: User) {
+        authRepository.saveUser(user, context)
+    }
+
+    fun saveToken(context: Context, accessToken: String) {
+        authRepository.saveToken(context, accessToken)
+    }
+
+    fun getToken(context: Context): String? {
+        return authRepository.getToken(context)
+    }
+
+    fun getUser(context: Context): User? {
+        return authRepository.getUser(context)
     }
 
     fun observeErrorSubject(): Observable<String> {
