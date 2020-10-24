@@ -9,6 +9,7 @@
     <color name="colorStrongGray">#82858C</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="colorChecked">#219AEB</color>
-    <color name="colorUnchecked">#82BFE7</color>
+    <color name="blueColor">#219AEB</color>
+    <color name="blueColor1">#82BFE7</color>
+    <color name="blackText">#333333</color>
 </resources>

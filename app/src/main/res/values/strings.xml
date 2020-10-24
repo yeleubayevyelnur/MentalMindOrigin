@@ -41,4 +41,7 @@
     <string name="txt_add_promocode">Ввести промо-код</string>
     <string name="txt_notify_meditation">Напоминать о медитации</string>
     <string name="txt_level">Твой уровень</string>
+    <string name="we_recommend_you">Мы рекомендуем вам</string>
+    <string name="online_education">Онлайн обучение</string>
+    <string name="online_meditate">Сейчас \nслушают медитации</string>
 </resources>
