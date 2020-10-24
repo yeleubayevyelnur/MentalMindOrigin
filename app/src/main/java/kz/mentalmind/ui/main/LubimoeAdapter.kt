@@ -13,10 +13,10 @@ import kz.mentalmind.data.Page
 class LubimoeAdapter(private var pageList: ArrayList<Page>) :
     RecyclerView.Adapter<LubimoeAdapter.ViewHolder>()  {
 
-    private lateinit var itemResultListener: ItemResultListener
+    private lateinit var meditationClickListener: MeditationClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LubimoeAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_pages, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_meditation, parent, false)
         return ViewHolder(v)
     }
 
@@ -31,14 +31,14 @@ class LubimoeAdapter(private var pageList: ArrayList<Page>) :
         return pageList.size
     }
 
-    fun setItemResultListener(listener: ItemResultListener) {
-        itemResultListener = listener
+    fun setItemResultListener(listener: MeditationClickListener) {
+        meditationClickListener = listener
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val pageTitle: TextView = itemView.findViewById(R.id.tvPageTitle)
-        val description: TextView = itemView.findViewById(R.id.tvPageDescription)
-        val image: ImageView = itemView.findViewById(R.id.ivPages)
+        val pageTitle: TextView = itemView.findViewById(R.id.tvTitle)
+        val description: TextView = itemView.findViewById(R.id.tvDescription)
+        val image: ImageView = itemView.findViewById(R.id.ivBanner)
         val llContainer: LinearLayout = itemView.findViewById(R.id.llContainer)
     }
 }

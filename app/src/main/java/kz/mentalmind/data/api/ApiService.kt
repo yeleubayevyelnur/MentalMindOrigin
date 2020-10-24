@@ -3,6 +3,8 @@ package kz.mentalmind.data.api
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.*
+import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
@@ -49,7 +51,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("users/reset_password/")
     fun resetPassword(
-        @Field("email")email: String
+        @Field("email") email: String
     ): Single<PassRecoveryData>
 
     @GET("users/me/")
@@ -77,7 +79,9 @@ interface ApiService {
 
     @GET("api/v1/collections/")
     fun getCollections(
-        @Header("Accept-Language") language: String
+        @Header("Accept-Language") language: String,
+        @Query("type") type: Int,
+        @Query("tags") tag: Int
     ): Observable<CollectionsResponse>
 
     @GET("api/v1/tags/")

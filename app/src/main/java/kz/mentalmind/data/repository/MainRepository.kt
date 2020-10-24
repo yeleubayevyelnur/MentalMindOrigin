@@ -6,6 +6,8 @@ import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.*
+import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.ProfileResponse
@@ -23,8 +25,8 @@ class MainRepository(
         return gson.fromJson(userString, User::class.java)
     }
 
-    fun getCollections(language: String): Observable<CollectionsResponse> {
-        return apiService.getCollections(language)
+    fun getCollections(language: String, type: Int, tag: Int): Observable<CollectionsResponse> {
+        return apiService.getCollections(language, type, tag)
             .subscribeOn(Schedulers.io())
     }
 

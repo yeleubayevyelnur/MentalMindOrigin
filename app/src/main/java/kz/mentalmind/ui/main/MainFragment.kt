@@ -9,15 +9,13 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.CollectionResult
+import kz.mentalmind.data.CollectionItem
 import kz.mentalmind.ui.main.mood.MoodFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment(), ItemResultListener {
+class MainFragment : Fragment(), MeditationClickListener {
     private val mainViewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-
-    private lateinit var collectionAdapter: CollectionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +32,7 @@ class MainFragment : Fragment(), ItemResultListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        mainViewModel.getCollections("ru")
-        mainViewModel.getTags("ru")
+        mainViewModel.getStreamOfLife("ru")
         moodView.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 MoodFragment(),
@@ -46,15 +43,15 @@ class MainFragment : Fragment(), ItemResultListener {
 
     private fun observeData() {
         compositeDisposable.add(
-            mainViewModel.observeCollectionsSubject().subscribe({
-                collectionAdapter.setNewData(it.collections.results)
-            }, {
+            mainViewModel.observeStreamOfLife().subscribe({
+                rvStreamOfLife.adapter = MeditationAdapter(
+                    it.data.results,
+                    object : MeditationClickListener {
+                        override fun onMeditationClicked(meditation: CollectionItem) {
 
-            })
-        )
-        compositeDisposable.add(
-            mainViewModel.observeTagsSubject().subscribe({
-
+                        }
+                    }
+                )
             }, {
 
             })
@@ -66,7 +63,7 @@ class MainFragment : Fragment(), ItemResultListener {
         )
     }
 
-    override fun onItemClickedResult(collections: CollectionResult) {
+    override fun onMeditationClicked(collections: CollectionItem) {
         (activity as? MainActivity)?.replaceFragment(
             MainItemFragment.newInstance(),
             MainItemFragment::class.simpleName
