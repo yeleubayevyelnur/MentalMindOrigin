@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,6 +27,9 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeData()
         profileViewModel.getToken(requireContext())?.let { profileViewModel.getProfile(it) }
+        info.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(LevelsFragment(), LevelsFragment::class.simpleName)
+        }
     }
 
     private fun observeData() {
@@ -41,8 +45,8 @@ class ProfileFragment : Fragment() {
             profileViewModel.observeLevelDetailSubject().subscribe({
                 Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                 tvLevel.text = it.levelsDetailData.name
-                countDay.text = it.levelsDetailData.days_with_us.toString()
-                countTime.text = it.levelsDetailData.listened_minutes.toString()
+                countDay.text = String.format("%s дней", it.levelsDetailData.days_with_us.toString())
+                countTime.text = String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
             }, {
 
             })

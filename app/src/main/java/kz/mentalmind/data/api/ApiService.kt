@@ -2,12 +2,13 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.*
 import kz.mentalmind.data.CollectionsResponse
 import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
+import kz.mentalmind.data.profile.LevelDetailResponse
+import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 

@@ -1,60 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="4dp"
-    android:padding="16dp">
+    android:layout_height="260dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clLevel"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/label"
+        style="@style/MediumTitleTextSize18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_level"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Рождение" />
+
+    <LinearLayout
+        android:id="@+id/levelContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_options_container"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_level"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="41dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/label">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivPhoto"
+            android:id="@+id/ivLevel"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@color/cardview_dark_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            tools:src="@color/cardview_dark_background" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLevel"
+            style="@style/LevelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/txt_level"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivPhoto" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            tools:text="Новичок" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/clLevel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/mood_background"
-            android:text="6 дней" />
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/countDay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/mood_background"
+                android:gravity="center"
+                android:paddingStart="44dp"
+                android:paddingEnd="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="30 дней" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvYourOwnWay"
+                style="@style/ExtraSmallTextSize12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/on_way_to_you"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/countDay" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/mood_background"
-            android:text="6 дней" />
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="32dp"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/countTime"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/mood_background"
+                android:gravity="center"
+                android:paddingStart="44dp"
+                android:paddingEnd="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="20 минут" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSelfStudy"
+                style="@style/ExtraSmallTextSize12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="самопознание"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/countTime" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

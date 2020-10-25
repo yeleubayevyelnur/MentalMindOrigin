@@ -5,11 +5,12 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import kz.mentalmind.data.*
 import kz.mentalmind.data.CollectionsResponse
 import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
+import kz.mentalmind.data.profile.LevelDetailResponse
+import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.utils.Constants
 

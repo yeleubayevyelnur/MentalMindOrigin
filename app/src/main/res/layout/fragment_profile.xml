@@ -169,103 +169,150 @@
             app:thumbTint="@color/white"
             app:track="@drawable/track" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvYourLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/levelContainer"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="44dp"
-            android:text="@string/txt_level"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNotifyMeditation" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clLevelContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/bg_options_container"
-            android:elevation="4dp"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="41dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvYourLevel">
+            app:layout_constraintTop_toBottomOf="@id/tvNotifyMeditation">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivLevel"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/cardview_dark_background" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvLevel"
+            <TextView
+                android:id="@+id/tvYourLevel"
+                style="@style/MediumTitleTextSize18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="41dp"
+                android:text="@string/txt_level"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/childLevelContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_level"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="41dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivLevel"
-                tools:text="Новичок" />
+                app:layout_constraintTop_toBottomOf="@id/tvYourLevel">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivLevel"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@color/cardview_dark_background" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLevel"
+                    style="@style/LevelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivLevel"
+                    tools:text="Новичок" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:background="@drawable/ic_info"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/countDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/mood_background"
+                        android:gravity="center"
+                        android:paddingStart="44dp"
+                        android:paddingEnd="44dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="6 дней" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvYourOwnWay"
+                        style="@style/ExtraSmallTextSize12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/on_way_to_you"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/countDay" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/countTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/mood_background"
+                        android:gravity="center"
+                        android:paddingStart="44dp"
+                        android:paddingEnd="44dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="20 минут" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSelfStudy"
+                        style="@style/ExtraSmallTextSize12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/countTime"
+                        tools:text="самопознание" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/countDay"
-            android:layout_width="146dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/mood_background"
-            android:elevation="4dp"
-            android:gravity="center"
-            android:paddingStart="44dp"
-            android:paddingEnd="44dp"
-            app:layout_constraintBottom_toBottomOf="@id/clLevelContainer"
-            app:layout_constraintStart_toStartOf="@id/clLevelContainer"
-            tools:text="6 дней" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvYourOwnWay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:elevation="4dp"
-            android:text="@string/on_way_to_you"
-            app:layout_constraintEnd_toEndOf="@id/countDay"
-            app:layout_constraintStart_toStartOf="@id/countDay"
-            app:layout_constraintTop_toBottomOf="@id/countDay" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/countTime"
-            android:layout_width="146dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/mood_background"
-            android:elevation="4dp"
-            android:gravity="center"
-            android:paddingStart="44dp"
-            android:paddingEnd="44dp"
-            app:layout_constraintBottom_toBottomOf="@id/clLevelContainer"
-            app:layout_constraintEnd_toEndOf="@id/clLevelContainer"
-            tools:text="20 минут" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSelfStudy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="@id/countTime"
-            app:layout_constraintStart_toStartOf="@id/countTime"
-            app:layout_constraintTop_toBottomOf="@id/countTime"
-            tools:text="самопознание" />
 
         <LinearLayout
             android:id="@+id/llHistoryContainer"
@@ -277,7 +324,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSelfStudy">
+            app:layout_constraintTop_toBottomOf="@id/levelContainer">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"

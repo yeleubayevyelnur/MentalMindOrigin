@@ -1,21 +1,14 @@
-package kz.mentalmind.data
+package kz.mentalmind.data.profile
 
 import com.google.gson.annotations.SerializedName
 
-data class LevelsResponse(
+data class LevelDetailResponse(
     @SerializedName("data")
-    val levelsData: LevelsData,
+    val levelsDetailData: LevelDetailData,
     val error: String? = null
 )
 
-data class LevelsData(
-    val count: Int,
-    val next: Any,
-    val previous: Any,
-    val results: List<LevelsResult>
-)
-
-data class LevelsResult(
+data class LevelDetailData(
     val days_with_us: Int,
     val file_image: String,
     val id: Int,

@@ -23,10 +23,21 @@
         <item name="android:textColor">@color/blackText</item>
     </style>
 
+    <style name="LevelText" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="SecondaryTitleText" parent="AppTheme">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ExtraSmallTextSize12" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="SmallTextSize14" parent="AppTheme">
@@ -37,6 +48,11 @@
 
     <style name="StandartTextSize16" parent="AppTheme">
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MediumTitleTextSize18" parent="AppTheme">
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

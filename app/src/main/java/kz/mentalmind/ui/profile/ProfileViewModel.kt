@@ -6,8 +6,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.LevelDetailResponse
-import kz.mentalmind.data.LevelsResponse
+import kz.mentalmind.data.profile.LevelDetailResponse
+import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.data.repository.MainRepository
