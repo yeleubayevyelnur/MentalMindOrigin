@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.TagsResult
 
-class MainAdapter(private var tags: ArrayList<TagsResult>, private var meditationAdapter: MeditationAdapter) :
+class MainAdapter(private var tags: ArrayList<TagsResult>, private var instrumentsAdapter: InstrumentsAdapter) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
@@ -18,7 +18,7 @@ class MainAdapter(private var tags: ArrayList<TagsResult>, private var meditatio
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
         holder.tagName.text = tags[position].name
-        holder.rvCollection.adapter = meditationAdapter
+        holder.rvCollection.adapter = instrumentsAdapter
     }
 
     override fun getItemCount(): Int {

@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.domain.dto.MeditationDto
 
-class MeditationsAdapter(private var meditations: List<MeditationDto>) :
+class MeditationsAdapter(
+    private var meditations: List<MeditationDto>,
+    private val meditationClickListener: MeditationClickListener
+) :
     RecyclerView.Adapter<MeditationsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -20,12 +23,16 @@ class MeditationsAdapter(private var meditations: List<MeditationDto>) :
     }
 
     override fun onBindViewHolder(holder: MeditationsAdapter.ViewHolder, position: Int) {
-        holder.title.text = meditations[position].name
+        val meditation = meditations[position]
+        holder.title.text = meditation.name
         holder.duration.text = String.format(
             "%s %s",
-            meditations[position].duration / 60,
+            meditation.duration / 60,
             holder.itemView.context.getString(R.string.minute)
         )
+        holder.itemView.setOnClickListener {
+            meditationClickListener.onMeditationClicked(meditation)
+        }
     }
 
     override fun getItemCount(): Int {

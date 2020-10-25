@@ -13,10 +13,10 @@ import kz.mentalmind.data.Page
 class LubimoeAdapter(private var pageList: ArrayList<Page>) :
     RecyclerView.Adapter<LubimoeAdapter.ViewHolder>()  {
 
-    private lateinit var meditationClickListener: MeditationClickListener
+    private lateinit var instrumentClickListener: InstrumentClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LubimoeAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_meditation, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_instrument1, parent, false)
         return ViewHolder(v)
     }
 
@@ -31,8 +31,8 @@ class LubimoeAdapter(private var pageList: ArrayList<Page>) :
         return pageList.size
     }
 
-    fun setItemResultListener(listener: MeditationClickListener) {
-        meditationClickListener = listener
+    fun setItemResultListener(listener: InstrumentClickListener) {
+        instrumentClickListener = listener
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {

@@ -11,32 +11,33 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
 
-class MeditationAdapter(
-    private var meditations: ArrayList<CollectionItem>,
-    private val clickListener: MeditationClickListener
+class InstrumentsAdapter(
+    private var instruments: ArrayList<CollectionItem>,
+    private val clickListener: InstrumentClickListener
 ) :
-    RecyclerView.Adapter<MeditationAdapter.ViewHolder>() {
+    RecyclerView.Adapter<InstrumentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_meditation, parent, false)
+        val v =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_instrument1, parent, false)
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val meditation = meditations[position]
-        holder.title.text = meditation.name
-        holder.description.text = meditation.description
+        val instrument = instruments[position]
+        holder.title.text = instrument.name
+        holder.description.text = instrument.description
         holder.itemView.setOnClickListener {
-            clickListener.onMeditationClicked(meditation)
+            clickListener.onInstrumentClicked(instrument)
         }
         Glide.with(holder.itemView)
-            .load(meditation.file_image)
+            .load(instrument.file_image)
             .transform(RoundedCorners(15))
             .into(holder.banner)
     }
 
     override fun getItemCount(): Int {
-        return meditations.size
+        return instruments.size
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
