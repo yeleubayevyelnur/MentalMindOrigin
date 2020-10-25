@@ -10,7 +10,10 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.ui.profile.settings.ChangeLanguageFragment
 import kz.mentalmind.ui.profile.settings.FaqFragment
+import kz.mentalmind.ui.profile.settings.HelpFragment
+import kz.mentalmind.ui.profile.settings.PromocodeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -51,6 +54,24 @@ class ProfileFragment : Fragment() {
             (activity as? MainActivity)?.replaceFragment(
                 FaqFragment(),
                 FaqFragment::class.simpleName
+            )
+        }
+        help.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                HelpFragment(),
+                HelpFragment::class.simpleName
+            )
+        }
+        changeLanguage.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                ChangeLanguageFragment(),
+                ChangeLanguageFragment::class.simpleName
+            )
+        }
+        addPromocode.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                PromocodeFragment(),
+                PromocodeFragment::class.simpleName
             )
         }
     }
