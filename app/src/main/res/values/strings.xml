@@ -102,4 +102,6 @@
     <string name="txt_apply">Применить</string>
     <string name="russian_language">Русский язык</string>
     <string name="kazakh_language">Казахский язык</string>
+    <string name="female">Женский</string>
+    <string name="male">Мужской</string>
 </resources>

@@ -93,13 +93,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center_vertical"
+                    android:text="@string/bg_music1"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/backgroundMusicIcon"
-                    app:layout_constraintTop_toBottomOf="@id/bgTitle"
-                    tools:text="Шум дождя" />
+                    app:layout_constraintTop_toBottomOf="@id/bgTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,13 +142,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center_vertical"
+                    android:text="@string/female"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/speakerVoiceIcon"
-                    app:layout_constraintTop_toBottomOf="@id/speakerTitle"
-                    tools:text="Шум дождя" />
+                    app:layout_constraintTop_toBottomOf="@id/speakerTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -175,9 +175,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_button_onboarding"
+            android:padding="13dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/settingsSpeakerVoiceTitle"
@@ -218,162 +232,169 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/settingsBgMusicTitle" />
 
-        <RadioGroup
-            android:id="@+id/bg_musics"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="16dp"
-            android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/volumeBar">
 
-            <RadioButton
-                android:id="@+id/bg_music1"
+            <RadioGroup
+                android:id="@+id/bg_musics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music1.mp3"
-                android:text="@string/bg_music1"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
 
-            <RadioButton
-                android:id="@+id/bg_music2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music2.mp3"
-                android:text="@string/bg_music2"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music1.mp3"
+                    android:text="@string/bg_music1"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music3.mp3"
-                android:text="@string/bg_music3"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music2.mp3"
+                    android:text="@string/bg_music2"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music4.mp3"
-                android:text="@string/bg_music4"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music3.mp3"
+                    android:text="@string/bg_music3"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music5.mp3"
-                android:text="@string/bg_music5"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music4.mp3"
+                    android:text="@string/bg_music4"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music6.mp3"
-                android:text="@string/bg_music6"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music5.mp3"
+                    android:text="@string/bg_music5"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music7.mp3"
-                android:text="@string/bg_music7"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music6.mp3"
+                    android:text="@string/bg_music6"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music8.mp3"
-                android:text="@string/bg_music8"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music7.mp3"
+                    android:text="@string/bg_music7"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music9.mp3"
-                android:text="@string/bg_music9"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music8.mp3"
+                    android:text="@string/bg_music8"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music10.mp3"
-                android:text="@string/bg_music10"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music9.mp3"
+                    android:text="@string/bg_music9"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music11.mp3"
-                android:text="@string/bg_music11"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/bg_music10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music10.mp3"
+                    android:text="@string/bg_music10"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/bg_music12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:button="@drawable/radio_button"
-                android:paddingHorizontal="12dp"
-                android:tag="bg_music12.mp3"
-                android:text="@string/bg_music12"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/bg_music11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music11.mp3"
+                    android:text="@string/bg_music11"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music12.mp3"
+                    android:text="@string/bg_music12"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+            </RadioGroup>
+        </ScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

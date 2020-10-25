@@ -9,7 +9,7 @@ import kz.mentalmind.R
 import kz.mentalmind.ui.onboarding.OnBoardingActivity
 
 class SplashScreenActivity : AppCompatActivity() {
-    private val timeout = 3000L
+    private val timeout = 1000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

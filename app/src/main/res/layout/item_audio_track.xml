@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="42dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/controlView"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        android:background="@drawable/ic_play"
         android:elevation="10dp"
-        android:src="@drawable/ic_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

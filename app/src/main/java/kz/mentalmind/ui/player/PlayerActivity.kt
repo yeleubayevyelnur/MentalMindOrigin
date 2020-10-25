@@ -1,7 +1,9 @@
 package kz.mentalmind.ui.player
 
 import android.os.Bundle
+import android.view.View
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
@@ -15,6 +17,7 @@ import kz.mentalmind.domain.dto.MeditationDto
 import kz.mentalmind.utils.Constants.MEDITATION
 
 class PlayerActivity : AppCompatActivity() {
+    private val backgroundMusicPathFormat = "file:///android_asset/%s"
     private var exoPlayer: SimpleExoPlayer? = null
     private var soundsPlayer: SimpleExoPlayer? = null
     private var playerView: PlayerControlView? = null
@@ -24,47 +27,52 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_player)
         val meditation: MeditationDto? = intent?.getParcelableExtra(MEDITATION)
         meditation?.let {
+            initializePlayer(it)
+
             findViewById<AppCompatTextView>(R.id.title).text = it.name
             findViewById<AppCompatTextView>(R.id.description).text = it.description
-            initializePlayer(it)
-        }
+            backgroundMusic.setOnClickListener {
+                settingsView.visibility = View.VISIBLE
+            }
 
-        bg_musics.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = findViewById<RadioButton>(checkedId)
-            soundsPlayer?.setMediaItem(
-                MediaItem.fromUri(
-                    String.format(
-                        "file:///android_asset/%s",
-                        radioButton.tag
+            speakerVoice.setOnClickListener {
+                settingsView.visibility = View.VISIBLE
+            }
+
+            close.setOnClickListener {
+                settingsView.visibility = View.GONE
+            }
+
+            volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    soundsPlayer?.volume = when (p1) {
+                        0 -> 0f
+                        100 -> 1f
+                        else -> p1.toFloat() / 100.toFloat()
+                    }
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            })
+
+            bg_musics.setOnCheckedChangeListener { _, checkedId ->
+                val radioButton = findViewById<RadioButton>(checkedId)
+                soundsPlayer?.setMediaItem(
+                    MediaItem.fromUri(
+                        String.format(
+                            backgroundMusicPathFormat,
+                            radioButton.tag
+                        )
                     )
                 )
-            )
+            }
+
+            findViewById<RadioGroup>(R.id.bg_musics).check(R.id.bg_music1)
         }
-//        sea?.setOnClickListener {
-//
-//        }
-//        birds.setOnClickListener {
-//            soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/544537.mp3"))
-//        }
-//        italy?.setOnClickListener {
-//            soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/e55bd2beca1a2a1.mp3"))
-//        }
-//
-        volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                soundsPlayer?.volume = when (p1) {
-                    0 -> 0f
-                    100 -> 1f
-                    else -> p1.toFloat() / 100.toFloat()
-                }
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-        })
     }
 
     override fun onDestroy() {
@@ -75,7 +83,7 @@ class PlayerActivity : AppCompatActivity() {
     private fun initializePlayer(meditation: MeditationDto) {
         exoPlayer = SimpleExoPlayer.Builder(this).build()
         exoPlayer?.apply {
-            setMediaItem(MediaItem.fromUri(meditation.file_female_voice))
+            setMediaItem(MediaItem.fromUri(meditation.file_male_voice))
             playWhenReady = true
             seekTo(0, 0)
             prepare()
@@ -98,8 +106,15 @@ class PlayerActivity : AppCompatActivity() {
     private fun releasePlayers() {
         exoPlayer?.release()
         exoPlayer = null
-
         soundsPlayer?.release()
         soundsPlayer = null
+    }
+
+    override fun onBackPressed() {
+        if (settingsView.visibility == View.VISIBLE) {
+            settingsView.visibility = View.GONE
+        } else {
+            super.onBackPressed()
+        }
     }
 }
