@@ -20,7 +20,6 @@ class MainFragment : Fragment(), InstrumentClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity as? MainActivity)?.hideActionBar()
     }
 
     override fun onCreateView(

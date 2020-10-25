@@ -43,6 +43,10 @@ class PlayerActivity : AppCompatActivity() {
                 settingsView.visibility = View.GONE
             }
 
+            back.setOnClickListener {
+                onBackPressed()
+            }
+
             volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                     soundsPlayer?.volume = when (p1) {
