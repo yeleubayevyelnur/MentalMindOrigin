@@ -1,4 +1,26 @@
 <resources>
+    //Background music
+    <string name="bg_music1">Путь к гармонии</string>
+    <string name="bg_music2">Магия леса</string>
+    <string name="bg_music3">Наполненная чаша</string>
+    <string name="bg_music4">Чистое звучание</string>
+    <string name="bg_music5">Единство бытия</string>
+    <string name="bg_music6">Дождь и песнь ветра</string>
+    <string name="bg_music7">Космический дух</string>
+    <string name="bg_music8">Истинное познание</string>
+    <string name="bg_music9">Ласточки над рекой</string>
+    <string name="bg_music10">Летний дождь</string>
+    <string name="bg_music11">Огонь Творения</string>
+    <string name="bg_music12">Полное осознание</string>
+
+    //OnBoardingText
+    <string name="ob_first_main_text">Освободи свой мозг\nот всех ограничений</string>
+    <string name="ob_first_secondary_text">С помощью простых и\nуникальных инструментов</string>
+    <string name="ob_second_main_text">Ежедневная проработка\nкаждый день</string>
+    <string name="ob_second_secondary_text">Три минуты вернут тебя\nв потоковое состояние</string>
+    <string name="ob_third_main_text">Позволь удивительным\nпеременам войти\nв твою жизнь</string>
+    <string name="ob_third_secondary_text">Сделай правильный выбор,\nначни использовать приложение\nуже сейчас!</string>
+
     <string name="app_name">Mental Mind</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -24,13 +46,6 @@
     <string name="what_are_you_now">Какой ты сейчас?</string>
     <string name="main">Главная</string>
 
-    //OnBoardingText
-    <string name="ob_first_main_text">Освободи свой мозг\nот всех ограничений</string>
-    <string name="ob_first_secondary_text">С помощью простых и\nуникальных инструментов</string>
-    <string name="ob_second_main_text">Ежедневная проработка\nкаждый день</string>
-    <string name="ob_second_secondary_text">Три минуты вернут тебя\nв потоковое состояние</string>
-    <string name="ob_third_main_text">Позволь удивительным\nпеременам войти\nв твою жизнь</string>
-    <string name="ob_third_secondary_text">Сделай правильный выбор,\nначни использовать приложение\nуже сейчас!</string>
     <string name="we_recommend_you">Мы рекомендуем вам</string>
     <string name="online_education">Онлайн обучение</string>
     <string name="online_meditate">Сейчас \nслушают медитации</string>
@@ -41,18 +56,4 @@
     <string name="minute">мин.</string>
     <string name="background_music">Фоновая музыка</string>
     <string name="speaker_voice">Голос диктора</string>
-
-    //Background music
-    <string name="bg_music1">Путь к гармонии</string>
-    <string name="bg_music2">Магия леса</string>
-    <string name="bg_music3">Наполненная чаша</string>
-    <string name="bg_music4">Чистое звучание</string>
-    <string name="bg_music5">Единство бытия</string>
-    <string name="bg_music6">Дождь и песнь ветра</string>
-    <string name="bg_music7">Космический дух</string>
-    <string name="bg_music8">Истинное познание</string>
-    <string name="bg_music9">Ласточки над рекой</string>
-    <string name="bg_music10">Летний дождь</string>
-    <string name="bg_music11">Огонь Творения</string>
-    <string name="bg_music12">Полное осознание</string>
 </resources>
