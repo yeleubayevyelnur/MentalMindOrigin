@@ -32,7 +32,7 @@ class LevelsFragment : Fragment() {
 
             })
         )
-        profileViewModel.getLevels()
+        profileViewModel.getToken(requireContext())?.let { profileViewModel.getLevels(it) }
         btnBack.setOnClickListener {
             (activity as? MainActivity)?.onBackPressed()
         }

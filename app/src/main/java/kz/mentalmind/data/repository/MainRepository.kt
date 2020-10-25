@@ -26,29 +26,33 @@ class MainRepository(
         return gson.fromJson(userString, User::class.java)
     }
 
-    fun getCollections(language: String, type: Int, tag: Int): Observable<CollectionsResponse> {
-        return apiService.getCollections(language, type, tag)
+    fun getCollections(token: String, language: String,type: Int, tag: Int): Observable<CollectionsResponse> {
+        val accessToken = "Token $token"
+        return apiService.getCollections(language, accessToken,type, tag)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getTags(language: String): Observable<TagsResponse> {
-        return apiService.getTags(language)
+    fun getTags(language: String, token: String): Observable<TagsResponse> {
+        val accessToken = "Token $token"
+        return apiService.getTags(language, accessToken)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getProfile(authToken: String): Observable<ProfileResponse> {
-        val token = "Token $authToken"
-        return apiService.getUserInfo(token)
+    fun getProfile(token: String): Observable<ProfileResponse> {
+        val accessToken = "Token $token"
+        return apiService.getUserInfo(accessToken)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getLevels(): Observable<LevelsResponse> {
-        return apiService.getLevels()
+    fun getLevels(token: String): Observable<LevelsResponse> {
+        val accessToken = "Token $token"
+        return apiService.getLevels(accessToken)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getLevelDetail(id: Int): Observable<LevelDetailResponse> {
-        return apiService.getLevelDetail(id)
+    fun getLevelDetail(token: String, id: Int): Observable<LevelDetailResponse> {
+        val accessToken = "Token $token"
+        return apiService.getLevelDetail(accessToken, id)
             .subscribeOn(Schedulers.io())
     }
 

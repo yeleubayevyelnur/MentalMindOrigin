@@ -16,6 +16,7 @@
     <string name="reply_your_password">Повторите свой пароль</string>
     <string name="reply_password">Повторите пароль</string>
     <string name="enter_your_password">Введите свой пароль</string>
+    <string name="enter_promocode">Введите промкод</string>
     <string name="password">Пароль</string>
     <string name="create_new_pass">Придумайте новый пароль</string>
     <string name="reply_new_pass">Повторите новый пароль</string>
@@ -39,6 +40,7 @@
     <string name="txt_help">Помощь</string>
     <string name="txt_change_language">Сменить язык</string>
     <string name="txt_add_promocode">Ввести промо-код</string>
+    <string name="txt_promocode">Промокод</string>
     <string name="txt_notify_meditation">Напоминать о медитации</string>
     <string name="txt_level">Твой уровень</string>
     <string name="we_recommend_you">Мы рекомендуем вам</string>
@@ -68,6 +70,7 @@
     <string name="city">Город</string>
     <string name="change_password">Сменить пароль</string>
     <string name="save_changes">Сохранить изменения</string>
+    <string name="save_password">Сохранить пароль</string>
     <string name="enter_current_password">Введите текущий пароль</string>
     <string name="what_is_mentalmind">Что такое "Mentalmind"?</string>
 
@@ -78,9 +81,11 @@
     <string name="what_is_instruments">Что такое Инструменты в  приложении?</string>
     <string name="how_long">Как долго я должен слушать  инструменты?</string>
     <string name="how_to_know">Как я пойму что приложение мне  подходит?</string>
+    <string name="promocode_description">Если у Вас есть промокод, введите его ниже, чтобы получить доступ к полному функционалу приложения</string>
     <string name="write_to_us">Если у Вас позникли вопросы, жалобы или пожелания напишите нам</string>
     <string name="enter_text">Введите текст</string>
     <string name="txt_send">Отправить</string>
+    <string name="txt_apply">Применить</string>
     <string name="russian_language">Руский язык</string>
     <string name="kazakh_language">Казахский язык</string>
 </resources>

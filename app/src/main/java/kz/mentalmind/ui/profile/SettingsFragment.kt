@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.ui.profile.settings.ChangePasswordFragment
 
 
 class SettingsFragment : Fragment() {

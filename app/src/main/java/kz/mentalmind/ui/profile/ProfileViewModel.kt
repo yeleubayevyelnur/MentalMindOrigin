@@ -20,9 +20,9 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
     private val levelsSubject = PublishSubject.create<LevelsResponse>()
     private val levelsDetailSubject = PublishSubject.create<LevelDetailResponse>()
 
-    fun getProfile(authToken: String) {
+    fun getProfile(token: String) {
         disposable.add(
-            mainRepository.getProfile(authToken).observeOn(AndroidSchedulers.mainThread())
+            mainRepository.getProfile(token).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
                         profileSubject.onNext(it)
@@ -35,9 +35,9 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
         )
     }
 
-    fun getLevels() {
+    fun getLevels(token: String) {
         disposable.add(
-            mainRepository.getLevels().observeOn(AndroidSchedulers.mainThread())
+            mainRepository.getLevels(token).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
                         levelsSubject.onNext(it)
@@ -50,9 +50,9 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
         )
     }
 
-    fun getLevelDetail(id: Int) {
+    fun getLevelDetail(token: String, id: Int) {
         disposable.add(
-            mainRepository.getLevelDetail(id).observeOn(AndroidSchedulers.mainThread())
+            mainRepository.getLevelDetail(token, id).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
                         levelsDetailSubject.onNext(it)

@@ -85,7 +85,8 @@ interface ApiService {
 
     @GET("api/v1/tags/")
     fun getTags(
-        @Header("Accept-Language") language: String
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
     ): Observable<TagsResponse>
 
     @GET("api/v1/challenges/")
@@ -122,10 +123,13 @@ interface ApiService {
     )
 
     @GET("api/v1/levels/")
-    fun getLevels(): Observable<LevelsResponse>
+    fun getLevels(
+        @Header("Authorization") token: String
+    ): Observable<LevelsResponse>
 
     @GET("api/v1/levels/{id}")
     fun getLevelDetail(
+        @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Observable<LevelDetailResponse>
 
@@ -141,6 +145,7 @@ interface ApiService {
     @GET("api/v1/collections/")
     fun getCollections(
         @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
         @Query("type") type: Int,
         @Query("tags") tag: Int
     ): Observable<CollectionsResponse>
@@ -152,6 +157,7 @@ interface ApiService {
     @GET("api/v1/collections/{id}")
     fun getCollectionDetails(
         @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Single<CommonResponse<CollectionDetailsDto>>
 

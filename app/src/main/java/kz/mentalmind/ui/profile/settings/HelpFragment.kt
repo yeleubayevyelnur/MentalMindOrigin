@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.profile
+package kz.mentalmind.ui.profile.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

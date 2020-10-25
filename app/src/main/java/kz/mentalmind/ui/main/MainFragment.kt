@@ -33,7 +33,7 @@ class MainFragment : Fragment(), InstrumentClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        mainViewModel.getStreamOfLife("ru")
+        mainViewModel.getToken(requireContext())?.let { mainViewModel.getStreamOfLife(it, "ru") }
         moodView.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 MoodFragment(),
@@ -49,7 +49,11 @@ class MainFragment : Fragment(), InstrumentClickListener {
                     it.data.results,
                     object : InstrumentClickListener {
                         override fun onInstrumentClicked(meditation: CollectionItem) {
-                            (activity as MainActivity).replaceFragment(MeditationsFragment.newInstance(meditation.id))
+                            (activity as MainActivity).replaceFragment(
+                                MeditationsFragment.newInstance(
+                                    meditation.id
+                                )
+                            )
                         }
                     }
                 )

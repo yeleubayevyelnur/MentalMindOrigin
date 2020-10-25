@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.meditations
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -13,9 +14,10 @@ class MeditationsViewModel(private val meditationRepository: MeditationRepositor
     private val errorsSubject = PublishSubject.create<String>()
 
 
-    fun getCollectionDetails(id: Int) {
+    fun getCollectionDetails(accessToken: String, id: Int) {
+        val token = "Token $accessToken"
         compositeDisposable.add(
-            meditationRepository.getCollectionDetails(id)
+            meditationRepository.getCollectionDetails(token, id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     response.data?.let {
@@ -36,4 +38,7 @@ class MeditationsViewModel(private val meditationRepository: MeditationRepositor
         super.onCleared()
     }
 
+    fun getToken(context: Context): String? {
+        return meditationRepository.getToken(context)
+    }
 }

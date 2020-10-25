@@ -36,7 +36,7 @@ val appModule = module {
         PreferenceManager.getDefaultSharedPreferences(androidContext())
     }
     single {
-        MeditationRepository(get())
+        MeditationRepository(get(), get())
     }
 }
 

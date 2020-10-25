@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.settings.HelpFragment">
+    tools:context=".ui.profile.settings.PromocodeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="76dp"
-                android:text="@string/txt_help"
+                android:text="@string/txt_promocode"
                 app:layout_constraintStart_toEndOf="@id/btnBack"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,18 +47,24 @@
                 app:layout_constraintTop_toBottomOf="@id/title">
 
                 <TextView
-                    style="@style/ExtraSmallGrayTextSize12"
+                    style="@style/StandartTextSize16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/write_to_us" />
+                    android:text="@string/promocode_description" />
+
+                <TextView
+                    style="@style/ExtraSmallTextSize12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/txt_promocode" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edittext_gray_stroke"
-                    android:gravity="top"
-                    android:hint="@string/enter_text"
+                    android:hint="@string/enter_promocode"
                     android:paddingStart="12dp"
                     android:paddingTop="14dp"
                     android:paddingEnd="12dp"
@@ -83,4 +89,5 @@
             android:text="@string/txt_send"
             android:textSize="17sp" />
     </RelativeLayout>
+
 </FrameLayout>

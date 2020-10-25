@@ -10,11 +10,18 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.ui.profile.settings.FaqFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+    private var accessToken: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        accessToken = profileViewModel.getToken(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +33,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        profileViewModel.getToken(requireContext())?.let { profileViewModel.getProfile(it) }
+        accessToken?.let { profileViewModel.getProfile(it) }
         info.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 LevelsFragment(),
@@ -50,9 +57,11 @@ class ProfileFragment : Fragment() {
 
     private fun observeData() {
         compositeDisposable.add(
-            profileViewModel.observeProfileSubject().subscribe({
-                profileViewModel.getLevelDetail(it.profileData.level)
-                tvEmail.text = it.profileData.email
+            profileViewModel.observeProfileSubject().subscribe({ profileResponse ->
+                accessToken?.let { token ->
+                    profileViewModel.getLevelDetail(token, profileResponse.profileData.level)
+                    tvEmail.text = profileResponse.profileData.email
+                }
             }, {
 
             })

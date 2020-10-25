@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.main
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,9 +33,9 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 //        )
 //    }
 
-    fun getStreamOfLife(language: String) {
+    fun getStreamOfLife(token: String, language: String) {
         disposable.add(
-            mainRepository.getCollections(language, 1, 1)
+            mainRepository.getCollections(token, language, 1, 1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
@@ -62,5 +63,9 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun observeErrorSubject(): Observable<String> {
         return errorsSubject
+    }
+
+    fun getToken(context: Context): String? {
+        return mainRepository.getToken(context)
     }
 }

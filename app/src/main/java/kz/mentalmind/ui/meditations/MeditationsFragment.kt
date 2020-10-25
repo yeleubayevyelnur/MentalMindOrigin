@@ -27,9 +27,9 @@ class MeditationsFragment : Fragment() {
             childFragmentManager.findFragmentByTag("playList") as? PlayListFragment
         compositeDisposable.add(meditationsViewModel.observeCollectionDetails().subscribe({
             playListFragment?.setData(it)
-
         }, {}))
-        meditationsViewModel.getCollectionDetails(requireArguments().getInt(ID))
+        meditationsViewModel.getToken(requireContext())
+            ?.let { meditationsViewModel.getCollectionDetails(it, requireArguments().getInt(ID)) }
     }
 
     companion object {
