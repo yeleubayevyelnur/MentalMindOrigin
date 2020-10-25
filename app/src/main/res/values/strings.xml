@@ -38,4 +38,5 @@
     <string name="favorite">Любимое</string>
     <string name="what_do_you_feel">Какой ты сейчас</string>
     <string name="will_be_available_later">Функционал будет доступен позже</string>
+    <string name="minute">мин.</string>
 </resources>
