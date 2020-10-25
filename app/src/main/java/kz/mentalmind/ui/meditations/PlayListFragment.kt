@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_play_list.*
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.domain.dto.CollectionDetailsDto
 
 
 class PlayListFragment : BottomSheetDialogFragment() {
@@ -33,22 +33,15 @@ class PlayListFragment : BottomSheetDialogFragment() {
         observeViewState(parentFragment)
     }
 
-    fun setData(data: List<MeditationDto>) {
-        val adapter = MeditationsAdapter(data)
+    fun setData(data: CollectionDetailsDto) {
+        title.text = data.name
+        description.text = data.description
+        val adapter = MeditationsAdapter(data.meditations)
         meditations.adapter = adapter
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            PlayListFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
-    }
-
     private fun observeViewState(parentFragment: Fragment?) {
-        (parentFragment?.view as? ViewGroup)?.findViewWithTag<View>("playListFragment")?.let {
+        (parentFragment?.view as? ViewGroup)?.findViewWithTag<View>("playList")?.let {
             viewBehavior = BottomSheetBehavior.from(it)
             viewBehavior?.addBottomSheetCallback(object :
                 BottomSheetBehavior.BottomSheetCallback() {

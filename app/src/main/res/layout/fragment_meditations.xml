@@ -7,12 +7,12 @@
     android:background="@drawable/cosmos"
     tools:context=".ui.meditations.MeditationsFragment">
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/playListFragment"
-        android:name="kz.mobile.darkstore.modules.entrance.views.EntranceAddressFragment"
+        android:name="kz.mentalmind.ui.meditations.PlayListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:tag="playListFragment"
+        android:tag="playList"
         app:behavior_fitToContents="false"
         app:behavior_peekHeight="250dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />

@@ -23,8 +23,10 @@ class MeditationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val playListFragment =
+            childFragmentManager.findFragmentByTag("playList") as? PlayListFragment
         compositeDisposable.add(meditationsViewModel.observeCollectionDetails().subscribe({
-
+            playListFragment?.setData(it)
 
         }, {}))
         meditationsViewModel.getCollectionDetails(requireArguments().getInt(ID))
