@@ -1,12 +1,15 @@
 package kz.mentalmind.ui.player
 
 import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerControlView
+import kotlinx.android.synthetic.main.activity_player.*
 import kz.mentalmind.R
 import kz.mentalmind.domain.dto.MeditationDto
 import kz.mentalmind.utils.Constants.MEDITATION
@@ -25,8 +28,20 @@ class PlayerActivity : AppCompatActivity() {
             findViewById<AppCompatTextView>(R.id.description).text = it.description
             initializePlayer(it)
         }
+
+        bg_musics.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = findViewById<RadioButton>(checkedId)
+            soundsPlayer?.setMediaItem(
+                MediaItem.fromUri(
+                    String.format(
+                        "file:///android_asset/%s",
+                        radioButton.tag
+                    )
+                )
+            )
+        }
 //        sea?.setOnClickListener {
-//            soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/0eb24fcad1bffed.mp3"))
+//
 //        }
 //        birds.setOnClickListener {
 //            soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/544537.mp3"))
@@ -35,22 +50,21 @@ class PlayerActivity : AppCompatActivity() {
 //            soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/e55bd2beca1a2a1.mp3"))
 //        }
 //
-//        volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-//            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-//                soundsPlayer?.volume = when (p1) {
-//                    0 -> 0f
-//                    100 -> 1f
-//                    else -> p1.toFloat() / 100.toFloat()
-//                }
-//                Log.d("yel", "sounds volume ${soundsPlayer?.volume}")
-//            }
-//
-//            override fun onStartTrackingTouch(p0: SeekBar?) {
-//            }
-//
-//            override fun onStopTrackingTouch(p0: SeekBar?) {
-//            }
-//        })
+        volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                soundsPlayer?.volume = when (p1) {
+                    0 -> 0f
+                    100 -> 1f
+                    else -> p1.toFloat() / 100.toFloat()
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
     }
 
     override fun onDestroy() {

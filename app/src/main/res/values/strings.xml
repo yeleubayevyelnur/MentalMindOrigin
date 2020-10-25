@@ -100,6 +100,6 @@
     <string name="enter_text">Введите текст</string>
     <string name="txt_send">Отправить</string>
     <string name="txt_apply">Применить</string>
-    <string name="russian_language">Руский язык</string>
+    <string name="russian_language">Русский язык</string>
     <string name="kazakh_language">Казахский язык</string>
 </resources>
