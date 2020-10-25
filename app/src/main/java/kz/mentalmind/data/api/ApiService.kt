@@ -3,6 +3,7 @@ package kz.mentalmind.data.api
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.CommonResponse
 import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
@@ -10,6 +11,7 @@ import kz.mentalmind.data.entrance.RegisterData
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
+import kz.mentalmind.domain.dto.CollectionDetailsDto
 import retrofit2.http.*
 
 interface ApiService {
@@ -78,13 +80,6 @@ interface ApiService {
         @Field("id") id: Int? = null
     )
 
-    @GET("api/v1/collections/")
-    fun getCollections(
-        @Header("Accept-Language") language: String,
-        @Query("type") type: Int,
-        @Query("tags") tag: Int
-    ): Observable<CollectionsResponse>
-
     @GET("api/v1/tags/")
     fun getTags(
         @Header("Accept-Language") language: String
@@ -123,9 +118,6 @@ interface ApiService {
         @Field("promocode") promocode: String
     )
 
-    @GET("api/v1/collection_types/")
-    fun getCollectionTypes()
-
     @GET("api/v1/levels/")
     fun getLevels(): Observable<LevelsResponse>
 
@@ -139,4 +131,25 @@ interface ApiService {
     fun help(
         @Field("text") text: String
     )
+
+
+    //Collections
+
+    @GET("api/v1/collections/")
+    fun getCollections(
+        @Header("Accept-Language") language: String,
+        @Query("type") type: Int,
+        @Query("tags") tag: Int
+    ): Observable<CollectionsResponse>
+
+
+    @GET("api/v1/collection_types/")
+    fun getCollectionTypes()
+
+    @GET("api/v1/collections/{id}")
+    fun getCollectionDetails(
+        @Header("Accept-Language") language: String,
+        @Path("id") id: Int
+    ): Single<CommonResponse<CollectionDetailsDto>>
+
 }

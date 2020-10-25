@@ -6,12 +6,13 @@ import com.google.gson.Gson
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.repository.AuthRepository
 import kz.mentalmind.data.repository.MainRepository
+import kz.mentalmind.data.repository.MeditationRepository
 import kz.mentalmind.data.repository.UserRepository
 import kz.mentalmind.ui.authorization.AuthViewModel
 import kz.mentalmind.ui.create.CreateViewModel
 import kz.mentalmind.ui.instruments.InstrumentsViewModel
 import kz.mentalmind.ui.main.MainViewModel
-import kz.mentalmind.ui.meditation.MeditationViewModel
+import kz.mentalmind.ui.meditations.MeditationsViewModel
 import kz.mentalmind.ui.profile.ProfileViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -33,6 +34,9 @@ val appModule = module {
     }
     single {
         PreferenceManager.getDefaultSharedPreferences(androidContext())
+    }
+    single {
+        MeditationRepository(get())
     }
 }
 
@@ -76,7 +80,7 @@ val viewModel = module {
         MainViewModel(mainRepository = get())
     }
     viewModel {
-        MeditationViewModel(mainRepository = get())
+        MeditationsViewModel(meditationRepository = get())
     }
     viewModel {
         ProfileViewModel(mainRepository = get())
