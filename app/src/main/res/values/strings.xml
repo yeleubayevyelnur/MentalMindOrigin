@@ -41,4 +41,18 @@
     <string name="minute">мин.</string>
     <string name="background_music">Фоновая музыка</string>
     <string name="speaker_voice">Голос диктора</string>
+
+    //Background music
+    <string name="bg_music1">Путь к гармонии</string>
+    <string name="bg_music2">Магия леса</string>
+    <string name="bg_music3">Наполненная чаша</string>
+    <string name="bg_music4">Чистое звучание</string>
+    <string name="bg_music5">Единство бытия</string>
+    <string name="bg_music6">Дождь и песнь ветра</string>
+    <string name="bg_music7">Космический дух</string>
+    <string name="bg_music8">Истинное познание</string>
+    <string name="bg_music9">Ласточки над рекой</string>
+    <string name="bg_music10">Летний дождь</string>
+    <string name="bg_music11">Огонь Творения</string>
+    <string name="bg_music12">Полное осознание</string>
 </resources>
