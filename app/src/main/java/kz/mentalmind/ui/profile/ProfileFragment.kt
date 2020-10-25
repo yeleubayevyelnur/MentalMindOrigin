@@ -28,7 +28,23 @@ class ProfileFragment : Fragment() {
         observeData()
         profileViewModel.getToken(requireContext())?.let { profileViewModel.getProfile(it) }
         info.setOnClickListener {
-            (activity as? MainActivity)?.replaceFragment(LevelsFragment(), LevelsFragment::class.simpleName)
+            (activity as? MainActivity)?.replaceFragment(
+                LevelsFragment(),
+                LevelsFragment::class.simpleName
+            )
+        }
+
+        ivSettings.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                SettingsFragment(),
+                SettingsFragment::class.simpleName
+            )
+        }
+        faq.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                FaqFragment(),
+                FaqFragment::class.simpleName
+            )
         }
     }
 
@@ -45,8 +61,10 @@ class ProfileFragment : Fragment() {
             profileViewModel.observeLevelDetailSubject().subscribe({
                 Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                 tvLevel.text = it.levelsDetailData.name
-                countDay.text = String.format("%s дней", it.levelsDetailData.days_with_us.toString())
-                countTime.text = String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
+                countDay.text =
+                    String.format("%s дней", it.levelsDetailData.days_with_us.toString())
+                countTime.text =
+                    String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
             }, {
 
             })

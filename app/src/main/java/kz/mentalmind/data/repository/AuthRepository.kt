@@ -24,7 +24,7 @@ class AuthRepository(
     }
 
     fun passwordRecovery(email: String): Single<PassRecoveryData> {
-        return apiService.resetPassword(email)
+        return apiService.passwordRecovery(email)
             .subscribeOn(Schedulers.io())
     }
 

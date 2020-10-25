@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.create.CreateFragment
 import kz.mentalmind.ui.instruments.InstrumentsFragment
@@ -30,6 +31,14 @@ class MainActivity : AppCompatActivity() {
         val navigation = findViewById<BottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(MainFragment())
+    }
+
+    fun showBottomNavigation(){
+        navigation.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation(){
+        navigation.visibility = View.GONE
     }
 
     override fun onStart() {

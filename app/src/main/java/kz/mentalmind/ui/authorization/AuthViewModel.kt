@@ -25,7 +25,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
             authRepository.register(email, password, language)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (it.error == null){
+                    if (it.error == null) {
                         registerSubject.onNext(it)
                     } else {
                         errorsSubject.onNext(it.error)
@@ -72,7 +72,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         return registerSubject
     }
 
-    fun observeLoginSubject(): Observable<LoginResponse>{
+    fun observeLoginSubject(): Observable<LoginResponse> {
         return loginSubject
     }
 

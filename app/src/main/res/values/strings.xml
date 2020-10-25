@@ -17,6 +17,8 @@
     <string name="reply_password">Повторите пароль</string>
     <string name="enter_your_password">Введите свой пароль</string>
     <string name="password">Пароль</string>
+    <string name="create_new_pass">Придумайте новый пароль</string>
+    <string name="reply_new_pass">Повторите новый пароль</string>
     <string name="enter_your_email">Введите свой E-mail</string>
     <string name="email">Электронная почта</string>
     <string name="forgot_password">Забыли пароль</string>
@@ -54,4 +56,29 @@
     <string name="txt_buy_subscription">Купить подписку</string>
     <string name="mentalmind_kz">mentalmind.kz</string>
     <string name="levels_description">Описание уровней</string>
+    <string name="settings">Настройки</string>
+    <string name="txt_name">Имя</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="txt_birth_date">Дата рождения</string>
+    <string name="enter_birth_date">ДД.ММ.ГГГГ</string>
+    <string name="choose_from_list">Выберите из списка</string>
+    <string name="country">Страна</string>
+    <string name="city">Город</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="save_changes">Сохранить изменения</string>
+    <string name="enter_current_password">Введите текущий пароль</string>
+    <string name="what_is_mentalmind">Что такое "Mentalmind"?</string>
+
+    <string name="mentalmind_description">Это приложение для ежедневного раскрытия безграничного потенциала мозга. Приложение - это целая система «перепрошивки» старых разрушительных убеждений на новые - созидательные. </string>
+    <string name="about_instruments">Это авторские голосовые аудио записи, раскрывающие человеческий потенциал во всех сферах жизни.</string>
+    <string name="about_how_long">Это приложение для ежедневного раскрытия безграничного потенциала мозга. Приложение - это целая система «перепрошивки» старых разрушительных убеждений на новые - созидательные. </string>
+    <string name="about_result">Результатом использования приложения послужит отсутствие деструктивных эмоций. Вы будете ощущать чувство гармонии, наполненности и счастья.</string>
+    <string name="what_is_instruments">Что такое Инструменты в  приложении?</string>
+    <string name="how_long">Как долго я должен слушать  инструменты?</string>
+    <string name="how_to_know">Как я пойму что приложение мне  подходит?</string>
+    <string name="write_to_us">Если у Вас позникли вопросы, жалобы или пожелания напишите нам</string>
+    <string name="enter_text">Введите текст</string>
+    <string name="txt_send">Отправить</string>
+    <string name="russian_language">Руский язык</string>
+    <string name="kazakh_language">Казахский язык</string>
 </resources>

@@ -40,10 +40,20 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="ExtraSmallGrayTextSize12" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorStrongGray</item>
+    </style>
+
     <style name="SmallTextSize14" parent="AppTheme">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SmallRegularTextSize14" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorStrongGray</item>
     </style>
 
     <style name="StandartTextSize16" parent="AppTheme">

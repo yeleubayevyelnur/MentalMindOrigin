@@ -45,17 +45,20 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("users/password_recovery/")
-    fun passwordRecovery()
+    fun passwordRecovery(
+        @Field("email") email: String
+    ): Single<PassRecoveryData>
 
     @FormUrlEncoded
     @POST("users/me/")
     fun updateUserInfo()
 
     @FormUrlEncoded
-    @POST("users/reset_password/")
+    @PUT("users/reset_password/")
     fun resetPassword(
-        @Field("email") email: String
-    ): Single<PassRecoveryData>
+        @Field("old_password") oldPassword: String,
+        @Field("new_password") newPassword: String
+    )
 
     @GET("users/me/")
     fun getUserInfo(
@@ -123,7 +126,7 @@ interface ApiService {
 
     @GET("api/v1/levels/{id}")
     fun getLevelDetail(
-        @Path("id")id: Int
+        @Path("id") id: Int
     ): Observable<LevelDetailResponse>
 
     @FormUrlEncoded
