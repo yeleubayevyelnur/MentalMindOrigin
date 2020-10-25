@@ -78,12 +78,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:text="@string/background_music"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/backgroundMusicIcon"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Фоновая музыка" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/backgroundMusicTitle"
@@ -124,12 +124,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:text="@string/speaker_voice"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/speakerVoiceIcon"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Фоновая музыка" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/speakerVoiceTitle"
@@ -152,14 +152,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="40dp"
-
+            app:bar_height="2dp"
+            app:buffered_color="@color/colorGray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/backgroundControlView"
+            app:played_color="@color/blueColor"
+            app:rewind_increment="1000"
+            app:scrubber_color="@color/blueColor"
+            app:scrubber_enabled_size="10dp"
             app:show_fastforward_button="false"
             app:show_rewind_button="false"
-            app:show_timeout="0" />
+            app:show_timeout="0"
+            app:unplayed_color="@color/blueColor1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--    <SeekBar-->

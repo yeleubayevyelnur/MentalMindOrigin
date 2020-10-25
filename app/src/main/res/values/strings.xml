@@ -39,4 +39,6 @@
     <string name="what_do_you_feel">Какой ты сейчас</string>
     <string name="will_be_available_later">Функционал будет доступен позже</string>
     <string name="minute">мин.</string>
+    <string name="background_music">Фоновая музыка</string>
+    <string name="speaker_voice">Голос диктора</string>
 </resources>
