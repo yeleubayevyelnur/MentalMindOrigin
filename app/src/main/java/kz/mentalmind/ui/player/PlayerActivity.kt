@@ -10,6 +10,8 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 import kotlinx.android.synthetic.main.activity_player.*
 import kz.mentalmind.R
+import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.utils.Constants.MEDITATION
 
 class PlayerActivity : AppCompatActivity() {
     private var exoPlayer: SimpleExoPlayer? = null
@@ -19,7 +21,10 @@ class PlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
-        initializePlayer()
+        val meditation: MeditationDto? = intent?.getParcelableExtra(MEDITATION)
+        meditation?.let {
+            initializePlayer(it)
+        }
         sea?.setOnClickListener {
             soundsPlayer?.setMediaItem(MediaItem.fromUri("file:///android_asset/0eb24fcad1bffed.mp3"))
         }
@@ -53,10 +58,10 @@ class PlayerActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun initializePlayer() {
+    private fun initializePlayer(meditation: MeditationDto) {
         exoPlayer = SimpleExoPlayer.Builder(this).build()
         exoPlayer?.apply {
-            setMediaItem(MediaItem.fromUri("audioUrl"))
+            setMediaItem(MediaItem.fromUri(meditation.file_female_voice))
             playWhenReady = true
             seekTo(0, 0)
             prepare()

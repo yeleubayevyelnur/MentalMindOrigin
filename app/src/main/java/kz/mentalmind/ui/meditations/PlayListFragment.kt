@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.meditations
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_play_list.*
 import kz.mentalmind.R
 import kz.mentalmind.domain.dto.CollectionDetailsDto
+import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.ui.player.PlayerActivity
+import kz.mentalmind.utils.Constants.MEDITATION
 
 
 class PlayListFragment : BottomSheetDialogFragment() {
@@ -36,7 +40,13 @@ class PlayListFragment : BottomSheetDialogFragment() {
     fun setData(data: CollectionDetailsDto) {
         title.text = data.name
         description.text = data.description
-        val adapter = MeditationsAdapter(data.meditations)
+        val adapter = MeditationsAdapter(data.meditations, object : MeditationClickListener {
+            override fun onMeditationClicked(meditation: MeditationDto) {
+                startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
+                    putExtra(MEDITATION, meditation)
+                })
+            }
+        })
         meditations.adapter = adapter
     }
 

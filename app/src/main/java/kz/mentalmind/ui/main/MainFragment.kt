@@ -14,7 +14,7 @@ import kz.mentalmind.ui.main.mood.MoodFragment
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment(), MeditationClickListener {
+class MainFragment : Fragment(), InstrumentClickListener {
     private val mainViewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 
@@ -45,10 +45,10 @@ class MainFragment : Fragment(), MeditationClickListener {
     private fun observeData() {
         compositeDisposable.add(
             mainViewModel.observeStreamOfLife().subscribe({
-                rvStreamOfLife.adapter = MeditationAdapter(
+                rvStreamOfLife.adapter = InstrumentsAdapter(
                     it.data.results,
-                    object : MeditationClickListener {
-                        override fun onMeditationClicked(meditation: CollectionItem) {
+                    object : InstrumentClickListener {
+                        override fun onInstrumentClicked(meditation: CollectionItem) {
                             (activity as MainActivity).replaceFragment(MeditationsFragment.newInstance(meditation.id))
                         }
                     }
@@ -64,7 +64,7 @@ class MainFragment : Fragment(), MeditationClickListener {
         )
     }
 
-    override fun onMeditationClicked(collections: CollectionItem) {
+    override fun onInstrumentClicked(collections: CollectionItem) {
         (activity as? MainActivity)?.replaceFragment(
             MainItemFragment.newInstance(),
             MainItemFragment::class.simpleName
