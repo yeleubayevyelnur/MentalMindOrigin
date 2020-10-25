@@ -15,7 +15,6 @@ import kz.mentalmind.ui.authorization.login.LoginFragment
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = resources.getColor(R.color.colorPrimary)
         setContentView(R.layout.activity_auth)
         replaceFragment(LoginFragment())
     }
