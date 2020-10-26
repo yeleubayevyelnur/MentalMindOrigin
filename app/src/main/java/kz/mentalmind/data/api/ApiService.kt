@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.CollectionsResponse
 import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.TagsResponse
+import kz.mentalmind.data.TagsData
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
@@ -87,7 +87,7 @@ interface ApiService {
     fun getTags(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Observable<TagsResponse>
+    ): Single<CommonResponse<TagsData>>
 
     @GET("api/v1/challenges/")
     fun getChallenges(

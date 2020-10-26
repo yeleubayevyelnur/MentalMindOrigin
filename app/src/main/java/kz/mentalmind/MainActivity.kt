@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.getItemId()) {
+            when (item.itemId) {
                 R.id.nav_home -> {
                     replaceFragment(MainFragment())
                     return@OnNavigationItemSelectedListener true

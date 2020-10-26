@@ -7,14 +7,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.repository.MainRepository
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
     private val collectionsSubject = PublishSubject.create<CollectionsResponse>()
-    private val tagsSubject = PublishSubject.create<TagsResponse>()
     private val streamOfLifeSubject = PublishSubject.create<CollectionsResponse>()
 
 //    fun getCollections(language: String) {
@@ -55,10 +53,6 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun observeStreamOfLife(): PublishSubject<CollectionsResponse> {
         return streamOfLifeSubject
-    }
-
-    fun observeTagsSubject(): PublishSubject<TagsResponse> {
-        return tagsSubject
     }
 
     fun observeErrorSubject(): Observable<String> {

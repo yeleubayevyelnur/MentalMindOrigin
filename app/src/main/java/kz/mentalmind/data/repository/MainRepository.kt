@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.TagsResponse
+import kz.mentalmind.data.CommonResponse
+import kz.mentalmind.data.TagsData
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
@@ -26,15 +28,20 @@ class MainRepository(
         return gson.fromJson(userString, User::class.java)
     }
 
-    fun getCollections(token: String, language: String,type: Int, tag: Int): Observable<CollectionsResponse> {
+    fun getCollections(
+        token: String,
+        language: String,
+        type: Int,
+        tag: Int
+    ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
-        return apiService.getCollections(language, accessToken,type, tag)
+        return apiService.getCollections(language, accessToken, type, tag)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getTags(language: String, token: String): Observable<TagsResponse> {
+    fun getTags(token: String): Single<CommonResponse<TagsData>> {
         val accessToken = "Token $token"
-        return apiService.getTags(language, accessToken)
+        return apiService.getTags("ru", accessToken)
             .subscribeOn(Schedulers.io())
     }
 

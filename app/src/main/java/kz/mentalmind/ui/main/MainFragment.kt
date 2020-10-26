@@ -15,12 +15,8 @@ import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment(), InstrumentClickListener {
-    private val mainViewModel: MainViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +28,7 @@ class MainFragment : Fragment(), InstrumentClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        mainViewModel.getToken(requireContext())?.let { mainViewModel.getStreamOfLife(it, "ru") }
+        viewModel.getToken(requireContext())?.let { viewModel.getStreamOfLife(it, "ru") }
         moodView.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 MoodFragment(),
@@ -43,7 +39,7 @@ class MainFragment : Fragment(), InstrumentClickListener {
 
     private fun observeData() {
         compositeDisposable.add(
-            mainViewModel.observeStreamOfLife().subscribe({
+            viewModel.observeStreamOfLife().subscribe({
                 rvStreamOfLife.adapter = InstrumentsAdapter(
                     it.data.results,
                     object : InstrumentClickListener {
@@ -61,7 +57,7 @@ class MainFragment : Fragment(), InstrumentClickListener {
             })
         )
         compositeDisposable.add(
-            mainViewModel.observeErrorSubject().subscribe {
+            viewModel.observeErrorSubject().subscribe {
                 (activity as? MainActivity)?.alertDialog(requireContext(), it)
             }
         )
