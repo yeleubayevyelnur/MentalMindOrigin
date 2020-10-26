@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.Collections
-import kz.mentalmind.data.TagsData
+import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.repository.MainRepository
 
 class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewModel() {
-    private val tagsSubject = PublishSubject.create<TagsData>()
+    private val tagsSubject = PublishSubject.create<KeyValueData>()
     private val instruments = PublishSubject.create<Collections>()
     private val errorsSubject = PublishSubject.create<String>()
 
@@ -45,7 +45,7 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
         }
     }
 
-    fun observeTagsSubject(): PublishSubject<TagsData> {
+    fun observeTagsSubject(): PublishSubject<KeyValueData> {
         return tagsSubject
     }
 

@@ -1,14 +1,14 @@
 package kz.mentalmind.data
 
 
-data class TagsData(
+data class KeyValueData(
     val count: Int,
     val next: String?,
     val previous: String?,
-    val results: List<TagsResult>
+    val results: List<KeyValuePair>
 )
 
-data class TagsResult(
+data class KeyValuePair(
     val id: Int,
     val name: String
 )

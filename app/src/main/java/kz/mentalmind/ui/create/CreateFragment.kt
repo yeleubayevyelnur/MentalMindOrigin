@@ -1,25 +1,24 @@
 package kz.mentalmind.ui.create
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
-import kotlinx.android.synthetic.main.fragment_main.*
-import kz.mentalmind.MainActivity
+import androidx.fragment.app.Fragment
+import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_instruments.*
 import kz.mentalmind.R
-import kz.mentalmind.data.Page
-import kz.mentalmind.ui.main.*
+import kz.mentalmind.data.CollectionItem
+import kz.mentalmind.data.KeyValuePair
+import kz.mentalmind.ui.main.CreationAdapter
+import kz.mentalmind.ui.main.InstrumentClickListener
+import kz.mentalmind.ui.main.InstrumentsAdapter
+import kz.mentalmind.ui.main.MainAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateFragment : Fragment() {
-
-    private lateinit var mainAdapter: MainAdapter
-    private lateinit var potokAdapter: PotokAdapter
-    private lateinit var lubimoeAdapter: LubimoeAdapter
-    private lateinit var affirmationAdapter: AffirmationAdapter
-    private var recommends: ArrayList<Page> = arrayListOf()
-    private var affirmations: ArrayList<Page> = arrayListOf()
+    private val viewModel: CreateViewModel by viewModel()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,37 +29,32 @@ class CreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapters()
-    }
+        val instrumentAdapters = ArrayList<InstrumentsAdapter>()
+        val types = ArrayList<KeyValuePair>()
+        val adapter = CreationAdapter(types, instrumentAdapters)
 
-    private fun setList(){
-        val ex1 = Page("Название инструмента", 1, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage1, null))
-        val ex2 = Page("Название инструмента", 2, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage2, null))
-        val ex3 = Page("Название инструмента", 3, "Описание инструмента", ResourcesCompat.getDrawable(resources, R.drawable.exampleimage3, null))
-        recommends.addAll(
-            listOf(
-                ex1, ex2, ex3
+        compositeDisposable.add(viewModel.observeCollectionTypesSubject().subscribe {
+            types.addAll(it.results.subList(1, it.results.size))
+            for (i in 1 until it.results.size) {
+                viewModel.getCollectionsByTypes(requireContext(), it.results[i].id)
+            }
+        })
+
+        compositeDisposable.add(viewModel.observeInstruments().subscribe {
+            instrumentAdapters.add(
+                InstrumentsAdapter(
+                    it.results,
+                    object : InstrumentClickListener {
+                        override fun onInstrumentClicked(meditation: CollectionItem) {
+
+                        }
+                    })
             )
-        )
-        val aff1 = Page("", 1, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
-        val aff2 = Page("", 2, "", ResourcesCompat.getDrawable(resources, R.drawable.affir2, null))
-        val aff3 = Page("", 3, "", ResourcesCompat.getDrawable(resources, R.drawable.affir1, null))
-        affirmations.addAll(
-            listOf(
-                aff1, aff2, aff3
-            )
-        )
+            if (types.size == instrumentAdapters.size) {
+                instruments.adapter = adapter
+            }
+        })
 
-    }
-
-    private fun setAdapters(){
-        setList()
-        potokAdapter = PotokAdapter(recommends)
-        lubimoeAdapter = LubimoeAdapter(recommends)
-        affirmationAdapter = AffirmationAdapter(affirmations)
-    }
-
-    companion object {
-
+        viewModel.getCollectionTypes(requireContext())
     }
 }

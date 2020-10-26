@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_instruments.*
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
-import kz.mentalmind.data.TagsResult
+import kz.mentalmind.data.KeyValuePair
 import kz.mentalmind.ui.main.InstrumentClickListener
 import kz.mentalmind.ui.main.InstrumentsAdapter
 import kz.mentalmind.ui.main.MainAdapter
@@ -29,7 +29,7 @@ class InstrumentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val instrumentAdapters = ArrayList<InstrumentsAdapter>()
-        val tags = ArrayList<TagsResult>()
+        val tags = ArrayList<KeyValuePair>()
         val adapter = MainAdapter(tags, instrumentAdapters)
 
         compositeDisposable.add(viewModel.observeTagsSubject().subscribe {
