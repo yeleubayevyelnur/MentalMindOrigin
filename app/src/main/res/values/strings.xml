@@ -105,4 +105,5 @@
     <string name="female">Женский</string>
     <string name="male">Мужской</string>
     <string name="show_history_by_day">посмотреть по дням</string>
+    <string name="self_education">самопознание</string>
 </resources>

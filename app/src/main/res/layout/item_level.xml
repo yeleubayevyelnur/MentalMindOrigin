@@ -10,6 +10,7 @@
         style="@style/MediumTitleTextSize18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
         android:text="@string/txt_level"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +38,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLevel"
-            style="@style/LevelText"
+            style="@style/MainTitle600"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -62,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/mood_background"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:paddingStart="44dp"
                 android:paddingEnd="44dp"
@@ -76,7 +78,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/on_way_to_you"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/countDay" />
@@ -94,6 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/mood_background"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:paddingStart="44dp"
                 android:paddingEnd="44dp"
@@ -108,7 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="самопознание"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/self_education"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/countTime" />

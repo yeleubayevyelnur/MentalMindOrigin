@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/blackText"
         android:textSize="13sp"
         android:textStyle="bold" />
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
+        android:fontFamily="@font/montserrat_regular"
         android:lines="2"
         android:textColor="@color/blackText"
         android:textSize="13sp" />
