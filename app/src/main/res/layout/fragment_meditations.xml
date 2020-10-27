@@ -7,13 +7,23 @@
     android:background="@drawable/cosmos"
     tools:context=".ui.meditations.MeditationsFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_button_onboarding"
+        android:padding="12dp"
+        android:src="@drawable/ic_back"
+        android:tint="@color/blueColor" />
+
     <fragment
         android:id="@+id/playListFragment"
         android:name="kz.mentalmind.ui.meditations.PlayListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:tag="playList"
-        app:behavior_fitToContents="false"
         app:behavior_peekHeight="250dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

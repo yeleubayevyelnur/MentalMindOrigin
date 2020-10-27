@@ -19,7 +19,7 @@ class InstrumentsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_instrument1, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_instrument, parent, false)
         return ViewHolder(v)
     }
 

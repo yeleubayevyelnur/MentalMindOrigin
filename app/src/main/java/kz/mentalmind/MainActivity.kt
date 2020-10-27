@@ -41,19 +41,9 @@ class MainActivity : AppCompatActivity() {
         navigation.visibility = View.GONE
     }
 
-    override fun onStart() {
-        super.onStart()
-        hideActionBar()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        showActionBar()
-    }
-
     private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.getItemId()) {
+            when (item.itemId) {
                 R.id.nav_home -> {
                     replaceFragment(MainFragment())
                     return@OnNavigationItemSelectedListener true
@@ -111,14 +101,6 @@ class MainActivity : AppCompatActivity() {
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
         }
-    }
-
-    fun hideActionBar() {
-        supportActionBar?.hide()
-    }
-
-    fun showActionBar() {
-        supportActionBar?.show()
     }
 
     fun showProgress() {

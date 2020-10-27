@@ -2,6 +2,9 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.CommonResponse
+import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
@@ -85,7 +88,7 @@ interface ApiService {
     fun getTags(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Observable<TagsResponse>
+    ): Single<CommonResponse<KeyValueData>>
 
     @GET("api/v1/challenges/")
     fun getChallenges(
@@ -150,9 +153,19 @@ interface ApiService {
         @Query("tags") tag: Int
     ): Observable<CollectionsResponse>
 
+    @GET("api/v1/collections/")
+    fun getCollectionsByTypes(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+        @Query("type") type: Int
+    ): Observable<CollectionsResponse>
+
 
     @GET("api/v1/collection_types/")
-    fun getCollectionTypes()
+    fun getCollectionTypes(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
+    ): Single<KeyValueData>
 
     @GET("api/v1/collections/{id}")
     fun getCollectionDetails(

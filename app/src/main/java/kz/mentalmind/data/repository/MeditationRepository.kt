@@ -17,7 +17,7 @@ class MeditationRepository(
         token: String,
         id: Int
     ): Single<CommonResponse<CollectionDetailsDto>> {
-        return apiService.getCollectionDetails(token, "ru", id)
+        return apiService.getCollectionDetails("ru", token, id)
             .subscribeOn(Schedulers.io())
     }
 

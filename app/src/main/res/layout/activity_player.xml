@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cosmos"
-    android:orientation="vertical"
     tools:context=".ui.player.PlayerActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_button_onboarding"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/blueColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/addToFavorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_button_onboarding"
+            android:padding="12dp"
+            android:src="@drawable/ic_favorite"
+            android:tint="@color/blueColor"
+            app:layout_constraintEnd_toStartOf="@id/share"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/share"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_button_onboarding"
+            android:padding="12dp"
+            android:src="@drawable/ic_share"
+            android:tint="@color/blueColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -93,13 +137,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center_vertical"
+                    android:text="@string/bg_music1"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/backgroundMusicIcon"
-                    app:layout_constraintTop_toBottomOf="@id/bgTitle"
-                    tools:text="Шум дождя" />
+                    app:layout_constraintTop_toBottomOf="@id/bgTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,13 +186,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center_vertical"
+                    android:text="@string/female"
                     android:textColor="@color/blueColor"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/speakerVoiceIcon"
-                    app:layout_constraintTop_toBottomOf="@id/speakerTitle"
-                    tools:text="Шум дождя" />
+                    app:layout_constraintTop_toBottomOf="@id/speakerTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -174,46 +218,228 @@
             app:unplayed_color="@color/blueColor1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    <SeekBar-->
-    <!--        android:id="@+id/volumeBar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:max="100"-->
-    <!--        android:progress="50" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:visibility="gone">
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/sounds"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:gravity="center"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent">-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_button_onboarding"
+            android:padding="13dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/sea"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:gravity="center"-->
-    <!--            android:text="Море" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/settingsSpeakerVoiceTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="127dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/speaker_voice"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/birds"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:gravity="center"-->
-    <!--            android:text="Птицы" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/settingsBgMusicTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/background_music"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsSpeakerVoiceTitle" />
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/italy"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:gravity="center"-->
-    <!--            android:text="Италия" />-->
-    <!--    </LinearLayout>-->
-</FrameLayout>
+        <SeekBar
+            android:id="@+id/volumeBar"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="21dp"
+            android:max="100"
+            android:progress="50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsBgMusicTitle" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="16dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/volumeBar">
+
+            <RadioGroup
+                android:id="@+id/bg_musics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <RadioButton
+                    android:id="@+id/bg_music1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music1.mp3"
+                    android:text="@string/bg_music1"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music2.mp3"
+                    android:text="@string/bg_music2"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music3.mp3"
+                    android:text="@string/bg_music3"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music4.mp3"
+                    android:text="@string/bg_music4"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music5.mp3"
+                    android:text="@string/bg_music5"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music6.mp3"
+                    android:text="@string/bg_music6"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music7.mp3"
+                    android:text="@string/bg_music7"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music8.mp3"
+                    android:text="@string/bg_music8"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music9.mp3"
+                    android:text="@string/bg_music9"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music10.mp3"
+                    android:text="@string/bg_music10"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music11.mp3"
+                    android:text="@string/bg_music11"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/bg_music12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:button="@drawable/radio_button"
+                    android:paddingHorizontal="12dp"
+                    android:tag="bg_music12.mp3"
+                    android:text="@string/bg_music12"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+            </RadioGroup>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

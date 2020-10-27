@@ -8,28 +8,28 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.KeyValuePair
 
-class MainAdapter(
-    private var tags: List<KeyValuePair>,
+class CreationAdapter(
+    private var types: List<KeyValuePair>,
     private var instrumentsAdapters: List<InstrumentsAdapter>
 ) :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CreationAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_main_page, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreationAdapter.ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_creation, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
-        holder.tagName.text = tags[position].name
+    override fun onBindViewHolder(holder: CreationAdapter.ViewHolder, position: Int) {
+        holder.typeName.text = types[position].name
         holder.instruments.adapter = instrumentsAdapters[position]
     }
 
     override fun getItemCount(): Int {
-        return tags.size
+        return types.size
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val tagName: TextView = itemView.findViewById(R.id.tagName)
+        val typeName: TextView = itemView.findViewById(R.id.typeName)
         val instruments: RecyclerView = itemView.findViewById(R.id.instruments)
     }
 }

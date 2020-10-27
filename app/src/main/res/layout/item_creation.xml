@@ -8,13 +8,13 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tagName"
+        android:id="@+id/typeName"
         style="@style/CollectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
-        android:textColor="@color/white"
+        android:textColor="@color/blackText"
         android:textSize="24sp"
         tools:text="Тэг для списка" />
 
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:overScrollMode="never"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,6 +7,8 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.CommonResponse
+import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.HelpResponse
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.TagsResponse
@@ -40,9 +42,28 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getTags(language: String, token: String): Observable<TagsResponse> {
+    fun getCollectionsByTypes(
+        token: String,
+        language: String,
+        type: Int
+    ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
-        return apiService.getTags(language, accessToken)
+        return apiService.getCollectionsByTypes(language, accessToken, type)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getCollectionsTypes(
+        token: String,
+        language: String
+    ): Single<KeyValueData> {
+        val accessToken = "Token $token"
+        return apiService.getCollectionTypes(language, accessToken)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getTags(token: String): Single<CommonResponse<KeyValueData>> {
+        val accessToken = "Token $token"
+        return apiService.getTags("ru", accessToken)
             .subscribeOn(Schedulers.io())
     }
 

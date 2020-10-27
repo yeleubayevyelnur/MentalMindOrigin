@@ -16,7 +16,7 @@ class LubimoeAdapter(private var pageList: ArrayList<Page>) :
     private lateinit var instrumentClickListener: InstrumentClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LubimoeAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_instrument1, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_instrument, parent, false)
         return ViewHolder(v)
     }
 
