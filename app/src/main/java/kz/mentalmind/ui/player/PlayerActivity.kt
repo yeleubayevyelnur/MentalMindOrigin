@@ -73,6 +73,7 @@ class PlayerActivity : AppCompatActivity() {
                         )
                     )
                 )
+                backgroundMusicTitle.text = radioButton.text
             }
 
             findViewById<RadioGroup>(R.id.bg_musics).check(R.id.bg_music1)
