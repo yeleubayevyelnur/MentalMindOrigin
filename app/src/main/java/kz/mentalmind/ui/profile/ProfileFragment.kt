@@ -1,10 +1,13 @@
 package kz.mentalmind.ui.profile
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -16,15 +19,10 @@ import kz.mentalmind.ui.profile.settings.HelpFragment
 import kz.mentalmind.ui.profile.settings.PromocodeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-    private var accessToken: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        accessToken = profileViewModel.getToken(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +33,10 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeData()
-        accessToken?.let { profileViewModel.getProfile(it) }
+        profileViewModel.getToken(requireContext())?.let {
+            observeData(it)
+            profileViewModel.getProfile(it)
+        }
         info.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 LevelsFragment(),
@@ -74,31 +74,40 @@ class ProfileFragment : Fragment() {
                 PromocodeFragment::class.simpleName
             )
         }
+        tvInstagram.setOnClickListener {
+            val uri: Uri = Uri.parse("http://instagram.com/_u/mentalmind.kz")
+            val likeIng = Intent(Intent.ACTION_VIEW, uri)
+            likeIng.setPackage("com.instagram.android")
+            try {
+                startActivity(likeIng)
+            } catch (e: ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/mentalmind.kz")
+                    )
+                )
+            }
+        }
     }
 
-    private fun observeData() {
+    private fun observeData(token: String) {
         compositeDisposable.add(
-            profileViewModel.observeProfileSubject().subscribe({ profileResponse ->
-                accessToken?.let { token ->
-                    profileViewModel.getLevelDetail(token, profileResponse.profileData.level)
-                    tvEmail.text = profileResponse.profileData.email
-                }
-            }, {
-
-            })
-        )
-        compositeDisposable.add(
-            profileViewModel.observeLevelDetailSubject().subscribe({
+            profileViewModel.observeLevelDetailSubject().subscribe
+            {
                 Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                 tvLevel.text = it.levelsDetailData.name
                 countDay.text =
                     String.format("%s дней", it.levelsDetailData.days_with_us.toString())
                 countTime.text =
                     String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
-            }, {
-
-            })
+            }
         )
+        compositeDisposable.add(
+            profileViewModel.observeProfileSubject().subscribe {
+                tvEmail.text = it.profileData.email
+                profileViewModel.getLevelDetail(token, it.profileData.level)
+            })
     }
 
     companion object {

@@ -50,9 +50,8 @@ class MainFragment : Fragment(), InstrumentClickListener {
                     object : InstrumentClickListener {
                         override fun onInstrumentClicked(meditation: CollectionItem) {
                             (activity as MainActivity).replaceFragment(
-                                MeditationsFragment.newInstance(
-                                    meditation.id
-                                )
+                                MeditationsFragment.newInstance(meditation.id),
+                                MeditationsFragment::class.simpleName
                             )
                         }
                     }

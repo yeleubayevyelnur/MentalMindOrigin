@@ -2,9 +2,7 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.TagsResponse
+import kz.mentalmind.data.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
@@ -119,8 +117,9 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/promocode/")
     fun promocode(
+        @Header("Authorization") token: String,
         @Field("promocode") promocode: String
-    )
+    ): Observable<PromocodeResponse>
 
     @GET("api/v1/levels/")
     fun getLevels(
@@ -136,8 +135,9 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/help/")
     fun help(
+        @Header("Authorization") token: String,
         @Field("text") text: String
-    )
+    ): Observable<HelpResponse>
 
 
     //Collections

@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
@@ -26,9 +29,14 @@ class MainRepository(
         return gson.fromJson(userString, User::class.java)
     }
 
-    fun getCollections(token: String, language: String,type: Int, tag: Int): Observable<CollectionsResponse> {
+    fun getCollections(
+        token: String,
+        language: String,
+        type: Int,
+        tag: Int
+    ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
-        return apiService.getCollections(language, accessToken,type, tag)
+        return apiService.getCollections(language, accessToken, type, tag)
             .subscribeOn(Schedulers.io())
     }
 
@@ -41,6 +49,19 @@ class MainRepository(
     fun getProfile(token: String): Observable<ProfileResponse> {
         val accessToken = "Token $token"
         return apiService.getUserInfo(accessToken)
+            .subscribeOn(Schedulers.io())
+    }
+
+
+    fun help(token: String, text: String): Observable<HelpResponse> {
+        val accessToken = "Token $token"
+        return apiService.help(accessToken, text)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun promocode(token: String, promocode: String): Observable<PromocodeResponse> {
+        val accessToken = "Token $token"
+        return apiService.promocode(accessToken, promocode)
             .subscribeOn(Schedulers.io())
     }
 
