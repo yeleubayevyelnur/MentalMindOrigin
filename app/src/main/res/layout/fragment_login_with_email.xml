@@ -10,13 +10,13 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEnter"
+        style="@style/MainTitle600"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:text="@string/enter"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_large"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +35,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/email"
             android:textColor="@color/white" />
 
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/login_et_background"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="@string/enter_your_email"
             android:paddingStart="12dp"
             android:paddingTop="14dp"
@@ -54,13 +56,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/password"
             android:textColor="@color/white" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat_regular"
             app:hintEnabled="false"
             app:passwordToggleDrawable="@drawable/pass_visibility_selector"
             app:passwordToggleEnabled="true">
@@ -71,9 +75,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_et_background"
                 android:hint="@string/enter_your_password"
-                android:padding="4dp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp" />
+                android:paddingStart="12dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -82,16 +87,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/forgot_password"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
+            style="@style/ButtonsTextWeight500"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_selector"
             android:text="@string/enter" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -100,6 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_regular"
         android:text="@string/do_not_have_acc_do_registration"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

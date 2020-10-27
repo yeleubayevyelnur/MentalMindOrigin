@@ -10,19 +10,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_play_list.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.ui.meditations.MeditationClickListener
+import kz.mentalmind.ui.meditations.MeditationsAdapter
+import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.profile.settings.ChangeLanguageFragment
 import kz.mentalmind.ui.profile.settings.FaqFragment
 import kz.mentalmind.ui.profile.settings.HelpFragment
 import kz.mentalmind.ui.profile.settings.PromocodeFragment
+import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+    private lateinit var meditationsAdapter: MeditationsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,8 +100,7 @@ class ProfileFragment : Fragment() {
 
     private fun observeData(token: String) {
         compositeDisposable.add(
-            profileViewModel.observeLevelDetailSubject().subscribe
-            {
+            profileViewModel.observeLevelDetailSubject().subscribe {
                 Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                 tvLevel.text = it.levelsDetailData.name
                 countDay.text =
@@ -102,11 +108,26 @@ class ProfileFragment : Fragment() {
                 countTime.text =
                     String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
             }
+
         )
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {
                 tvEmail.text = it.profileData.email
                 profileViewModel.getLevelDetail(token, it.profileData.level)
+                val adapter = MeditationsAdapter(
+                    it.profileData.favorite_meditations,
+                    object : MeditationClickListener {
+                        override fun onMeditationClicked(meditation: MeditationDto) {
+                            startActivity(
+                                Intent(
+                                    requireActivity(),
+                                    PlayerActivity::class.java
+                                ).apply {
+                                    putExtra(Constants.MEDITATION, meditation)
+                                })
+                        }
+                    })
+                meditations.adapter = adapter
             })
     }
 

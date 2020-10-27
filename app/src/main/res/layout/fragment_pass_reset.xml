@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/montserrat_regular"
         android:text="@string/pass_recovery_description"
         android:textColor="@color/white"
         android:textSize="@dimen/font_standart" />
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat_regular"
         android:background="@drawable/login_et_background"
         android:hint="@string/enter_your_email"
         android:paddingStart="12dp"
@@ -34,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        style="@style/ButtonsTextWeight500"
+        android:background="@drawable/bg_button_onboarding"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:text="@string/next" />

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_medium"
         android:text="@string/registration"
         android:textColor="@color/white"
         android:textSize="@dimen/font_large"
@@ -34,6 +35,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/email"
             android:textColor="@color/white" />
 
@@ -43,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/login_et_background"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="@string/enter_your_email"
             android:paddingStart="12dp"
             android:paddingTop="14dp"
@@ -53,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/password"
             android:textColor="@color/white" />
 
@@ -62,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/login_et_background"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="@string/enter_your_password"
             android:paddingStart="12dp"
             android:paddingTop="14dp"
@@ -72,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/reply_password"
             android:textColor="@color/white" />
 
@@ -81,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/login_et_background"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="@string/reply_your_password"
             android:paddingStart="12dp"
             android:paddingTop="14dp"
@@ -89,10 +96,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
+            style="@style/ButtonsTextWeight500"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
+            android:background="@drawable/bg_button_onboarding"
             android:layout_marginEnd="16dp"
             android:text="@string/next" />
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -11,7 +11,6 @@ import kz.mentalmind.data.CommonResponse
 import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.HelpResponse
 import kz.mentalmind.data.PromocodeResponse
-import kz.mentalmind.data.TagsResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse

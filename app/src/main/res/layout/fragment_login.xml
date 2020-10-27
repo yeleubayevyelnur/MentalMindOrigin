@@ -9,11 +9,13 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEnter"
+        style="@style/MainTitle600"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:text="@string/enter"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/white"
         android:textSize="@dimen/font_large"
         android:textStyle="bold"
@@ -42,10 +44,11 @@
             android:padding="14dp">
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/EnterButtonText"
+                style="@style/ButtonsTextWeight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/enter_with_email" />
+                android:text="@string/enter_with_email"
+                android:textColor="@color/colorStrongGray" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -70,10 +73,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/EnterButtonText"
+                style="@style/ButtonsTextWeight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enter_with_google"
+                android:textColor="@color/colorStrongGray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,10 +104,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/EnterButtonText"
+                style="@style/ButtonsTextWeight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enter_with_google"
+                android:textColor="@color/colorStrongGray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,10 +136,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/EnterButtonText"
+                style="@style/ButtonsTextWeight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enter_with_google"
+                android:textColor="@color/colorStrongGray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -149,6 +155,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_regular"
         android:foreground="?selectableItemBackground"
         android:text="@string/do_not_have_acc_do_registration"
         android:textColor="@color/white"
