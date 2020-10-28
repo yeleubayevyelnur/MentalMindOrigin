@@ -1,6 +1,5 @@
 package kz.mentalmind.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
@@ -25,9 +24,7 @@ class MainRepository(
         return gson.fromJson(userString, User::class.java)
     }
 
-    fun getFeeling(context: Context) {
-
-    }
+    fun getFeeling() = sPrefs.getInt(Constants.FEELING, 9999)
 
     fun getCollections(
         token: String,
@@ -110,8 +107,12 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getToken(context: Context): String? {
+    fun getToken(): String? {
         return sPrefs.getString(Constants.TOKEN, null)
+    }
+
+    fun saveFeeling(id: Int) {
+        sPrefs.edit().putInt(Constants.FEELING, id).apply()
     }
 
 }

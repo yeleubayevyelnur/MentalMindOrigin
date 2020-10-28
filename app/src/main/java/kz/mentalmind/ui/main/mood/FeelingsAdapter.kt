@@ -8,28 +8,28 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
-import kz.mentalmind.data.MoodData
+import kz.mentalmind.data.Feeling
 
-class MoodAdapter(private val moodData: ArrayList<MoodData>) :
-    RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
+class FeelingsAdapter(private val feelingData: ArrayList<Feeling>) :
+    RecyclerView.Adapter<FeelingsAdapter.ViewHolder>() {
 
     private lateinit var moodClickListener: MoodResultListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeelingsAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_mood, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: MoodAdapter.ViewHolder, position: Int) {
-        holder.ivMood.setImageDrawable(moodData[position].icon)
-        holder.tvMood.text = moodData[position].name
+    override fun onBindViewHolder(holder: FeelingsAdapter.ViewHolder, position: Int) {
+        holder.ivMood.setImageDrawable(feelingData[position].icon)
+        holder.tvMood.text = feelingData[position].name
         holder.llContainer.setOnClickListener {
-            moodClickListener.onMoodClickedResult(moodData[position])
+            moodClickListener.onMoodClickedResult(feelingData[position])
         }
     }
 
     override fun getItemCount(): Int {
-        return moodData.size
+        return feelingData.size
     }
 
     fun setMoodResultListener(listener: MoodResultListener) {

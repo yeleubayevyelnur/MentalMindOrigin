@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_help.*
 import kotlinx.android.synthetic.main.fragment_promocode.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
@@ -40,7 +39,7 @@ class PromocodeFragment : Fragment() {
             })
         )
         btnNext.setOnClickListener {
-            profileViewModel.getToken(requireContext())
+            profileViewModel.getToken()
                 ?.let { profileViewModel.promocode(it, etPromocode.text.toString()) }
         }
     }

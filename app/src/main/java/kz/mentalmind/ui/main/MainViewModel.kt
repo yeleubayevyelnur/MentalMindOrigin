@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.main
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,6 +13,10 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val errorsSubject = PublishSubject.create<String>()
     private val streamOfLifeSubject = PublishSubject.create<CollectionsResponse>()
     private val instrumentsForFeeling = PublishSubject.create<CollectionsResponse>()
+
+    fun saveFeeling(id: Int) {
+        mainRepository.saveFeeling(id)
+    }
 
     fun getStreamOfLife(token: String) {
         disposable.add(
@@ -31,7 +34,11 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         )
     }
 
-    fun getCollectionsByFeeling(token: String, feeling: Int) {
+    fun getCollectionsByFeeling(token: String) {
+        val feeling = mainRepository.getFeeling()
+        if (feeling == 9999) {
+            return
+        }
         disposable.add(
             mainRepository.getCollectionsByFeeling(token, "ru", feeling)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,7 +66,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         return errorsSubject
     }
 
-    fun getToken(context: Context): String? {
-        return mainRepository.getToken(context)
+    fun getToken(): String? {
+        return mainRepository.getToken()
     }
 }

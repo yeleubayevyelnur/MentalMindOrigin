@@ -1,9 +1,7 @@
 package kz.mentalmind.ui.profile
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -11,7 +9,6 @@ import kz.mentalmind.data.HelpResponse
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
-import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.data.repository.MainRepository
 
@@ -99,8 +96,8 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
         return promocodeSubject
     }
 
-    fun getToken(context: Context): String? {
-        return mainRepository.getToken(context)
+    fun getToken(): String? {
+        return mainRepository.getToken()
     }
 
     fun observeProfileSubject(): Observable<ProfileResponse> {

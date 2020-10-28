@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileViewModel.getToken(requireContext())?.let {
+        profileViewModel.getToken()?.let {
             observeData(it)
             profileViewModel.getProfile(it)
         }
