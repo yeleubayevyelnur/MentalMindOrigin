@@ -10,7 +10,7 @@ import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.domain.dto.CollectionDetailsDto
-import kz.mentalmind.domain.dto.CourseDto
+import kz.mentalmind.domain.dto.CoursesData
 import retrofit2.http.*
 
 interface ApiService {
@@ -97,7 +97,7 @@ interface ApiService {
     fun getCourses(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
-    ): Single<CommonResponse<List<CourseDto>>>
+    ): Single<CommonResponse<CoursesData>>
 
     @FormUrlEncoded
     @POST("api/v1/rating/")

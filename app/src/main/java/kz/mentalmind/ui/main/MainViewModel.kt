@@ -63,8 +63,8 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
-                        if (it.data != null) {
-                            courses.onNext(it.data)
+                        if (it.data?.results != null) {
+                            courses.onNext(it.data.results)
                         }
                     } else {
                         errorsSubject.onNext(it.error)

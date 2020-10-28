@@ -2,6 +2,7 @@ package kz.mentalmind.ui.main
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
+import kz.mentalmind.domain.dto.CourseDto
 import kz.mentalmind.ui.main.mood.MoodActivity
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
@@ -94,6 +96,26 @@ class MainFragment : Fragment() {
                 (activity as? MainActivity)?.alertDialog(requireContext(), it)
             }
         )
+
+        compositeDisposable.add(viewModel.observeCourses().subscribe({
+            if (it.isNullOrEmpty()) {
+                tvOnlineEducationTitle.visibility = View.GONE
+                rvOnlineEducation.visibility = View.GONE
+                return@subscribe
+            }
+            rvOnlineEducation.adapter = CoursesAdapter(
+                it,
+                object : CourseClickListener {
+                    override fun onCourseClicked(course: CourseDto) {
+                        val i = Intent(Intent.ACTION_VIEW)
+                        i.data = Uri.parse(course.url)
+                        startActivity(i)
+                    }
+                }
+            )
+            tvOnlineEducationTitle.visibility = View.VISIBLE
+            rvOnlineEducation.visibility = View.VISIBLE
+        }, {}))
     }
 
     private fun getCollectionsByFeeling() {
