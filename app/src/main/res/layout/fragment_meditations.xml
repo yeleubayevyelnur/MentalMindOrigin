@@ -18,6 +18,14 @@
         android:src="@drawable/ic_back"
         android:tint="@color/blueColor" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/ic_play_rounded" />
+
     <fragment
         android:id="@+id/playListFragment"
         android:name="kz.mentalmind.ui.meditations.PlayListFragment"

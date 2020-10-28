@@ -252,6 +252,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/speakerFemale"
+            android:layout_width="105dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="29dp"
+            android:background="@drawable/switch_btn_bkgrnd"
+            android:text="@string/female"
+            android:textAllCaps="false"
+            android:textColor="@drawable/switch_btn_text_color_bckgrnd"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsSpeakerVoiceTitle" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/speakerMale"
+            android:layout_width="105dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/switch_btn_bkgrnd"
+            android:text="@string/male"
+            android:textAllCaps="false"
+            android:textColor="@drawable/switch_btn_text_color_bckgrnd"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@id/speakerFemale"
+            app:layout_constraintTop_toTopOf="@id/speakerFemale" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/settingsBgMusicTitle"
             android:layout_width="0dp"
@@ -264,7 +291,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/settingsSpeakerVoiceTitle" />
+            app:layout_constraintTop_toBottomOf="@id/speakerFemale" />
 
         <SeekBar
             android:id="@+id/volumeBar"

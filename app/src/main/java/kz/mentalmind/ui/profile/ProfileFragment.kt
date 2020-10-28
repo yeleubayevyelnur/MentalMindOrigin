@@ -108,7 +108,6 @@ class ProfileFragment : Fragment() {
                 countTime.text =
                     String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
             }
-
         )
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {
