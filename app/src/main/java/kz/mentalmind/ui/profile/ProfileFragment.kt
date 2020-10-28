@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_play_list.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
@@ -118,7 +117,10 @@ class ProfileFragment : Fragment() {
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {
                 tvEmail.text = it.profileData.email
-                Glide.with(requireContext()).load(it.profileData.profile_image).into(ivProfilePhoto)
+                it.profileData.profile_image?.let { profileUrl ->
+                    Glide.with(requireContext()).load(profileUrl)
+                        .into(ivProfilePhoto)
+                }
                 profileViewModel.getLevelDetail(token, it.profileData.level)
                 val adapter = MeditationsAdapter(
                     it.profileData.favorite_meditations,
