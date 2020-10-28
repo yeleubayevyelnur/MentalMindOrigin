@@ -357,8 +357,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_blue_button"
-                    android:fontFamily="@font/montserrat_regular"
+                    style="@style/PrimaryButton.Full"
                     android:text="@string/show_history_by_day" />
             </LinearLayout>
         </LinearLayout>
