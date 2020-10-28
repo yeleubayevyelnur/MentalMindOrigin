@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +9,34 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     tools:context=".ui.authorization.resetPass.PassResetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/txt_pass_reset"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -23,8 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/montserrat_regular"
         android:background="@drawable/login_et_background"
+        android:fontFamily="@font/montserrat_regular"
         android:hint="@string/enter_your_email"
         android:paddingStart="12dp"
         android:paddingTop="14dp"
@@ -33,12 +62,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNext"
+        style="@style/ButtonsTextWeight500"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        style="@style/ButtonsTextWeight500"
-        android:background="@drawable/bg_button_onboarding"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_button_onboarding"
         android:text="@string/next" />
 </LinearLayout>

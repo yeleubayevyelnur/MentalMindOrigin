@@ -12,6 +12,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/txt_level"
+        android:textStyle="bold"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Рождение" />
@@ -80,7 +83,6 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/on_way_to_you"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/countDay" />

@@ -1,15 +1,18 @@
 package kz.mentalmind.ui.authorization.registration
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_registration.*
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.authorization.AuthViewModel
+import kz.mentalmind.ui.authorization.login.LoginWithEmailFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment() {
@@ -64,7 +67,21 @@ class RegistrationFragment : Fragment() {
 
     private fun successPassCheck() {
         authViewModel.register(email.text.toString(), repPassword.text.toString(), "kk-KZ")
-        (activity as? AuthActivity)?.successDialog(requireContext(), "Поздравляю", "")
+        successDialog()
+    }
+
+    private fun successDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Добро пожаловать!")
+            .setMessage("Письмо с сылкой для подтверждения электронного адреса отправлено на Ваш почтовый ящик, необходимо подтвердить в течении 24 часов")
+            .setPositiveButton("Хорошо") { dialog, wich ->
+                (activity as? AuthActivity)?.replaceFragment(
+                    LoginWithEmailFragment(),
+                    LoginWithEmailFragment::class.java.simpleName
+                )
+                dialog.cancel()
+            }
+            .create().show()
     }
 
     private fun isValidPassword(password: String): Boolean {

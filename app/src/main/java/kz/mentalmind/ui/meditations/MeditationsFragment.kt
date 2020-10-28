@@ -28,6 +28,11 @@ class MeditationsFragment : Fragment() {
         (activity as? MainActivity)?.hideBottomNavigation()
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        (activity as? MainActivity)?.showBottomNavigation()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -37,6 +37,9 @@ class PassResetFragment : Fragment() {
         btnNext.setOnClickListener {
             authViewModel.passwordRecovery(email.text.toString())
         }
+        btnBack.setOnClickListener {
+            (activity as? AuthActivity)?.onBackPressed()
+        }
     }
 
     companion object {

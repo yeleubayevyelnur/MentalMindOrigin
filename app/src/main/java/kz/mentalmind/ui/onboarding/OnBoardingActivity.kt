@@ -1,6 +1,8 @@
 package kz.mentalmind.ui.onboarding
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -13,7 +15,9 @@ import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 import kz.mentalmind.R
 import kz.mentalmind.data.IntroSlide
+import kz.mentalmind.domain.OnBoardingPrefManager
 import kz.mentalmind.ui.authorization.AuthActivity
+import kz.mentalmind.utils.Constants
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var introSliderAdapter: IntroSliderAdapter
@@ -55,6 +59,8 @@ class OnBoardingActivity : AppCompatActivity() {
             } else {
                 Intent(applicationContext, AuthActivity::class.java).also {
                     startActivity(it)
+                    val pref = this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+                    pref.edit().putBoolean(IS_FIRST_TIME_LAUNCH, false).apply()
                 }
             }
         }
@@ -105,5 +111,15 @@ class OnBoardingActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    companion object{
+        private const val IS_FIRST_TIME_LAUNCH = "IS_FIRST_TIME_LAUNCH"
+        private const val PREF_NAME = "PREF_NAME"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
     }
 }

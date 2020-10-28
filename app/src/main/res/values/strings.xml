@@ -23,6 +23,8 @@
 
     <string name="enter_with_email">Войти с помощью Email</string>
     <string name="enter_with_google">Войти с помощью Google</string>
+    <string name="enter_with_facebook">Войти с помощью Facebook</string>
+    <string name="enter_with_vk">Войти с помощью VK</string>
     <string name="do_not_have_acc_do_registration">У вас нет аккаунта? <b>Зарегистрируйтесь</b></string>
     <string name="enter">Войти</string>
     <string name="registration">Регистрация</string>
@@ -106,4 +108,5 @@
     <string name="male">Мужской</string>
     <string name="show_history_by_day">посмотреть по дням</string>
     <string name="self_education">самопознание</string>
+    <string name="txt_pass_reset">Восстановление пароля</string>
 </resources>

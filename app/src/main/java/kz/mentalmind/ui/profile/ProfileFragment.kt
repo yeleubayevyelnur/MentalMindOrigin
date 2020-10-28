@@ -101,15 +101,15 @@ class ProfileFragment : Fragment() {
     private fun observeData(token: String) {
         compositeDisposable.add(
             profileViewModel.observeLevelDetailSubject().subscribe {
-                if (it.error == null){
+                if (it.error == null) {
                     Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                     tvLevel.text = it.levelsDetailData.name
                     countDay.text =
                         String.format("%s дней", it.levelsDetailData.days_with_us.toString())
                     countTime.text =
                         String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
-                }else {
-                    profileViewModel.observeErrorSubject().subscribe{ error ->
+                } else {
+                    profileViewModel.observeErrorSubject().subscribe { error ->
                         (activity as? MainActivity)?.alertDialog(requireContext(), error)
                     }
                 }
@@ -118,6 +118,7 @@ class ProfileFragment : Fragment() {
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {
                 tvEmail.text = it.profileData.email
+                Glide.with(requireContext()).load(it.profileData.profile_image).into(ivProfilePhoto)
                 profileViewModel.getLevelDetail(token, it.profileData.level)
                 val adapter = MeditationsAdapter(
                     it.profileData.favorite_meditations,

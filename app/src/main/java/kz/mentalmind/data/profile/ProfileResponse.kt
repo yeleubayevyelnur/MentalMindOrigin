@@ -26,5 +26,6 @@ data class ProfileData(
     val language: String,
     val level: Int,
     val listened_minutes: Int,
-    val subs_expiry_date: String?
+    val subs_expiry_date: String?,
+    val profile_image: String
 )
