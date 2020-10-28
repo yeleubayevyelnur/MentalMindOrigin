@@ -45,6 +45,9 @@ class PromocodeFragment : Fragment() {
                 ?.let { profileViewModel.promocode(it, etPromocode.text.toString()) }
         }
         btnNext.addTextChangedListener(textWatcher)
+        btnBack.setOnClickListener {
+            (activity as? MainActivity)?.onBackPressed()
+        }
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {

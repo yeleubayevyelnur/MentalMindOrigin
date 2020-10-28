@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
@@ -35,6 +36,9 @@ class RegistrationFragment : Fragment() {
         )
         btnNext.setOnClickListener {
             registrationErrors()
+        }
+        btnBack.setOnClickListener {
+            (activity as? AuthActivity)?.onBackPressed()
         }
     }
 

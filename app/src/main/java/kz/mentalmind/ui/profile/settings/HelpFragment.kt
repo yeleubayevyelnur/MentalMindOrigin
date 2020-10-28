@@ -35,6 +35,10 @@ class HelpFragment : Fragment() {
             profileViewModel.observeHelpSubject().subscribe({
                 if (it.error == null) {
                     successAlert()
+                } else {
+                    profileViewModel.observeErrorSubject().subscribe {
+
+                    }
                 }
             }, {
 
@@ -51,6 +55,9 @@ class HelpFragment : Fragment() {
                     etHelp.text.toString()
                 )
             }
+        }
+        btnBack.setOnClickListener {
+            (activity as? MainActivity)?.onBackPressed()
         }
     }
 
