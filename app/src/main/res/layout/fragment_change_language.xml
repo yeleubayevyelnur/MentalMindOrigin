@@ -36,6 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -75,15 +76,18 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApply"
+            style="@style/PrimaryButton.Full"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="57dp"
-            android:background="@drawable/bg_blue_button"
+            android:enabled="false"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_apply"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="17sp" />
     </RelativeLayout>

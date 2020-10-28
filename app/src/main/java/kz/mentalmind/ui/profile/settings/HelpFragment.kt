@@ -1,6 +1,8 @@
 package kz.mentalmind.ui.profile.settings
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_faq.btnBack
 import kotlinx.android.synthetic.main.fragment_help.*
+import kotlinx.android.synthetic.main.fragment_login_with_email.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.profile.ProfileViewModel
@@ -40,6 +43,7 @@ class HelpFragment : Fragment() {
         btnBack.setOnClickListener {
             (activity as? MainActivity)?.onBackPressed()
         }
+        etHelp.addTextChangedListener(textWatcher)
         btnSend.setOnClickListener {
             profileViewModel.getToken(requireContext())?.let { it1 ->
                 profileViewModel.help(
@@ -48,6 +52,16 @@ class HelpFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            val helpText: String = etHelp.text.toString().trim()
+            btnSend.isEnabled = helpText.isNotEmpty()
+        }
+
+        override fun afterTextChanged(s: Editable) {}
     }
 
     private fun successAlert() {
