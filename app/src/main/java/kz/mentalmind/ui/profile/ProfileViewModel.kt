@@ -29,7 +29,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         profileSubject.onNext(it)
                     } else {
-                        errorsSubject.onNext(it.error)
                     }
                 }, {
                     errorsSubject.onNext(it.message.toString())
@@ -44,7 +43,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         levelsSubject.onNext(it)
                     } else {
-                        errorsSubject.onNext(it.error)
                     }
                 }, {
 
@@ -59,7 +57,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         levelsDetailSubject.onNext(it)
                     } else {
-                        errorsSubject.onNext(it.error)
                     }
                 }, {
 
@@ -74,7 +71,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         helpSubject.onNext(it)
                     } else {
-                        errorsSubject.onNext(it.error)
                     }
                 }, {
 
@@ -89,7 +85,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         promocodeSubject.onNext(it)
                     } else {
-                        errorsSubject.onNext(it.error)
                     }
                 }, {
 
