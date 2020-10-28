@@ -12,28 +12,11 @@ import kz.mentalmind.data.repository.MainRepository
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
-    private val collectionsSubject = PublishSubject.create<CollectionsResponse>()
     private val streamOfLifeSubject = PublishSubject.create<CollectionsResponse>()
 
-//    fun getCollections(language: String) {
-//        disposable.add(
-//            mainRepository.getCollections(language)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    if (it.error == null) {
-//                        collectionsSubject.onNext(it)
-//                    } else {
-//                        errorsSubject.onNext(it.error)
-//                    }
-//                }, {
-//                    Log.e("error", it.message.toString())
-//                })
-//        )
-//    }
-
-    fun getStreamOfLife(token: String, language: String) {
+    fun getStreamOfLife(token: String) {
         disposable.add(
-            mainRepository.getCollections(token, language, 1, 1)
+            mainRepository.getCollections(token, "ru", 1, 1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
@@ -45,10 +28,6 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
                     errorsSubject.onNext(it.message ?: "")
                 })
         )
-    }
-
-    fun observeCollectionsSubject(): PublishSubject<CollectionsResponse> {
-        return collectionsSubject
     }
 
     fun observeStreamOfLife(): PublishSubject<CollectionsResponse> {

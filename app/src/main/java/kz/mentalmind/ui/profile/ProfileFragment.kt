@@ -114,7 +114,6 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }
-
         )
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {

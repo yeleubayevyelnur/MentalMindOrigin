@@ -26,11 +26,11 @@ class PlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
         val meditation: MeditationDto? = intent?.getParcelableExtra(MEDITATION)
-        meditation?.let {
-            initializePlayer(it)
+        meditation?.let { meditationDto ->
+            initializePlayer()
 
-            findViewById<AppCompatTextView>(R.id.title).text = it.name
-            findViewById<AppCompatTextView>(R.id.description).text = it.description
+            findViewById<AppCompatTextView>(R.id.title).text = meditationDto.name
+            findViewById<AppCompatTextView>(R.id.description).text = meditationDto.description
             backgroundMusic.setOnClickListener {
                 settingsView.visibility = View.VISIBLE
             }
@@ -73,9 +73,27 @@ class PlayerActivity : AppCompatActivity() {
                         )
                     )
                 )
+                backgroundMusicTitle.text = radioButton.text
             }
 
             findViewById<RadioGroup>(R.id.bg_musics).check(R.id.bg_music1)
+
+            speakerFemale.setOnClickListener {
+                play(meditationDto, SPEAKER.FEMALE)
+                speakerFemale.isSelected = true
+                speakerMale.isSelected = false
+                speakerVoiceTitle.text = speakerFemale.text
+            }
+
+            speakerMale.setOnClickListener {
+                play(meditationDto, SPEAKER.MALE)
+                speakerMale.isSelected = true
+                speakerFemale.isSelected = false
+
+                speakerVoiceTitle.text = speakerMale.text
+            }
+
+            speakerFemale.performClick()
         }
     }
 
@@ -84,14 +102,8 @@ class PlayerActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun initializePlayer(meditation: MeditationDto) {
+    private fun initializePlayer() {
         exoPlayer = SimpleExoPlayer.Builder(this).build()
-        exoPlayer?.apply {
-            setMediaItem(MediaItem.fromUri(meditation.file_male_voice))
-            playWhenReady = true
-            seekTo(0, 0)
-            prepare()
-        }
         playerView = findViewById(R.id.exo_player_view)
         playerView?.setBackgroundColor(getColor(android.R.color.white))
         playerView?.player = exoPlayer
@@ -102,6 +114,33 @@ class PlayerActivity : AppCompatActivity() {
             repeatMode = Player.REPEAT_MODE_ONE
             playWhenReady = true
             volume = 0.5f
+            seekTo(0, 0)
+            prepare()
+        }
+        exoPlayer?.addListener(object : Player.EventListener {
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                if (isPlaying) {
+                    if (soundsPlayer?.isPlaying == false) {
+                        soundsPlayer?.play()
+                    }
+                } else {
+                    soundsPlayer?.pause()
+                }
+            }
+        })
+    }
+
+    private fun play(meditation: MeditationDto, speaker: SPEAKER) {
+        exoPlayer?.apply {
+            setMediaItem(
+                MediaItem.fromUri(
+                    when (speaker) {
+                        SPEAKER.MALE -> meditation.file_male_voice
+                        SPEAKER.FEMALE -> meditation.file_female_voice
+                    }
+                )
+            )
+            playWhenReady = true
             seekTo(0, 0)
             prepare()
         }
@@ -120,5 +159,9 @@ class PlayerActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    enum class SPEAKER {
+        MALE, FEMALE
     }
 }
