@@ -22,8 +22,7 @@ class CreationAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.typeName.text = types[position].name
-        holder.instruments.adapter =
-            instrumentsAdapters.first { it.first == types[position].id }.second
+        holder.instruments.adapter = instrumentsAdapters.first { it.first == types[position].id }.second
     }
 
     override fun getItemCount(): Int {

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.domain.dto.CourseDto
 
@@ -21,7 +22,9 @@ class CoursesAdapter(
     }
 
     override fun onBindViewHolder(holder: CoursesAdapter.ViewHolder, position: Int) {
-        Glide.with(holder.itemView).load(courses[position].file_image).into(holder.banner)
+        Glide.with(holder.itemView).load(courses[position].file_image)
+            .transform(RoundedCorners(15))
+            .into(holder.banner)
         holder.itemView.setOnClickListener {
             courseClickListener.onCourseClicked(courses[position])
         }

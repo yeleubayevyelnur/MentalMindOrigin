@@ -118,6 +118,11 @@ class MainFragment : Fragment() {
         }, {}))
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).showBottomNavigation()
+    }
+
     private fun getCollectionsByFeeling() {
         viewModel.getToken()?.let {
             viewModel.getCollectionsByFeeling(it)
