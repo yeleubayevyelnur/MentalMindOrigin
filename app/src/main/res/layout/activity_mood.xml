@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_mood"
-    tools:context=".ui.main.mood.MoodFragment">
+    android:background="@drawable/bg_mood">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnBack"
@@ -21,12 +20,12 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         style="@style/MainTitle600"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/what_do_you_feel"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
 

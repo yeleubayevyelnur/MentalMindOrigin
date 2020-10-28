@@ -2,9 +2,6 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
@@ -13,6 +10,7 @@ import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.domain.dto.CollectionDetailsDto
+import kz.mentalmind.domain.dto.CoursesData
 import retrofit2.http.*
 
 interface ApiService {
@@ -95,20 +93,11 @@ interface ApiService {
         @Field("id") id: Int? = null
     )
 
-    @GET("api/v1/background_music/")
-    fun getBackgroundMusic(
-        @Field("id") id: Int? = null
-    )
-
-    @GET("api/v1/feelings/")
-    fun getFeelings(
-        @Field("id") id: Int? = null
-    )
-
     @GET("api/v1/courses/")
     fun getCourses(
-        @Field("id") id: Int? = null
-    )
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+    ): Single<CommonResponse<CoursesData>>
 
     @FormUrlEncoded
     @POST("api/v1/rating/")
@@ -158,6 +147,14 @@ interface ApiService {
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Query("type") type: Int
+    ): Observable<CollectionsResponse>
+
+    @GET("api/v1/collections/")
+    fun getCollectionsByFeeling(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+        @Query("type") type: Int = 1,
+        @Query("for_feeling") feeling: Int
     ): Observable<CollectionsResponse>
 
 

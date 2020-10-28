@@ -1,21 +1,17 @@
 package kz.mentalmind.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.KeyValueData
-import kz.mentalmind.data.HelpResponse
-import kz.mentalmind.data.PromocodeResponse
+import kz.mentalmind.data.*
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
+import kz.mentalmind.domain.dto.CoursesData
 import kz.mentalmind.utils.Constants
 
 class MainRepository(
@@ -24,11 +20,12 @@ class MainRepository(
     private val gson: Gson
 ) {
 
-    fun getUser(context: Context): User? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getUser(): User? {
         val userString = sPrefs.getString(Constants.USER, null)
         return gson.fromJson(userString, User::class.java)
     }
+
+    fun getFeeling() = sPrefs.getInt(Constants.FEELING, 9999)
 
     fun getCollections(
         token: String,
@@ -41,6 +38,15 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun getCourses(
+        token: String,
+        language: String
+    ): Single<CommonResponse<CoursesData>> {
+        val accessToken = "Token $token"
+        return apiService.getCourses(language, accessToken)
+            .subscribeOn(Schedulers.io())
+    }
+
     fun getCollectionsByTypes(
         token: String,
         language: String,
@@ -48,6 +54,20 @@ class MainRepository(
     ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
         return apiService.getCollectionsByTypes(language, accessToken, type)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getCollectionsByFeeling(
+        token: String,
+        language: String,
+        feeling: Int
+    ): Observable<CollectionsResponse> {
+        val accessToken = "Token $token"
+        return apiService.getCollectionsByFeeling(
+            language = language,
+            token = accessToken,
+            feeling = feeling
+        )
             .subscribeOn(Schedulers.io())
     }
 
@@ -97,9 +117,12 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getToken(context: Context): String? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getToken(): String? {
         return sPrefs.getString(Constants.TOKEN, null)
+    }
+
+    fun saveFeeling(id: Int) {
+        sPrefs.edit().putInt(Constants.FEELING, id).apply()
     }
 
 }

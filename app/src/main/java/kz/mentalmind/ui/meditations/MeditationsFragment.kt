@@ -43,7 +43,7 @@ class MeditationsFragment : Fragment() {
             collectionDetails = it
             playListFragment?.setData(it)
         }, {}))
-        meditationsViewModel.getToken(requireContext())
+        meditationsViewModel.getToken()
             ?.let { meditationsViewModel.getCollectionDetails(it, requireArguments().getInt(ID)) }
 
         back.setOnClickListener {

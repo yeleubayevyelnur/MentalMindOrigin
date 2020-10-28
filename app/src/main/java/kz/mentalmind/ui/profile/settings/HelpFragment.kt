@@ -45,7 +45,7 @@ class HelpFragment : Fragment() {
         }
         etHelp.addTextChangedListener(textWatcher)
         btnSend.setOnClickListener {
-            profileViewModel.getToken(requireContext())?.let { it1 ->
+            profileViewModel.getToken()?.let { it1 ->
                 profileViewModel.help(
                     it1,
                     etHelp.text.toString()

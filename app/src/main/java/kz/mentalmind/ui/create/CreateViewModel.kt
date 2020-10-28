@@ -14,7 +14,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
     private val errorsSubject = PublishSubject.create<String>()
 
     fun getCollectionTypes(context: Context) {
-        getToken(context)?.let {
+        getToken()?.let {
             mainRepository.getCollectionsTypes(it, "ru")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
@@ -24,7 +24,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
     }
 
     fun getCollectionsByTypes(context: Context, type: Int) {
-        getToken(context)?.let {
+        getToken()?.let {
             mainRepository.getCollectionsByTypes(it, "ru", type)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
@@ -47,7 +47,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
         return instruments
     }
 
-    fun getToken(context: Context): String? {
-        return mainRepository.getToken(context)
+    fun getToken(): String? {
+        return mainRepository.getToken()
     }
 }

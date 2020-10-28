@@ -14,7 +14,7 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
     private val errorsSubject = PublishSubject.create<String>()
 
     fun getTags(context: Context) {
-        getToken(context)?.let {
+        getToken()?.let {
             mainRepository.getTags(it)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
@@ -30,7 +30,7 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
     }
 
     fun getCollectionsByTags(context: Context, tag: Int) {
-        getToken(context)?.let {
+        getToken()?.let {
             mainRepository.getCollections(it, "ru", 1, tag)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
@@ -53,7 +53,7 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
         return instruments
     }
 
-    fun getToken(context: Context): String? {
-        return mainRepository.getToken(context)
+    fun getToken(): String? {
+        return mainRepository.getToken()
     }
 }

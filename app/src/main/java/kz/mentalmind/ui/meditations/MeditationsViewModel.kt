@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.meditations
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -38,7 +37,7 @@ class MeditationsViewModel(private val meditationRepository: MeditationRepositor
         super.onCleared()
     }
 
-    fun getToken(context: Context): String? {
-        return meditationRepository.getToken(context)
+    fun getToken(): String? {
+        return meditationRepository.getToken()
     }
 }
