@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.authorization.registration
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
