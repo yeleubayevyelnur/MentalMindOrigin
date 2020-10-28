@@ -77,19 +77,19 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     }
 
     fun saveUser(context: Context, user: User) {
-        authRepository.saveUser(user, context)
+        authRepository.saveUser(user)
     }
 
     fun saveToken(context: Context, accessToken: String) {
-        authRepository.saveToken(context, accessToken)
+        authRepository.saveToken(accessToken)
     }
 
     fun getToken(context: Context): String? {
-        return authRepository.getToken(context)
+        return authRepository.getToken()
     }
 
     fun getUser(context: Context): User? {
-        return authRepository.getUser(context)
+        return authRepository.getUser()
     }
 
     fun observeErrorSubject(): Observable<String> {

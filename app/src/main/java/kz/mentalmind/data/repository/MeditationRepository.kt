@@ -1,6 +1,5 @@
 package kz.mentalmind.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -21,8 +20,7 @@ class MeditationRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getToken(context: Context): String? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getToken(): String? {
         return sPrefs.getString(Constants.TOKEN, null)
     }
 }

@@ -20,8 +20,7 @@ class MainRepository(
     private val gson: Gson
 ) {
 
-    fun getUser(context: Context): User? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getUser(): User? {
         val userString = sPrefs.getString(Constants.USER, null)
         return gson.fromJson(userString, User::class.java)
     }
@@ -112,7 +111,6 @@ class MainRepository(
     }
 
     fun getToken(context: Context): String? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
         return sPrefs.getString(Constants.TOKEN, null)
     }
 

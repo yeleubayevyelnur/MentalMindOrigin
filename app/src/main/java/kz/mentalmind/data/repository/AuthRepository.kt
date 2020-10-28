@@ -1,6 +1,5 @@
 package kz.mentalmind.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Observable
@@ -33,26 +32,20 @@ class AuthRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun saveUser(user: User, context: Context) {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun saveUser(user: User) {
         val userString: String = Gson().toJson(user)
-        val editor: SharedPreferences.Editor = sPrefs.edit()
-        editor.putString(Constants.USER, userString).apply()
+        sPrefs.edit().putString(Constants.USER, userString).apply()
     }
 
-    fun saveToken(context: Context, accessToken:String) {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sPrefs.edit()
-        editor.putString(Constants.TOKEN, accessToken).apply()
+    fun saveToken(accessToken: String) {
+        sPrefs.edit().putString(Constants.TOKEN, accessToken).apply()
     }
 
-    fun getToken(context: Context): String? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getToken(): String? {
         return sPrefs.getString(Constants.TOKEN, null)
     }
 
-    fun getUser(context: Context): User? {
-        sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
+    fun getUser(): User? {
         val userString = sPrefs.getString(Constants.USER, null)
         return gson.fromJson(userString, User::class.java)
     }
