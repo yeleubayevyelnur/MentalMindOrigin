@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_instruments.*
+import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
 import kz.mentalmind.data.KeyValuePair
-import kz.mentalmind.ui.main.CreationAdapter
 import kz.mentalmind.ui.main.InstrumentClickListener
 import kz.mentalmind.ui.main.InstrumentsAdapter
-import kz.mentalmind.ui.main.MainAdapter
+import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateFragment : Fragment() {
@@ -29,7 +29,7 @@ class CreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val instrumentAdapters = ArrayList<InstrumentsAdapter>()
+        val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter>>()
         val types = ArrayList<KeyValuePair>()
         val adapter = CreationAdapter(types, instrumentAdapters)
 
@@ -40,20 +40,27 @@ class CreateFragment : Fragment() {
             }
         })
 
-        compositeDisposable.add(viewModel.observeInstruments().subscribe {
+        compositeDisposable.add(viewModel.observeInstruments().subscribe({
             instrumentAdapters.add(
-                InstrumentsAdapter(
-                    it.results,
-                    object : InstrumentClickListener {
-                        override fun onInstrumentClicked(meditation: CollectionItem) {
-
-                        }
-                    })
+                Pair(
+                    it.first,
+                    InstrumentsAdapter(
+                        it.second.results,
+                        object : InstrumentClickListener {
+                            override fun onInstrumentClicked(meditation: CollectionItem) {
+                                (activity as MainActivity).replaceFragment(
+                                    MeditationsFragment.newInstance(meditation.id),
+                                    MeditationsFragment::class.simpleName
+                                )
+                            }
+                        })
+                )
             )
+
             if (types.size == instrumentAdapters.size) {
                 instruments.adapter = adapter
             }
-        })
+        }, {}))
 
         viewModel.getCollectionTypes(requireContext())
     }

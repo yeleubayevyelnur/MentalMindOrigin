@@ -10,7 +10,7 @@ import kz.mentalmind.data.repository.MainRepository
 
 class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val collectionTypes = PublishSubject.create<KeyValueData>()
-    private val instruments = PublishSubject.create<Collections>()
+    private val instruments = PublishSubject.create<Pair<Int, Collections>>()
     private val errorsSubject = PublishSubject.create<String>()
 
     fun getCollectionTypes(context: Context) {
@@ -29,7 +29,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     if (response.error == null) {
-                        instruments.onNext(response.data)
+                        instruments.onNext(Pair(type, response.data))
                     } else {
                         errorsSubject.onNext(response.error)
                     }
@@ -43,7 +43,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
         return collectionTypes
     }
 
-    fun observeInstruments(): PublishSubject<Collections> {
+    fun observeInstruments(): PublishSubject<Pair<Int, Collections>> {
         return instruments
     }
 

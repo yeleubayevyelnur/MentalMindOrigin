@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.create
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,21 +7,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.KeyValuePair
+import kz.mentalmind.ui.main.InstrumentsAdapter
 
 class CreationAdapter(
     private var types: List<KeyValuePair>,
-    private var instrumentsAdapters: List<InstrumentsAdapter>
+    private var instrumentsAdapters: List<Pair<Int, InstrumentsAdapter>>
 ) :
     RecyclerView.Adapter<CreationAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreationAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_creation, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: CreationAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.typeName.text = types[position].name
-        holder.instruments.adapter = instrumentsAdapters[position]
+        holder.instruments.adapter =
+            instrumentsAdapters.first { it.first == types[position].id }.second
     }
 
     override fun getItemCount(): Int {

@@ -10,7 +10,7 @@ import kz.mentalmind.data.KeyValuePair
 
 class MainAdapter(
     private var tags: List<KeyValuePair>,
-    private var instrumentsAdapters: List<InstrumentsAdapter>
+    private var instrumentsAdapters: List<Pair<Int, InstrumentsAdapter>>
 ) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
@@ -21,7 +21,7 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
         holder.tagName.text = tags[position].name
-        holder.instruments.adapter = instrumentsAdapters[position]
+        holder.instruments.adapter = instrumentsAdapters.first { it.first == tags[position].id }.second
     }
 
     override fun getItemCount(): Int {
