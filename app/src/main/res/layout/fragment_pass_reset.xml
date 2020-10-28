@@ -16,10 +16,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="70dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/txt_pass_reset"
             android:textColor="@color/white"
             android:textSize="22sp"
-            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
