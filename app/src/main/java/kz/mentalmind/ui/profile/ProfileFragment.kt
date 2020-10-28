@@ -101,12 +101,18 @@ class ProfileFragment : Fragment() {
     private fun observeData(token: String) {
         compositeDisposable.add(
             profileViewModel.observeLevelDetailSubject().subscribe {
-                Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
-                tvLevel.text = it.levelsDetailData.name
-                countDay.text =
-                    String.format("%s дней", it.levelsDetailData.days_with_us.toString())
-                countTime.text =
-                    String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
+                if (it.error == null){
+                    Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
+                    tvLevel.text = it.levelsDetailData.name
+                    countDay.text =
+                        String.format("%s дней", it.levelsDetailData.days_with_us.toString())
+                    countTime.text =
+                        String.format("%s минут", it.levelsDetailData.listened_minutes.toString())
+                }else {
+                    profileViewModel.observeErrorSubject().subscribe{ error ->
+                        (activity as? MainActivity)?.alertDialog(requireContext(), error)
+                    }
+                }
             }
         )
         compositeDisposable.add(
@@ -126,7 +132,7 @@ class ProfileFragment : Fragment() {
                                 })
                         }
                     })
-                meditations.adapter = adapter
+                favMeditations.adapter = adapter
             })
     }
 

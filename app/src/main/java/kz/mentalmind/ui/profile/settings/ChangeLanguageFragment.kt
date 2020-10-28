@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kz.mentalmind.R
 
-class ChangeLanguageFragment : Fragment() {
+class  ChangeLanguageFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
