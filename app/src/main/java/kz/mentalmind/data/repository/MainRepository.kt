@@ -6,11 +6,7 @@ import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.KeyValueData
-import kz.mentalmind.data.HelpResponse
-import kz.mentalmind.data.PromocodeResponse
+import kz.mentalmind.data.*
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
@@ -28,6 +24,10 @@ class MainRepository(
         sPrefs = context.getSharedPreferences(Constants.APP_PREF, Context.MODE_PRIVATE)
         val userString = sPrefs.getString(Constants.USER, null)
         return gson.fromJson(userString, User::class.java)
+    }
+
+    fun getFeeling(context: Context) {
+
     }
 
     fun getCollections(
@@ -48,6 +48,20 @@ class MainRepository(
     ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
         return apiService.getCollectionsByTypes(language, accessToken, type)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getCollectionsByFeeling(
+        token: String,
+        language: String,
+        feeling: Int
+    ): Observable<CollectionsResponse> {
+        val accessToken = "Token $token"
+        return apiService.getCollectionsByFeeling(
+            language = language,
+            token = accessToken,
+            feeling = feeling
+        )
             .subscribeOn(Schedulers.io())
     }
 

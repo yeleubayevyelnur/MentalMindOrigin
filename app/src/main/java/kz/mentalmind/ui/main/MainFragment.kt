@@ -28,7 +28,10 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        viewModel.getToken(requireContext())?.let { viewModel.getStreamOfLife(it) }
+        viewModel.getToken(requireContext())?.let {
+            viewModel.getStreamOfLife(it)
+            viewModel.getCollectionsByFeeling(it, 1)
+        }
         moodView.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 MoodFragment(),
@@ -41,6 +44,23 @@ class MainFragment : Fragment() {
         compositeDisposable.add(
             viewModel.observeStreamOfLife().subscribe({
                 rvStreamOfLife.adapter = InstrumentsAdapter(
+                    it.data.results,
+                    object : InstrumentClickListener {
+                        override fun onInstrumentClicked(meditation: CollectionItem) {
+                            (activity as MainActivity).replaceFragment(
+                                MeditationsFragment.newInstance(meditation.id),
+                                MeditationsFragment::class.simpleName
+                            )
+                        }
+                    }
+                )
+            }, {
+
+            })
+        )
+        compositeDisposable.add(
+            viewModel.observeInstrumentsForFeeling().subscribe({
+                rvRecommended.adapter = InstrumentsAdapter(
                     it.data.results,
                     object : InstrumentClickListener {
                         override fun onInstrumentClicked(meditation: CollectionItem) {

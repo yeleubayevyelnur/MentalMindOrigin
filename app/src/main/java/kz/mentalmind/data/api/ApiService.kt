@@ -2,9 +2,6 @@ package kz.mentalmind.data.api
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.CollectionsResponse
-import kz.mentalmind.data.CommonResponse
-import kz.mentalmind.data.KeyValueData
 import kz.mentalmind.data.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
@@ -158,6 +155,14 @@ interface ApiService {
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Query("type") type: Int
+    ): Observable<CollectionsResponse>
+
+    @GET("api/v1/collections/")
+    fun getCollectionsByFeeling(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+        @Query("type") type: Int = 1,
+        @Query("for_feeling") feeling: Int
     ): Observable<CollectionsResponse>
 
 
