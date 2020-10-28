@@ -46,18 +46,19 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogin"
-            style="@style/SmallTextSize14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_login"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tvEmail"
             app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
             app:layout_constraintTop_toTopOf="@id/ivProfilePhoto" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEmail"
-            style="@style/StandartTextSize16"
+            style="@style/MediumTitleTextSize18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/ivProfilePhoto"
@@ -104,6 +105,7 @@
                 style="@style/RegularTextSize20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/txt_faq"
                 app:drawableEndCompat="@drawable/ic_array_right"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="start"
                 android:text="@string/txt_help"
                 app:drawableEndCompat="@drawable/ic_array_right"
@@ -127,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="start"
                 android:text="@string/txt_change_language"
                 app:drawableEndCompat="@drawable/ic_array_right"
@@ -139,6 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="start"
                 android:text="@string/txt_add_promocode"
                 app:drawableEndCompat="@drawable/ic_array_right"
@@ -148,10 +153,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNotifyMeditation"
+            style="@style/Regular16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_notify_meditation"
             app:layout_constraintEnd_toStartOf="@id/switchNotify"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,6 +166,7 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchNotify"
+            style="@style/Regular16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -307,7 +315,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="самопознание"
+                        android:text="@string/self_education"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/countTime" />
@@ -328,6 +336,7 @@
             app:layout_constraintTop_toBottomOf="@id/levelContainer">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumTitleTextSize18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/history" />
@@ -350,40 +359,55 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_blue_button"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="@string/show_history_by_day" />
             </LinearLayout>
         </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFavMeditations"
+            style="@style/MediumTitleTextSize18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/txt_fav_meditations"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llHistoryContainer" />
+
 
         <LinearLayout
             android:id="@+id/llFavMeditationsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_options_container"
+            android:elevation="4dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llHistoryContainer">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_fav_meditations" />
+            app:layout_constraintTop_toBottomOf="@id/tvFavMeditations">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/favMeditations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_level"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="vertical"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_audio_track"/>
+                tools:listitem="@layout/item_audio_track" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvUnblock"
+            style="@style/MediumTitleTextSize18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -402,6 +426,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/mood_background"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_buy_subscription"
             android:textAllCaps="false"
             android:textColor="@color/white"

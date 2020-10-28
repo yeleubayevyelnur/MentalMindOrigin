@@ -19,18 +19,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/ic_back_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
-                style="@style/RegularTextSize20"
+                style="@style/MainTitle600"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/txt_promocode"
                 app:layout_constraintStart_toEndOf="@id/btnBack"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,16 +47,18 @@
                 app:layout_constraintTop_toBottomOf="@id/title">
 
                 <TextView
-                    style="@style/StandartTextSize16"
+                    style="@style/Regular400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/promocode_description" />
+                    android:text="@string/promocode_description"
+                    android:textColor="@color/black" />
 
                 <TextView
                     style="@style/ExtraSmallTextSize12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="@string/txt_promocode" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -65,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edittext_gray_stroke"
+                    android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/enter_promocode"
                     android:paddingStart="12dp"
                     android:paddingTop="14dp"
@@ -88,7 +91,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="57dp"
             android:background="@drawable/bg_blue_button"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_send"
+            android:textColor="@color/white"
             android:textSize="17sp" />
     </RelativeLayout>
 
