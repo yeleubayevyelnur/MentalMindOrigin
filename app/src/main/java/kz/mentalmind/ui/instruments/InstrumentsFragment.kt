@@ -25,21 +25,17 @@ class InstrumentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_instruments, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val view = inflater.inflate(R.layout.fragment_instruments, container, false)
         val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter>>()
         val tags = ArrayList<KeyValuePair>()
         val adapter = MainAdapter(tags, instrumentAdapters)
 
-        compositeDisposable.add(viewModel.observeTagsSubject().subscribe {
+        compositeDisposable.add(viewModel.observeTagsSubject().subscribe({
             tags.addAll(it.results.subList(1, it.results.size))
             for (i in 1 until it.results.size) {
                 viewModel.getCollectionsByTags(requireContext(), it.results[i].id)
             }
-        })
+        }, {}))
 
         compositeDisposable.add(viewModel.observeInstruments().subscribe({
             instrumentAdapters.add(
@@ -64,5 +60,11 @@ class InstrumentsFragment : Fragment() {
         }, {}))
 
         viewModel.getTags(requireContext())
+        return view
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.clear()
+        super.onDestroyView()
     }
 }
