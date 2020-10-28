@@ -10,6 +10,7 @@ import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.domain.dto.CollectionDetailsDto
+import kz.mentalmind.domain.dto.CourseDto
 import retrofit2.http.*
 
 interface ApiService {
@@ -92,20 +93,11 @@ interface ApiService {
         @Field("id") id: Int? = null
     )
 
-    @GET("api/v1/background_music/")
-    fun getBackgroundMusic(
-        @Field("id") id: Int? = null
-    )
-
-    @GET("api/v1/feelings/")
-    fun getFeelings(
-        @Field("id") id: Int? = null
-    )
-
     @GET("api/v1/courses/")
     fun getCourses(
-        @Field("id") id: Int? = null
-    )
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+    ): Single<CommonResponse<List<CourseDto>>>
 
     @FormUrlEncoded
     @POST("api/v1/rating/")

@@ -34,6 +34,7 @@ class MainFragment : Fragment() {
         observeData()
         viewModel.getToken()?.let {
             viewModel.getStreamOfLife(it)
+            viewModel.getCourses(it)
         }
         getCollectionsByFeeling()
 

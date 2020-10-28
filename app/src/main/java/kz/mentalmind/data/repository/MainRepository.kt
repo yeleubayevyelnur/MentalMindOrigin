@@ -11,6 +11,7 @@ import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
+import kz.mentalmind.domain.dto.CourseDto
 import kz.mentalmind.utils.Constants
 
 class MainRepository(
@@ -34,6 +35,15 @@ class MainRepository(
     ): Observable<CollectionsResponse> {
         val accessToken = "Token $token"
         return apiService.getCollections(language, accessToken, type, tag)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getCourses(
+        token: String,
+        language: String
+    ): Single<CommonResponse<List<CourseDto>>> {
+        val accessToken = "Token $token"
+        return apiService.getCourses(language, accessToken)
             .subscribeOn(Schedulers.io())
     }
 

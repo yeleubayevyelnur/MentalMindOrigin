@@ -7,12 +7,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.CollectionsResponse
 import kz.mentalmind.data.repository.MainRepository
+import kz.mentalmind.domain.dto.CourseDto
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
     private val streamOfLifeSubject = PublishSubject.create<CollectionsResponse>()
     private val instrumentsForFeeling = PublishSubject.create<CollectionsResponse>()
+    private val courses = PublishSubject.create<List<CourseDto>>()
 
     fun saveFeeling(id: Int) {
         mainRepository.saveFeeling(id)
@@ -54,12 +56,35 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         )
     }
 
+    fun getCourses(token: String) {
+        courses
+        disposable.add(
+            mainRepository.getCourses(token, "ru")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        if (it.data != null) {
+                            courses.onNext(it.data)
+                        }
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
+                    errorsSubject.onNext(it.message ?: "")
+                })
+        )
+    }
+
     fun observeStreamOfLife(): PublishSubject<CollectionsResponse> {
         return streamOfLifeSubject
     }
 
     fun observeInstrumentsForFeeling(): PublishSubject<CollectionsResponse> {
         return instrumentsForFeeling
+    }
+
+    fun observeCourses(): PublishSubject<List<CourseDto>> {
+        return courses
     }
 
     fun observeErrorSubject(): Observable<String> {
