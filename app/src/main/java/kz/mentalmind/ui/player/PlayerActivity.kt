@@ -117,6 +117,17 @@ class PlayerActivity : AppCompatActivity() {
             seekTo(0, 0)
             prepare()
         }
+        exoPlayer?.addListener(object : Player.EventListener {
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                if (isPlaying) {
+                    if (soundsPlayer?.isPlaying == false) {
+                        soundsPlayer?.play()
+                    }
+                } else {
+                    soundsPlayer?.pause()
+                }
+            }
+        })
     }
 
     private fun play(meditation: MeditationDto, speaker: SPEAKER) {
