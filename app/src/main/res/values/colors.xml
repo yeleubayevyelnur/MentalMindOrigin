@@ -12,4 +12,6 @@
     <color name="blueColor">#219AEB</color>
     <color name="blueColor1">#82BFE7</color>
     <color name="blackText">#333333</color>
+    <color name="green">#6BD9BF</color>
+    <color name="gray">#848781</color>
 </resources>

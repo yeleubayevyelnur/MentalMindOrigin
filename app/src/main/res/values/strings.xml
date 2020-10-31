@@ -109,4 +109,11 @@
     <string name="show_history_by_day">посмотреть по дням</string>
     <string name="self_education">самопознание</string>
     <string name="txt_pass_reset">Восстановление пароля</string>
+    <string name="trial_version_title">Попробуй 3 дня бесплатно</string>
+    <string name="trial_first_condition">Бесплатная пробная версия</string>
+    <string name="trial_second_condition">Неограниченный доступ к более, чем 200+ инструментам для вашего развития и роста</string>
+    <string name="trial_third_condition">Система ежедневного встраивания сверхчеловеческой продуктивности</string>
+    <string name="try_now">Попробовать</string>
+    <string name="privacy_policy"><u>Политика конфеденциальности</u></string>
+    <string name="unblock_title">Разблокируй безграничные возможности себя и приложения Mentalmind</string>
 </resources>
