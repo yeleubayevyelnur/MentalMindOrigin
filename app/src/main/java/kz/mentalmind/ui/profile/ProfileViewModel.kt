@@ -31,7 +31,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     } else {
                     }
                 }, {
-                    errorsSubject.onNext(it.message.toString())
                 })
         )
     }

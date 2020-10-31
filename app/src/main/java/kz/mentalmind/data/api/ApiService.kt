@@ -49,8 +49,13 @@ interface ApiService {
     ): Single<PassRecoveryData>
 
     @FormUrlEncoded
-    @POST("users/me/")
-    fun updateUserInfo()
+    @PUT("users/me/")
+    fun updateUserInfo(
+        @Field("full_name") fullName: String?,
+        @Field("birthday") birthday: String?,
+        @Field("country") country: String?,
+        @Field("city") city: String?
+    ): Observable<ProfileResponse>
 
     @FormUrlEncoded
     @PUT("users/reset_password/")
