@@ -29,43 +29,40 @@ class MainRepository(
 
     fun getCollections(
         token: String,
-        language: String,
         type: Int,
         tag: Int
     ): Observable<CollectionsResponse> {
-        val accessToken = "Token $token"
-        return apiService.getCollections(language, accessToken, type, tag)
+        return apiService.getCollections("ru", "Token $token", type, tag)
             .subscribeOn(Schedulers.io())
     }
 
     fun getCourses(
         token: String,
-        language: String
     ): Single<CommonResponse<CoursesData>> {
-        val accessToken = "Token $token"
-        return apiService.getCourses(language, accessToken)
+        return apiService.getCourses("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
     fun getCollectionsByTypes(
         token: String,
-        language: String,
         type: Int
     ): Observable<CollectionsResponse> {
-        val accessToken = "Token $token"
-        return apiService.getCollectionsByTypes(language, accessToken, type)
+        return apiService.getCollectionsByTypes("ru", "Token $token", type)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getChallenges(token: String): Single<CommonResponse<ChallengesResponse>> {
+        return apiService.getChallenges("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
     fun getCollectionsByFeeling(
         token: String,
-        language: String,
         feeling: Int
     ): Observable<CollectionsResponse> {
-        val accessToken = "Token $token"
         return apiService.getCollectionsByFeeling(
-            language = language,
-            token = accessToken,
+            language = "ru",
+            token = "Token $token",
             feeling = feeling
         )
             .subscribeOn(Schedulers.io())
@@ -73,47 +70,39 @@ class MainRepository(
 
     fun getCollectionsTypes(
         token: String,
-        language: String
-    ): Single<KeyValueData> {
-        val accessToken = "Token $token"
-        return apiService.getCollectionTypes(language, accessToken)
+    ): Single<CommonResponse<KeyValueData>> {
+        return apiService.getCollectionTypes("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
     fun getTags(token: String): Single<CommonResponse<KeyValueData>> {
-        val accessToken = "Token $token"
-        return apiService.getTags("ru", accessToken)
+        return apiService.getTags("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
     fun getProfile(token: String): Observable<ProfileResponse> {
-        val accessToken = "Token $token"
-        return apiService.getUserInfo(accessToken)
+        return apiService.getUserInfo("Token $token")
             .subscribeOn(Schedulers.io())
     }
 
 
     fun help(token: String, text: String): Observable<HelpResponse> {
-        val accessToken = "Token $token"
-        return apiService.help(accessToken, text)
+        return apiService.help("Token $token", text)
             .subscribeOn(Schedulers.io())
     }
 
     fun promocode(token: String, promocode: String): Observable<PromocodeResponse> {
-        val accessToken = "Token $token"
-        return apiService.promocode(accessToken, promocode)
+        return apiService.promocode("Token $token", promocode)
             .subscribeOn(Schedulers.io())
     }
 
     fun getLevels(token: String): Observable<LevelsResponse> {
-        val accessToken = "Token $token"
-        return apiService.getLevels(accessToken)
+        return apiService.getLevels("Token $token")
             .subscribeOn(Schedulers.io())
     }
 
     fun getLevelDetail(token: String, id: Int): Observable<LevelDetailResponse> {
-        val accessToken = "Token $token"
-        return apiService.getLevelDetail(accessToken, id)
+        return apiService.getLevelDetail("Token $token", id)
             .subscribeOn(Schedulers.io())
     }
 

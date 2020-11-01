@@ -60,7 +60,8 @@ class LoginWithEmailFragment : Fragment() {
             )
         }
         btnNext.setOnClickListener {
-            login()
+            authViewModel.login("sultan_0029@mail.ru", "testUser1")
+//            login()
         }
         btnBack.setOnClickListener {
             (activity as? AuthActivity)?.onBackPressed()

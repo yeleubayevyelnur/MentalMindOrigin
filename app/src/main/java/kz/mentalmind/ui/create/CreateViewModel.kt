@@ -15,17 +15,26 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
 
     fun getCollectionTypes(context: Context) {
         getToken()?.let {
-            mainRepository.getCollectionsTypes(it, "ru")
+            mainRepository.getCollectionsTypes(it)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
-                    collectionTypes.onNext(response)
-                }, {})
+                    if (response.error == null) {
+                        if (response.data != null) {
+                            collectionTypes.onNext(response.data)
+                        }
+                    } else {
+                        errorsSubject.onNext(response.error)
+                    }
+
+                }, {
+                    errorsSubject.onNext(it.message ?: "")
+                })
         }
     }
 
     fun getCollectionsByTypes(context: Context, type: Int) {
         getToken()?.let {
-            mainRepository.getCollectionsByTypes(it, "ru", type)
+            mainRepository.getCollectionsByTypes(it, type)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     if (response.error == null) {

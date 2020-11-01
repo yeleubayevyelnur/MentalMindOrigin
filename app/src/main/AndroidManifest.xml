@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreen">
-        <activity android:name=".ui.main.mood.MoodActivity" />
+        <activity android:name=".ui.main.feelings.FeelingsActivity" />
         <activity android:name=".ui.onboarding.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

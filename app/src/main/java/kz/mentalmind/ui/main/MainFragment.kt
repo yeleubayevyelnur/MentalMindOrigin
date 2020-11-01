@@ -14,7 +14,7 @@ import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
 import kz.mentalmind.domain.dto.CourseDto
-import kz.mentalmind.ui.main.mood.MoodActivity
+import kz.mentalmind.ui.main.feelings.FeelingsActivity
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,12 +37,13 @@ class MainFragment : Fragment() {
         viewModel.getToken()?.let {
             viewModel.getStreamOfLife(it)
             viewModel.getCourses(it)
+            viewModel.getChallenges(it)
         }
         getCollectionsByFeeling()
 
         moodView.setOnClickListener {
             startActivityForResult(
-                Intent(requireActivity(), MoodActivity::class.java), moodRequestCode
+                Intent(requireActivity(), FeelingsActivity::class.java), moodRequestCode
             )
         }
     }
@@ -94,6 +95,16 @@ class MainFragment : Fragment() {
         compositeDisposable.add(
             viewModel.observeErrorSubject().subscribe {
                 (activity as? MainActivity)?.alertDialog(requireContext(), it)
+            }
+        )
+
+        compositeDisposable.add(
+            viewModel.observeChallengesResponse().subscribe {
+                if (it.isNullOrEmpty()) {
+
+                }
+
+                rvChallenge.adapter = ChallengesAdapter(it)
             }
         )
 

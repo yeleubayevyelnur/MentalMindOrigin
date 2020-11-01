@@ -90,8 +90,9 @@ interface ApiService {
 
     @GET("api/v1/challenges/")
     fun getChallenges(
-        @Field("id") id: Int? = null
-    )
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
+    ): Single<CommonResponse<ChallengesResponse>>
 
     @GET("api/v1/courses/")
     fun getCourses(
@@ -162,7 +163,7 @@ interface ApiService {
     fun getCollectionTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<KeyValueData>
+    ): Single<CommonResponse<KeyValueData>>
 
     @GET("api/v1/collections/{id}")
     fun getCollectionDetails(

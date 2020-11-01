@@ -31,7 +31,7 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
 
     fun getCollectionsByTags(context: Context, tag: Int) {
         getToken()?.let {
-            mainRepository.getCollections(it, "ru", 1, tag)
+            mainRepository.getCollections(it, 1, tag)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     if (response.error == null) {
