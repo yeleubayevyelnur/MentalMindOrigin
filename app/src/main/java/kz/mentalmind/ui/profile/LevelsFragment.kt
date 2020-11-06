@@ -25,14 +25,16 @@ class LevelsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        compositeDisposable.add(
-            profileViewModel.observeLevelsSubject().subscribe({
-                rvLevels.adapter = LevelsAdapter(it.levelsData.results)
-            }, {
+        profileViewModel.getToken()?.let {
+            compositeDisposable.add(
+                profileViewModel.observeLevelsSubject().subscribe({
+                    rvLevels.adapter = LevelsAdapter(it.levelsData.results)
+                }, {
 
-            })
-        )
-        profileViewModel.getToken()?.let { profileViewModel.getLevels(it) }
+                })
+            )
+            profileViewModel.getLevels(it)
+        }
         btnBack.setOnClickListener {
             (activity as? MainActivity)?.onBackPressed()
         }

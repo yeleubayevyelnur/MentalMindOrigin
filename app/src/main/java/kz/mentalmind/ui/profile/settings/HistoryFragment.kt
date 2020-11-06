@@ -17,7 +17,6 @@ class HistoryFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private var compositeDisposable = CompositeDisposable()
     private var historyDate = ""
-    private lateinit var historyAdapter: HistoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,27 +34,31 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        compositeDisposable.add(
-            profileViewModel.observeErrorSubject().subscribe{
-                (activity as? MainActivity)?.alertDialog(requireContext(), it)
-            }
-        )
-        compositeDisposable.add(
-            profileViewModel.observeHistorySubject().subscribe ({
-                rvHistory.adapter = HistoryAdapter(it.meditationData.results)
-                if (it.error != null){
-                    (activity as? MainActivity)?.alertDialog(requireContext(), it.error)
-                }
-            },{
-                (activity as? MainActivity)?.alertDialog(requireContext(), it.message.toString())
-            })
-        )
         profileViewModel.getToken()?.let {
+            observeData()
             profileViewModel.getHistory(it, historyDate)
         }
         btnBack.setOnClickListener {
             (activity as? MainActivity)?.onBackPressed()
         }
+    }
+
+    private fun observeData() {
+        compositeDisposable.add(
+            profileViewModel.observeErrorSubject().subscribe {
+                (activity as? MainActivity)?.alertDialog(requireContext(), it)
+            }
+        )
+        compositeDisposable.add(
+            profileViewModel.observeHistorySubject().subscribe({
+                rvHistory.adapter = HistoryAdapter(it.meditationData.results)
+                if (it.error === null) {
+                    (activity as? MainActivity)?.alertDialog(requireContext(), it.error)
+                }
+            }, {
+                (activity as? MainActivity)?.alertDialog(requireContext(), it.message.toString())
+            })
+        )
     }
 
     override fun onStart() {
