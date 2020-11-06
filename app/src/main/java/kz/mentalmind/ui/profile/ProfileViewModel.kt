@@ -75,7 +75,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                         errorsSubject.onNext(it.error)
                     }
                 }, {
-
+                    errorsSubject.onNext(it.message.toString())
                 })
         )
     }

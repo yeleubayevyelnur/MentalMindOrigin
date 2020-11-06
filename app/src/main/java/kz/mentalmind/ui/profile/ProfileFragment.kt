@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.profile
 
-import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -28,7 +27,6 @@ import java.util.*
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-    private lateinit var meditationsAdapter: MeditationsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,9 +94,9 @@ class ProfileFragment : Fragment() {
             }
         }
         val calendar = Calendar.getInstance()
+        calendarView.maxDate = calendar.timeInMillis
         var calendarDate = ""
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            view.maxDate = calendar.timeInMillis
             calendar.set(year, month, dayOfMonth)
             calendarView.date = calendar.timeInMillis
             calendarDate = "$year-$month-$dayOfMonth"

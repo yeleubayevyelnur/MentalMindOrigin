@@ -89,6 +89,7 @@
 
     <style name="MediumTitleTextSize18" parent="AppTheme">
         <item name="android:textSize">18sp</item>
+        <item name="fontWeight">500</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
