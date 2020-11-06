@@ -1,13 +1,21 @@
 package kz.mentalmind.data
 
+import com.google.gson.annotations.SerializedName
+
 data class Meditations(
-    val `data`: Data,
-    val error: Any
+    @SerializedName("data")
+    val meditationData: MeditationData,
+    val error: String? = null
 )
 
-data class Data(
+data class MeditationData(
     val count: Int,
     val next: String?,
     val previous: String?,
-    val results: List<Result>
+    @SerializedName("result")
+    val results: ArrayList<MeditationResult>
+)
+
+data class MeditationResult(
+    val meditation: String
 )

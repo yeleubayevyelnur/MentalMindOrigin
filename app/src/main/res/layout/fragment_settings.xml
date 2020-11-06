@@ -94,6 +94,31 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/country" />
 
+            <LinearLayout
+                android:id="@+id/ll_regions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext_stroke"
+                android:gravity="center"
+                android:minHeight="38dp"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <Spinner
+                    android:id="@+id/regions_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/arrayCountries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_spinner_array" />
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etCountry"
                 android:layout_width="match_parent"
@@ -101,11 +126,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edittext_stroke"
                 android:hint="@string/choose_from_list"
-                android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingTop="14dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="14dp" />
+                android:inputType="text" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SmallRegularTextSize14"
@@ -147,13 +168,13 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSave"
+            style="@style/PrimaryButton.Full"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="188dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="52dp"
-            style="@style/PrimaryButton.Full"
             android:text="@string/save_changes"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"

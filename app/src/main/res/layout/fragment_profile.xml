@@ -347,7 +347,7 @@
                 android:padding="16dp">
 
                 <CalendarView
-                    android:id="@+id/calendar"
+                    android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

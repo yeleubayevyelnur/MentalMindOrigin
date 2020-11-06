@@ -73,8 +73,10 @@ interface ApiService {
     fun getSubscriptionStatus()
 
     @GET("api/v1/history/")
-    fun getHistory()
-
+    fun getHistory(
+        @Header("Authorization") token: String,
+        @Query("date") date: String
+    ): Observable<Meditations>
 
     /** Работа с ресурсами */
     @GET("api/v1/affirmations/")

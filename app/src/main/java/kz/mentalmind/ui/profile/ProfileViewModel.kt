@@ -6,6 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
@@ -20,6 +21,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
     private val profileSubject = PublishSubject.create<ProfileResponse>()
     private val levelsSubject = PublishSubject.create<LevelsResponse>()
     private val levelsDetailSubject = PublishSubject.create<LevelDetailResponse>()
+    private val historySubject = PublishSubject.create<Meditations>()
     private val helpSubject = PublishSubject.create<HelpResponse>()
 
     fun getProfile(token: String) {
@@ -56,6 +58,21 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         levelsDetailSubject.onNext(it)
                     } else {
+                    }
+                }, {
+
+                })
+        )
+    }
+
+    fun getHistory(token: String, date: String) {
+        disposable.add(
+            mainRepository.getHistory(token, date).observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        historySubject.onNext(it)
+                    } else {
+                        errorsSubject.onNext(it.error)
                     }
                 }, {
 
@@ -105,6 +122,10 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     fun observeHelpSubject(): Observable<HelpResponse> {
         return helpSubject
+    }
+
+    fun observeHistorySubject(): Observable<Meditations> {
+        return historySubject
     }
 
     fun observeErrorSubject(): Observable<String> {

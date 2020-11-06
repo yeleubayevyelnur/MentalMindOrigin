@@ -125,4 +125,10 @@ class MainRepository(
         sPrefs.edit().putInt(Constants.FEELING, id).apply()
     }
 
+    fun getHistory(token: String, date: String): Observable<Meditations> {
+        val accessToken = "Token $token"
+        return apiService.getHistory(accessToken, date)
+            .subscribeOn(Schedulers.io())
+    }
+
 }

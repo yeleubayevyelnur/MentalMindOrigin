@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_faq.btnBack
 import kotlinx.android.synthetic.main.fragment_help.*
-import kotlinx.android.synthetic.main.fragment_login_with_email.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.profile.ProfileViewModel

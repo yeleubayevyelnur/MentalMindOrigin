@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.profile
 
+import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -18,12 +19,10 @@ import kz.mentalmind.domain.dto.MeditationDto
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
-import kz.mentalmind.ui.profile.settings.ChangeLanguageFragment
-import kz.mentalmind.ui.profile.settings.FaqFragment
-import kz.mentalmind.ui.profile.settings.HelpFragment
-import kz.mentalmind.ui.profile.settings.PromocodeFragment
+import kz.mentalmind.ui.profile.settings.*
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class ProfileFragment : Fragment() {
@@ -96,7 +95,22 @@ class ProfileFragment : Fragment() {
                 )
             }
         }
-        Log.d("yel", calendar.date.toString())
+        val calendar = Calendar.getInstance()
+        var calendarDate = ""
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            view.maxDate = calendar.timeInMillis
+            calendar.set(year, month, dayOfMonth)
+            calendarView.date = calendar.timeInMillis
+            calendarDate = "$year-$month-$dayOfMonth"
+            Log.d("yel", calendarDate)
+        }
+
+        btnShow.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                HistoryFragment.newInstance(calendarDate),
+                HistoryFragment::class.simpleName
+            )
+        }
     }
 
     private fun observeData(token: String) {
@@ -139,6 +153,11 @@ class ProfileFragment : Fragment() {
                     })
                 favMeditations.adapter = adapter
             })
+        compositeDisposable.add(
+            profileViewModel.observeHistorySubject().subscribe {
+
+            }
+        )
     }
 
     companion object {
