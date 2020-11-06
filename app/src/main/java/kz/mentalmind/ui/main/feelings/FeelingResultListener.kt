@@ -1,7 +1,7 @@
-package kz.mentalmind.ui.main.mood
+package kz.mentalmind.ui.main.feelings
 
 import kz.mentalmind.data.Feeling
 
-interface MoodResultListener {
+interface FeelingResultListener {
     fun onMoodClickedResult(feeling: Feeling)
 }

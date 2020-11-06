@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.data.CollectionItem
+import kz.mentalmind.utils.dpToPixelInt
 
 class InstrumentsAdapter(
     private var instruments: ArrayList<CollectionItem>,
@@ -32,7 +33,7 @@ class InstrumentsAdapter(
         }
         Glide.with(holder.itemView)
             .load(instrument.file_image)
-            .transform(RoundedCorners(15))
+            .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
     }
 

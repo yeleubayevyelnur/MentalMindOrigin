@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.mood
+package kz.mentalmind.ui.main.feelings
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import kz.mentalmind.data.Feeling
 import kz.mentalmind.utils.Constants
 
 
-class MoodActivity : AppCompatActivity(), MoodResultListener {
+class FeelingsActivity : AppCompatActivity(), FeelingResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mood)

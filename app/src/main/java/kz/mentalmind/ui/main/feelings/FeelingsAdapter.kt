@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.mood
+package kz.mentalmind.ui.main.feelings
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,7 @@ import kz.mentalmind.data.Feeling
 class FeelingsAdapter(private val feelingData: ArrayList<Feeling>) :
     RecyclerView.Adapter<FeelingsAdapter.ViewHolder>() {
 
-    private lateinit var moodClickListener: MoodResultListener
+    private lateinit var feelingClickListener: FeelingResultListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeelingsAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_mood, parent, false)
@@ -24,7 +24,7 @@ class FeelingsAdapter(private val feelingData: ArrayList<Feeling>) :
         holder.ivMood.setImageDrawable(feelingData[position].icon)
         holder.tvMood.text = feelingData[position].name
         holder.llContainer.setOnClickListener {
-            moodClickListener.onMoodClickedResult(feelingData[position])
+            feelingClickListener.onMoodClickedResult(feelingData[position])
         }
     }
 
@@ -32,8 +32,8 @@ class FeelingsAdapter(private val feelingData: ArrayList<Feeling>) :
         return feelingData.size
     }
 
-    fun setMoodResultListener(listener: MoodResultListener) {
-        moodClickListener = listener
+    fun setMoodResultListener(listener: FeelingResultListener) {
+        feelingClickListener = listener
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {

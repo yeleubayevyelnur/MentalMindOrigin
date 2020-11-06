@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.domain.dto.CourseDto
+import kz.mentalmind.utils.dpToPixelInt
 
 class CoursesAdapter(
     private var courses: List<CourseDto>,
@@ -23,7 +24,7 @@ class CoursesAdapter(
 
     override fun onBindViewHolder(holder: CoursesAdapter.ViewHolder, position: Int) {
         Glide.with(holder.itemView).load(courses[position].file_image)
-            .transform(RoundedCorners(15))
+            .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
         holder.itemView.setOnClickListener {
             courseClickListener.onCourseClicked(courses[position])
