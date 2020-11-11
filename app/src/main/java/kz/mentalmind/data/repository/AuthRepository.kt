@@ -32,6 +32,11 @@ class AuthRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun socialLogin(type: String, token: String): Observable<LoginResponse> {
+        return apiService.socialLogin(type, token)
+            .subscribeOn(Schedulers.io())
+    }
+
     fun saveUser(user: User) {
         val userString: String = Gson().toJson(user)
         sPrefs.edit().putString(Constants.USER, userString).apply()

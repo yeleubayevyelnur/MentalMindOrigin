@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.main.challenges
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,8 @@ import kz.mentalmind.data.Challenge
 import kz.mentalmind.utils.dpToPixelInt
 
 class ChallengesAdapter(
-    private var challenges: List<Challenge>
+    private val challenges: List<Challenge>,
+    private val clickListener: ChallengeClickListener
 ) :
     RecyclerView.Adapter<ChallengesAdapter.ViewHolder>() {
 
@@ -27,9 +28,9 @@ class ChallengesAdapter(
         holder.title.text = challenge.name
         holder.description.text = challenge.description
         holder.challengeName.text = challenge.name
-//        holder.itemView.setOnClickListener {
-//            clickListener.onInstrumentClicked(instrument)
-//        }
+        holder.itemView.setOnClickListener {
+            clickListener.onChallengeClicked(challenge)
+        }
         Glide.with(holder.itemView)
             .load(challenge.file_image)
             .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))

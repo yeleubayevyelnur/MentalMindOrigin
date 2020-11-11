@@ -32,7 +32,10 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("users/social_login/")
-    fun socialLogin()
+    fun socialLogin(
+        @Field("type") type: String,
+        @Field("token") token: String
+    ): Observable<LoginResponse>
 
     @FormUrlEncoded
     @POST("users/refresh_token/")

@@ -52,6 +52,22 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         )
     }
 
+    fun socialLogin(type: String, token: String) {
+        disposable.add(
+            authRepository.socialLogin(type, token)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        loginSubject.onNext(it)
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
+                    Log.e("error", it.message.toString())
+                })
+        )
+    }
+
     fun passwordRecovery(email: String) {
         disposable.add(
             authRepository.passwordRecovery(email)
@@ -62,6 +78,10 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     Log.e("error", it.message.toString())
                 })
         )
+    }
+
+    fun loginWithGoogle(token: String) {
+
     }
 
     fun observePassRecoverySubject(): PublishSubject<PassRecoveryData> {

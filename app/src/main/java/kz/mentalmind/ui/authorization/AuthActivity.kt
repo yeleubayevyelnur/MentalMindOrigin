@@ -7,9 +7,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.login.LoginFragment
+import kz.mentalmind.utils.Constants.GOOGLE_SIGN_IN
 
 
 class AuthActivity : AppCompatActivity() {
