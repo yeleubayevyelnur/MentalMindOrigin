@@ -7,10 +7,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.entrance.LoginResponse
-import kz.mentalmind.data.entrance.PassRecoveryData
-import kz.mentalmind.data.entrance.RegisterData
-import kz.mentalmind.data.entrance.User
+import kz.mentalmind.data.entrance.*
 import kz.mentalmind.data.repository.AuthRepository
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -54,7 +51,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     fun socialLogin(type: String, token: String) {
         disposable.add(
-            authRepository.socialLogin(type, token)
+            authRepository.socialLogin(SocialInfo(type, token))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {

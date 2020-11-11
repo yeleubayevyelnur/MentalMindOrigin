@@ -7,5 +7,7 @@ object Constants {
     const val FEELING: String = "feeling"
     const val MEDITATION = "meditation"
     const val GOOGLE_SIGN_IN = 111
+    const val FACEBOOK_SIGN_IN = 222
     const val GOOGLE = "google"
+    const val FACEBOOK = "facebook"
 }

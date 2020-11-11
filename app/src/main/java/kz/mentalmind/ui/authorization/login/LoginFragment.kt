@@ -6,6 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -17,13 +23,14 @@ import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.authorization.AuthViewModel
 import kz.mentalmind.ui.authorization.registration.RegistrationFragment
+import kz.mentalmind.utils.Constants.FACEBOOK
 import kz.mentalmind.utils.Constants.GOOGLE
 import kz.mentalmind.utils.Constants.GOOGLE_SIGN_IN
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : Fragment() {
-
+    private lateinit var callbackManager: CallbackManager
     private val authViewModel: AuthViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 
@@ -36,6 +43,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initFacebook(view)
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe({
                 if (it.error == null) {
@@ -68,11 +76,32 @@ class LoginFragment : Fragment() {
         btnLoginGoogle.setOnClickListener {
             loginWithGoogle()
         }
+        btnLoginFacebook.setOnClickListener {
+
+        }
+    }
+
+    private fun initFacebook(view: View) {
+        callbackManager = CallbackManager.Factory.create()
+        val btnLoginFacebook = view.findViewById<LoginButton>(R.id.btnLoginFacebook)
+        btnLoginFacebook.setPermissions("email")
+        btnLoginFacebook.fragment = this
+        btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
+            override fun onSuccess(loginResult: LoginResult?) {
+                handleFacebookSignInResult(loginResult?.accessToken)
+            }
+
+            override fun onCancel() {
+            }
+
+            override fun onError(exception: FacebookException) {
+            }
+        })
     }
 
     private fun loginWithGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("712578955819-3j2aj54vslg4mfvjoqu7jd5cc2ai43u9.apps.googleusercontent.com")
+            .requestIdToken(getString(R.string.google_token))
             .requestEmail()
             .build()
         val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
@@ -85,15 +114,27 @@ class LoginFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SIGN_IN) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+            handleGoogleSignInResult(task)
+        } else {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+    private fun handleGoogleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             account?.idToken?.let {
                 authViewModel.socialLogin(GOOGLE, it)
+            }
+        } catch (e: ApiException) {
+
+        }
+    }
+
+    private fun handleFacebookSignInResult(accessToken: AccessToken?) {
+        try {
+            accessToken?.token?.let {
+                authViewModel.socialLogin(FACEBOOK, it)
             }
         } catch (e: ApiException) {
 
