@@ -49,9 +49,9 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         )
     }
 
-    fun socialLogin(type: String, token: String) {
+    fun socialLogin(type: String, token: String, email: String? = null) {
         disposable.add(
-            authRepository.socialLogin(SocialInfo(type, token))
+            authRepository.socialLogin(SocialInfo(type, token, email))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {

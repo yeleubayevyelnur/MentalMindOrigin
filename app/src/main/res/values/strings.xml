@@ -119,4 +119,5 @@
     <string name="google_token">712578955819-3j2aj54vslg4mfvjoqu7jd5cc2ai43u9.apps.googleusercontent.com</string>
     <string name="facebook_app_id">3564330413611439</string>
     <string name="fb_login_protocol_scheme">fb3564330413611439</string>
+    <integer name="com_vk_sdk_AppId">7630107</integer>
 </resources>

@@ -17,6 +17,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
+import com.vk.api.sdk.auth.VKScope
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_login.*
 import kz.mentalmind.R
@@ -26,11 +30,13 @@ import kz.mentalmind.ui.authorization.registration.RegistrationFragment
 import kz.mentalmind.utils.Constants.FACEBOOK
 import kz.mentalmind.utils.Constants.GOOGLE
 import kz.mentalmind.utils.Constants.GOOGLE_SIGN_IN
+import kz.mentalmind.utils.Constants.VKONTAKTE
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : Fragment() {
     private lateinit var callbackManager: CallbackManager
+    private lateinit var btnLoginFacebook: LoginButton
     private val authViewModel: AuthViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 
@@ -76,14 +82,15 @@ class LoginFragment : Fragment() {
         btnLoginGoogle.setOnClickListener {
             loginWithGoogle()
         }
-        btnLoginFacebook.setOnClickListener {
 
+        btnLoginVk.setOnClickListener {
+            VK.login(requireActivity(), arrayListOf(VKScope.EMAIL, VKScope.OFFLINE))
         }
     }
 
     private fun initFacebook(view: View) {
         callbackManager = CallbackManager.Factory.create()
-        val btnLoginFacebook = view.findViewById<LoginButton>(R.id.btnLoginFacebook)
+        btnLoginFacebook = view.findViewById<LoginButton>(R.id.btnLoginFacebook)
         btnLoginFacebook.setPermissions("email")
         btnLoginFacebook.fragment = this
         btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
@@ -111,12 +118,31 @@ class LoginFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GOOGLE_SIGN_IN) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleGoogleSignInResult(task)
-        } else {
-            callbackManager.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            GOOGLE_SIGN_IN -> {
+                val task: Task<GoogleSignInAccount> =
+                    GoogleSignIn.getSignedInAccountFromIntent(data)
+                handleGoogleSignInResult(task)
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+            btnLoginFacebook.requestCode -> {
+                callbackManager.onActivityResult(requestCode, resultCode, data)
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+            else -> {
+                val callback = object : VKAuthCallback {
+                    override fun onLogin(token: VKAccessToken) {
+                        handleVkSignInResult(token)
+                    }
+
+                    override fun onLoginFailed(errorCode: Int) {
+                        // User didn't pass authorization
+                    }
+                }
+                if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
+                    super.onActivityResult(requestCode, resultCode, data)
+                }
+            }
         }
     }
 
@@ -127,7 +153,6 @@ class LoginFragment : Fragment() {
                 authViewModel.socialLogin(GOOGLE, it)
             }
         } catch (e: ApiException) {
-
         }
     }
 
@@ -136,6 +161,17 @@ class LoginFragment : Fragment() {
             accessToken?.token?.let {
                 authViewModel.socialLogin(FACEBOOK, it)
             }
+        } catch (e: ApiException) {
+        }
+    }
+
+    fun handleVkSignInResult(vkAccessToken: VKAccessToken) {
+        try {
+            authViewModel.socialLogin(
+                VKONTAKTE,
+                vkAccessToken.accessToken,
+                vkAccessToken.email ?: ""
+            )
         } catch (e: ApiException) {
 
         }
