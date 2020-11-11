@@ -3,9 +3,7 @@ package kz.mentalmind.data.api
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.*
-import kz.mentalmind.data.entrance.LoginResponse
-import kz.mentalmind.data.entrance.PassRecoveryData
-import kz.mentalmind.data.entrance.RegisterData
+import kz.mentalmind.data.entrance.*
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
@@ -30,9 +28,8 @@ interface ApiService {
         @Field("password") password: String
     ): Observable<LoginResponse>
 
-    @FormUrlEncoded
     @POST("users/social_login/")
-    fun socialLogin()
+    fun socialLogin(@Body socialLoginRequest: SocialLoginRequest): Single<LoginResponse>
 
     @FormUrlEncoded
     @POST("users/refresh_token/")

@@ -12,8 +12,11 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.data.Challenge
 import kz.mentalmind.data.CollectionItem
 import kz.mentalmind.domain.dto.CourseDto
+import kz.mentalmind.ui.main.challenges.ChallengeClickListener
+import kz.mentalmind.ui.main.challenges.ChallengesAdapter
 import kz.mentalmind.ui.main.feelings.FeelingsActivity
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
@@ -99,13 +102,17 @@ class MainFragment : Fragment() {
         )
 
         compositeDisposable.add(
-            viewModel.observeChallengesResponse().subscribe {
+            viewModel.observeChallengesResponse().subscribe({
                 if (it.isNullOrEmpty()) {
 
                 }
 
-                rvChallenge.adapter = ChallengesAdapter(it)
-            }
+                rvChallenge.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
+                    override fun onChallengeClicked(challenge: Challenge) {
+
+                    }
+                })
+            }, {})
         )
 
         compositeDisposable.add(viewModel.observeCourses().subscribe({

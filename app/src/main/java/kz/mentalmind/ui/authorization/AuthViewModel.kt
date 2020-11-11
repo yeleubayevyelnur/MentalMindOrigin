@@ -7,10 +7,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.entrance.LoginResponse
-import kz.mentalmind.data.entrance.PassRecoveryData
-import kz.mentalmind.data.entrance.RegisterData
-import kz.mentalmind.data.entrance.User
+import kz.mentalmind.data.entrance.*
 import kz.mentalmind.data.repository.AuthRepository
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -52,6 +49,22 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         )
     }
 
+    fun socialLogin(type: String, token: String, email: String? = null) {
+        disposable.add(
+            authRepository.socialLogin(SocialInfo(type, token, email))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        loginSubject.onNext(it)
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
+                    Log.e("error", it.message.toString())
+                })
+        )
+    }
+
     fun passwordRecovery(email: String) {
         disposable.add(
             authRepository.passwordRecovery(email)
@@ -62,6 +75,10 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     Log.e("error", it.message.toString())
                 })
         )
+    }
+
+    fun loginWithGoogle(token: String) {
+
     }
 
     fun observePassRecoverySubject(): PublishSubject<PassRecoveryData> {

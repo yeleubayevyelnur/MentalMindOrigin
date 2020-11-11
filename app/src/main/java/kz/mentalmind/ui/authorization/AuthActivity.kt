@@ -7,16 +7,23 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.login.LoginFragment
 
 
 class AuthActivity : AppCompatActivity() {
+    private var loginFragment: LoginFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        replaceFragment(LoginFragment())
+        loginFragment = LoginFragment()
+        loginFragment?.let {
+            replaceFragment(it)
+        }
     }
 
     fun replaceFragment(fragment: Fragment, tag: String? = null) {
@@ -63,6 +70,23 @@ class AuthActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val callback = object : VKAuthCallback {
+            override fun onLogin(token: VKAccessToken) {
+                loginFragment?.let {
+                    it.handleVkSignInResult(token)
+                }
+            }
+
+            override fun onLoginFailed(errorCode: Int) {
+                // User didn't pass authorization
+            }
+        }
+        if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 }

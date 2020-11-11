@@ -6,10 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.api.ApiService
-import kz.mentalmind.data.entrance.LoginResponse
-import kz.mentalmind.data.entrance.PassRecoveryData
-import kz.mentalmind.data.entrance.RegisterData
-import kz.mentalmind.data.entrance.User
+import kz.mentalmind.data.entrance.*
 import kz.mentalmind.utils.Constants
 
 class AuthRepository(
@@ -29,6 +26,11 @@ class AuthRepository(
 
     fun login(email: String, password: String): Observable<LoginResponse> {
         return apiService.login(email, password)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun socialLogin(socialInfo: SocialInfo): Single<LoginResponse> {
+        return apiService.socialLogin(SocialLoginRequest(socialInfo))
             .subscribeOn(Schedulers.io())
     }
 
