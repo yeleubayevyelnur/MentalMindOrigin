@@ -15,7 +15,7 @@ class HistoryAdapter(private val history: ArrayList<MeditationResult>) :
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: HistoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvHistory.text = history[position].meditation
     }
 

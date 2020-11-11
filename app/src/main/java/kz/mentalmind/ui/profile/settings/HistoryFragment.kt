@@ -52,11 +52,10 @@ class HistoryFragment : Fragment() {
         compositeDisposable.add(
             profileViewModel.observeHistorySubject().subscribe({
                 rvHistory.adapter = HistoryAdapter(it.meditationData.results)
-                if (it.error === null) {
+                if (it.error.isNullOrEmpty()) {
                     (activity as? MainActivity)?.alertDialog(requireContext(), it.error)
                 }
             }, {
-                (activity as? MainActivity)?.alertDialog(requireContext(), it.message.toString())
             })
         )
     }

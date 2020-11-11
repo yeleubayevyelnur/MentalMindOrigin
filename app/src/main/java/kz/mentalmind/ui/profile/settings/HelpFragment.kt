@@ -82,6 +82,16 @@ class HelpFragment : Fragment() {
         dialog.show()
     }
 
+    override fun onStart() {
+        super.onStart()
+        (activity as? MainActivity)?.hideBottomNavigation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as? MainActivity)?.showBottomNavigation()
+    }
+
     companion object {
 
     }

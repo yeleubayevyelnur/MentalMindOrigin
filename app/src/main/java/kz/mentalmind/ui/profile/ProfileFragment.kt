@@ -151,11 +151,6 @@ class ProfileFragment : Fragment() {
                     })
                 favMeditations.adapter = adapter
             })
-        compositeDisposable.add(
-            profileViewModel.observeHistorySubject().subscribe {
-
-            }
-        )
     }
 
     companion object {
