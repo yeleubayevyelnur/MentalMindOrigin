@@ -93,6 +93,9 @@ class ProfileFragment : Fragment() {
                 )
             }
         }
+        switchNotify.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) (activity as? MainActivity)?.replaceFragment(MeditationNotifyFragment(), MeditationNotifyFragment::class.simpleName)
+        }
         val calendar = Calendar.getInstance()
         calendarView.maxDate = calendar.timeInMillis
         var calendarDate = ""

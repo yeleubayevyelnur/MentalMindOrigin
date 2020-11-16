@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_history.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.data.MeditationResult
 import kz.mentalmind.ui.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,6 +20,8 @@ class HistoryFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private var compositeDisposable = CompositeDisposable()
     private var historyDate = ""
+    private lateinit var historyAdapter: HistoryAdapter
+    private var historyList: ArrayList<MeditationResult> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +56,10 @@ class HistoryFragment : Fragment() {
         )
         compositeDisposable.add(
             profileViewModel.observeHistorySubject().subscribe({
-                rvHistory.adapter = HistoryAdapter(it.meditationData.results)
+                historyList = it.meditationData.results
+                historyAdapter = HistoryAdapter(historyList)
+                rvHistory.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                rvHistory.adapter = historyAdapter
                 if (it.error.isNullOrEmpty()) {
                     (activity as? MainActivity)?.alertDialog(requireContext(), it.error)
                 }
