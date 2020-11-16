@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "712578955819",
+    "firebase_url": "https://mental-mind-1602742319958.firebaseio.com",
+    "project_id": "mental-mind-1602742319958",
+    "storage_bucket": "mental-mind-1602742319958.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712578955819:android:1a8605f80b695518b4c86e",
+        "android_client_info": {
+          "package_name": "kz.mentalmind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712578955819-7djlq1k3bkmkaiummi3mtgnlkq3vbdj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDdnEzX-rRmCpf1Z7fOmvM3J_p6ypZUwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712578955819-7djlq1k3bkmkaiummi3mtgnlkq3vbdj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "712578955819-7ppkqop0mf85l5kl2clmtirn15sn12ne.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mit.kz.SanatSeilov.TestMentalMind"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

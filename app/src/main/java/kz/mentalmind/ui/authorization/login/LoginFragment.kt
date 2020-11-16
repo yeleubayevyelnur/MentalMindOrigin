@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.pusher.pushnotifications.PushNotifications
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -55,6 +56,7 @@ class LoginFragment : Fragment() {
                 if (it.error == null) {
                     authViewModel.saveUser(requireContext(), it.loginData.user)
                     authViewModel.saveToken(requireContext(), it.loginData.access_token)
+                    PushNotifications.addDeviceInterest(it.loginData.user.email)
                     (activity as? AuthActivity)?.openMainActivity()
                 } else {
                     authViewModel.observeErrorSubject().subscribe {

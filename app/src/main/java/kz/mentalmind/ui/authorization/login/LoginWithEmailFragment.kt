@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.pusher.pushnotifications.PushNotifications
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_login_with_email.*
-import kotlinx.android.synthetic.main.fragment_login_with_email.tvRegistration
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.authorization.AuthViewModel
@@ -35,12 +35,13 @@ class LoginWithEmailFragment : Fragment() {
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe({
                 if (it.error == null) {
-                    (activity as? AuthActivity)?.openMainActivity()
                     authViewModel.saveUser(requireContext(), it.loginData.user)
                     authViewModel.saveToken(requireContext(), it.loginData.access_token)
+                    PushNotifications.addDeviceInterest(it.loginData.user.email)
+                    (activity as? AuthActivity)?.openMainActivity()
                 } else {
-                    authViewModel.observeErrorSubject().subscribe {
-                        (activity as? AuthActivity)?.alertDialog(requireContext(), it)
+                    authViewModel.observeErrorSubject().subscribe { error ->
+                        (activity as? AuthActivity)?.alertDialog(requireContext(), error)
                     }
                 }
             }, {
@@ -61,6 +62,7 @@ class LoginWithEmailFragment : Fragment() {
         }
         btnNext.setOnClickListener {
             authViewModel.login("sultan_0029@mail.ru", "testUser1")
+            PushNotifications.addDeviceInterest("sultan_0029@mail.ru")
 //            login()
         }
         btnBack.setOnClickListener {
@@ -85,8 +87,5 @@ class LoginWithEmailFragment : Fragment() {
         }
 
         override fun afterTextChanged(s: Editable) {}
-    }
-
-    companion object {
     }
 }

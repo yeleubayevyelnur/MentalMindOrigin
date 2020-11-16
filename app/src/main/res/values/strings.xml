@@ -120,4 +120,8 @@
     <string name="facebook_app_id">3564330413611439</string>
     <string name="fb_login_protocol_scheme">fb3564330413611439</string>
     <integer name="com_vk_sdk_AppId">7630107</integer>
+    <string name="pusher_beam_instance_id">dd756f1c-7882-41cf-8ebd-7fc29105ae95</string>
+    <string name="pusher_beam_interest_ru">COMMON_RU</string>
+    <string name="pusher_beam_interest_kz">COMMON_KZ</string>
+    <string name="pusher_beam_interest_en">COMMON_EN</string>
 </resources>

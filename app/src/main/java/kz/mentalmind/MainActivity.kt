@@ -33,11 +33,11 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(MainFragment())
     }
 
-    fun showBottomNavigation(){
+    fun showBottomNavigation() {
         navigation.visibility = View.VISIBLE
     }
 
-    fun hideBottomNavigation(){
+    fun hideBottomNavigation() {
         navigation.visibility = View.GONE
     }
 
