@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.pusher.pushnotifications.PushNotifications
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -46,7 +47,7 @@ class AuthActivity : AppCompatActivity() {
         AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
-            .setPositiveButton("Ок") { dialog, wich ->
+            .setPositiveButton("Ок") { dialog, _ ->
                 openMainActivity()
                 dialog.cancel()
             }
@@ -57,7 +58,7 @@ class AuthActivity : AppCompatActivity() {
         AlertDialog.Builder(context)
             .setTitle("Предупреждение")
             .setMessage(message)
-            .setPositiveButton("Ок") { dialog, wich ->
+            .setPositiveButton("Ок") { dialog, _ ->
                 dialog.cancel()
             }
             .create().show()
@@ -76,9 +77,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val callback = object : VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
-                loginFragment?.let {
-                    it.handleVkSignInResult(token)
-                }
+                loginFragment?.handleVkSignInResult(token)
             }
 
             override fun onLoginFailed(errorCode: Int) {
