@@ -33,7 +33,7 @@ class TrialFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             TrialFragment().apply {
                 arguments = Bundle().apply {
                 }

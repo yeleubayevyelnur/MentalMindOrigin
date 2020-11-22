@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_play_list.*
+import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDetailsDto
 import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.ui.player.PlayerActivity
+import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
 import kz.mentalmind.utils.Constants.MEDITATION
 
@@ -43,14 +45,24 @@ class PlayListFragment : BottomSheetDialogFragment() {
         description.text = collection.description
         val adapter = MeditationsAdapter(collection.meditations, object : MeditationClickListener {
             override fun onMeditationClicked(meditation: MeditationDto) {
-                startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
-                    putExtra(MEDITATION, meditation)
-                    putExtra(Constants.COLLECTION_ID, collection.id)
-                })
+                if (isMeditationAvailable(meditation)) {
+                    startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
+                        putExtra(MEDITATION, meditation)
+                        putExtra(Constants.COLLECTION_ID, collection.id)
+                    })
+                } else {
+                    (activity as MainActivity).replaceFragment(
+                        TrialFragment.newInstance(),
+                        TrialFragment::class.simpleName
+                    )
+                }
             }
         })
         meditations.adapter = adapter
     }
+
+    private fun isMeditationAvailable(meditation: MeditationDto) =
+        meditation.file_female_voice.isNotEmpty() || meditation.file_male_voice.isNotEmpty()
 
     private fun observeViewState(parentFragment: Fragment?) {
         (parentFragment?.view as? ViewGroup)?.findViewWithTag<View>("playList")?.let {
