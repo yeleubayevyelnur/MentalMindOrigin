@@ -1,7 +1,8 @@
 package kz.mentalmind.data.entrance
 
 import com.google.gson.annotations.SerializedName
-import kz.mentalmind.data.Meditations
+import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.data.dto.Pagination
 
 data class LoginResponse(
     @SerializedName("data")
@@ -33,6 +34,6 @@ data class User(
     val social_id: String?,
     val listened_minutes: Int,
     val days_with_us: Int,
-    val favorite_meditations: List<Meditations>,
+    val favorite_meditations: List<Pagination<MeditationDto>>,
     val profile_image: String?,
 )

@@ -1,4 +1,4 @@
-package kz.mentalmind.domain.dto
+package kz.mentalmind.data.dto
 
 data class CollectionDetailsDto(
     val id: Int,

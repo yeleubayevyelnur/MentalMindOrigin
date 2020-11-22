@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_player.back
 import kotlinx.android.synthetic.main.fragment_meditations.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.CollectionDetailsDto
+import kz.mentalmind.data.dto.CollectionDetailsDto
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.utils.Constants
 import kz.mentalmind.utils.Constants.ID

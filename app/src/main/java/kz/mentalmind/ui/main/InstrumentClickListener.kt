@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main
 
-import kz.mentalmind.data.CollectionItem
+import kz.mentalmind.data.dto.CollectionDto
 
 interface InstrumentClickListener {
-    fun onInstrumentClicked(meditation: CollectionItem)
+    fun onInstrumentClicked(meditation: CollectionDto)
 }

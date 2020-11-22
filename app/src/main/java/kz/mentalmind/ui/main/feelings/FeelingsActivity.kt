@@ -7,7 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_mood.*
 import kz.mentalmind.R
-import kz.mentalmind.data.Feeling
+import kz.mentalmind.data.dto.FeelingDto
 import kz.mentalmind.utils.Constants
 
 
@@ -21,79 +21,79 @@ class FeelingsActivity : AppCompatActivity(), FeelingResultListener {
 
     private fun setAdapter() {
         val feelingList = arrayListOf(
-            Feeling(
+            FeelingDto(
                 1,
                 ResourcesCompat.getDrawable(resources, R.drawable.trevozhnyi, null),
                 "Тревожный"
-            ), Feeling(
+            ), FeelingDto(
                 2,
                 ResourcesCompat.getDrawable(resources, R.drawable.uverennyi, null),
                 "Уверенный"
             ),
-            Feeling(
+            FeelingDto(
                 3,
                 ResourcesCompat.getDrawable(resources, R.drawable.razdrazhennyi, null),
                 "Раздраженный"
             ),
-            Feeling(
+            FeelingDto(
                 4,
                 ResourcesCompat.getDrawable(resources, R.drawable.spokoinyi, null),
                 "Спокойный"
             ),
-            Feeling(5, ResourcesCompat.getDrawable(resources, R.drawable.zloy, null), "Злой"),
-            Feeling(6, ResourcesCompat.getDrawable(resources, R.drawable.dobryi, null), "Добрый"),
-            Feeling(
+            FeelingDto(5, ResourcesCompat.getDrawable(resources, R.drawable.zloy, null), "Злой"),
+            FeelingDto(6, ResourcesCompat.getDrawable(resources, R.drawable.dobryi, null), "Добрый"),
+            FeelingDto(
                 7,
                 ResourcesCompat.getDrawable(resources, R.drawable.odinokiy, null),
                 "Одинокий"
             ),
-            Feeling(8, ResourcesCompat.getDrawable(resources, R.drawable.lubimyi, null), "Любимый"),
-            Feeling(
+            FeelingDto(8, ResourcesCompat.getDrawable(resources, R.drawable.lubimyi, null), "Любимый"),
+            FeelingDto(
                 9,
                 ResourcesCompat.getDrawable(resources, R.drawable.ustavshiy, null),
                 "Уставший"
             ),
-            Feeling(
+            FeelingDto(
                 10,
                 ResourcesCompat.getDrawable(resources, R.drawable.energichnyi, null),
                 "Энергичный"
             ),
-            Feeling(
+            FeelingDto(
                 11,
                 ResourcesCompat.getDrawable(resources, R.drawable.napryazhennyi, null),
                 "Напряженный"
             ),
-            Feeling(
+            FeelingDto(
                 12,
                 ResourcesCompat.getDrawable(resources, R.drawable.umirotvorennyi, null),
                 "Умиротворенный"
             ),
-            Feeling(
+            FeelingDto(
                 13,
                 ResourcesCompat.getDrawable(resources, R.drawable.podavlennyi, null),
                 "Подавленный"
             ),
-            Feeling(
+            FeelingDto(
                 14,
                 ResourcesCompat.getDrawable(resources, R.drawable.sobrannyi, null),
                 "Собранный"
             ),
-            Feeling(
+            FeelingDto(
                 15,
                 ResourcesCompat.getDrawable(resources, R.drawable.rasstroennyi, null),
                 "Расстроенный"
             ),
-            Feeling(
+            FeelingDto(
                 16,
                 ResourcesCompat.getDrawable(resources, R.drawable.dovolnyi, null),
                 "Довольный"
             ),
-            Feeling(
+            FeelingDto(
                 17,
                 ResourcesCompat.getDrawable(resources, R.drawable.nikakoy, null),
                 "Никакой"
             ),
-            Feeling(
+            FeelingDto(
                 18,
                 ResourcesCompat.getDrawable(resources, R.drawable.schastlivyi, null),
                 "Счастливый"
@@ -106,7 +106,7 @@ class FeelingsActivity : AppCompatActivity(), FeelingResultListener {
         rvMood.layoutManager = GridLayoutManager(this, 2)
     }
 
-    override fun onMoodClickedResult(feeling: Feeling) {
+    override fun onMoodClickedResult(feeling: FeelingDto) {
         val intent = Intent()
         intent.putExtra(Constants.FEELING, feeling.id)
         setResult(RESULT_OK, intent)

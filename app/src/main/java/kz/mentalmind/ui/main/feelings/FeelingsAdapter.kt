@@ -8,9 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
-import kz.mentalmind.data.Feeling
+import kz.mentalmind.data.dto.FeelingDto
 
-class FeelingsAdapter(private val feelingData: ArrayList<Feeling>) :
+class FeelingsAdapter(private val feelingData: ArrayList<FeelingDto>) :
     RecyclerView.Adapter<FeelingsAdapter.ViewHolder>() {
 
     private lateinit var feelingClickListener: FeelingResultListener

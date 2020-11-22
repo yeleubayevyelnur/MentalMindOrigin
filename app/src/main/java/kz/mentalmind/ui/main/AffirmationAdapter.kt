@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.Page
 
-class AffirmationAdapter (private var pageList: ArrayList<Page>) :
+class AffirmationAdapter(private var pageList: ArrayList<Page>) :
     RecyclerView.Adapter<AffirmationAdapter.ViewHolder>() {
 
     private lateinit var instrumentClickListener: InstrumentClickListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AffirmationAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AffirmationAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_instrument, parent, false)
         return ViewHolder(v)
     }

@@ -13,7 +13,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerControlView
 import kotlinx.android.synthetic.main.activity_player.*
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.utils.Constants.MEDITATION
 
 class PlayerActivity : AppCompatActivity() {

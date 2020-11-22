@@ -1,4 +1,4 @@
-package kz.mentalmind.domain.dto
+package kz.mentalmind.data.dto
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

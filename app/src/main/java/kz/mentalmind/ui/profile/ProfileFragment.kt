@@ -13,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity

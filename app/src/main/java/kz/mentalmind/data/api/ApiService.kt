@@ -3,12 +3,14 @@ package kz.mentalmind.data.api
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.*
-import kz.mentalmind.data.entrance.*
+import kz.mentalmind.data.dto.*
+import kz.mentalmind.data.entrance.LoginResponse
+import kz.mentalmind.data.entrance.PassRecoveryData
+import kz.mentalmind.data.entrance.RegisterData
+import kz.mentalmind.data.entrance.SocialLoginRequest
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.ProfileResponse
-import kz.mentalmind.domain.dto.CollectionDetailsDto
-import kz.mentalmind.domain.dto.CoursesData
 import retrofit2.http.*
 
 interface ApiService {
@@ -34,6 +36,12 @@ interface ApiService {
     @FormUrlEncoded
     @POST("users/refresh_token/")
     fun refreshToken()
+
+    @GET("users/me/favorites/")
+    fun getFavorites(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
+    ): Single<CommonResponse<Pagination<FavoriteMeditationDto>>>
 
     @FormUrlEncoded
     @POST("api/v1/history/")
@@ -83,19 +91,19 @@ interface ApiService {
     fun getTags(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<KeyValueData>>
+    ): Single<CommonResponse<Pagination<KeyValuePairDto>>>
 
     @GET("api/v1/challenges/")
     fun getChallenges(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<ChallengesResponse>>
+    ): Single<CommonResponse<Pagination<ChallengeDto>>>
 
     @GET("api/v1/courses/")
     fun getCourses(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
-    ): Single<CommonResponse<CoursesData>>
+    ): Single<CommonResponse<Pagination<CourseDto>>>
 
     @FormUrlEncoded
     @POST("api/v1/rating/")
@@ -138,14 +146,14 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("type") type: Int,
         @Query("tags") tag: Int
-    ): Observable<CollectionsResponse>
+    ): Observable<CommonResponse<Pagination<CollectionDto>>>
 
     @GET("api/v1/collections/")
     fun getCollectionsByTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Query("type") type: Int
-    ): Observable<CollectionsResponse>
+    ): Observable<CommonResponse<Pagination<CollectionDto>>>
 
     @GET("api/v1/collections/")
     fun getCollectionsByFeeling(
@@ -153,14 +161,13 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("type") type: Int = 1,
         @Query("for_feeling") feeling: Int
-    ): Observable<CollectionsResponse>
-
+    ): Observable<CommonResponse<Pagination<CollectionDto>>>
 
     @GET("api/v1/collection_types/")
     fun getCollectionTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<KeyValueData>>
+    ): Single<CommonResponse<Pagination<KeyValuePairDto>>>
 
     @GET("api/v1/collections/{id}")
     fun getCollectionDetails(

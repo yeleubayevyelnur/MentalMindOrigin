@@ -12,9 +12,9 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.Challenge
-import kz.mentalmind.data.CollectionItem
-import kz.mentalmind.domain.dto.CourseDto
+import kz.mentalmind.data.dto.ChallengeDto
+import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.data.dto.CourseDto
 import kz.mentalmind.ui.main.challenges.ChallengeClickListener
 import kz.mentalmind.ui.main.challenges.ChallengesAdapter
 import kz.mentalmind.ui.main.feelings.FeelingsActivity
@@ -54,17 +54,20 @@ class MainFragment : Fragment() {
     private fun observeData() {
         compositeDisposable.add(
             viewModel.observeStreamOfLife().subscribe({
-                rvStreamOfLife.adapter = InstrumentsAdapter(
-                    it.data.results,
-                    object : InstrumentClickListener {
-                        override fun onInstrumentClicked(meditation: CollectionItem) {
-                            (activity as MainActivity).replaceFragment(
-                                MeditationsFragment.newInstance(meditation.id),
-                                MeditationsFragment::class.simpleName
-                            )
+                it.data?.results?.let { collections ->
+                    rvStreamOfLife.adapter = InstrumentsAdapter(
+                        collections,
+                        object : InstrumentClickListener {
+                            override fun onInstrumentClicked(meditation: CollectionDto) {
+                                (activity as MainActivity).replaceFragment(
+                                    MeditationsFragment.newInstance(meditation.id),
+                                    MeditationsFragment::class.simpleName
+                                )
+                            }
                         }
-                    }
-                )
+                    )
+                }
+
             }, {
 
             })
@@ -72,25 +75,28 @@ class MainFragment : Fragment() {
 
         compositeDisposable.add(
             viewModel.observeInstrumentsForFeeling().subscribe({
-                if (it.data.results.isNullOrEmpty()) {
-                    rvRecommended.visibility = View.GONE
-                    tvRecommended.visibility = View.GONE
-                    return@subscribe
-                }
-
-                rvRecommended.adapter = InstrumentsAdapter(
-                    it.data.results,
-                    object : InstrumentClickListener {
-                        override fun onInstrumentClicked(meditation: CollectionItem) {
-                            (activity as MainActivity).replaceFragment(
-                                MeditationsFragment.newInstance(meditation.id),
-                                MeditationsFragment::class.simpleName
-                            )
-                        }
+                val collections = it.data?.results
+                when {
+                    collections.isNullOrEmpty() -> {
+                        rvRecommended.visibility = View.GONE
+                        tvRecommended.visibility = View.GONE
                     }
-                )
-                rvRecommended.visibility = View.VISIBLE
-                tvRecommended.visibility = View.VISIBLE
+                    else -> {
+                        rvRecommended.adapter = InstrumentsAdapter(
+                            collections,
+                            object : InstrumentClickListener {
+                                override fun onInstrumentClicked(meditation: CollectionDto) {
+                                    (activity as MainActivity).replaceFragment(
+                                        MeditationsFragment.newInstance(meditation.id),
+                                        MeditationsFragment::class.simpleName
+                                    )
+                                }
+                            }
+                        )
+                        rvRecommended.visibility = View.VISIBLE
+                        tvRecommended.visibility = View.VISIBLE
+                    }
+                }
             }, {
 
             })
@@ -108,7 +114,7 @@ class MainFragment : Fragment() {
                 }
 
                 rvChallenge.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
-                    override fun onChallengeClicked(challenge: Challenge) {
+                    override fun onChallengeClicked(challenge: ChallengeDto) {
 
                     }
                 })

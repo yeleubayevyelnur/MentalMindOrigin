@@ -1,4 +1,4 @@
-package kz.mentalmind.data
+package kz.mentalmind.data.dto
 
 data class CommonResponse<T>(
     val data: T?,
