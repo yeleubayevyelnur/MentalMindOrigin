@@ -57,6 +57,8 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
+                        saveUser(it.data.user)
+                        saveToken(it.data.access_token)
                         loginSubject.onNext(it.data)
                     } else {
                         errorsSubject.onNext(it.error)
