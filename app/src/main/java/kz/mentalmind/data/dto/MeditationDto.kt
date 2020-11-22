@@ -9,6 +9,6 @@ data class MeditationDto(
     val name: String,
     val description: String,
     val duration: Int,
-    val file_male_voice: String,
-    val file_female_voice: String
+    val file_male_voice: String?,
+    val file_female_voice: String?
 ) : Parcelable

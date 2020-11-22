@@ -62,7 +62,7 @@ class PlayListFragment : BottomSheetDialogFragment() {
     }
 
     private fun isMeditationAvailable(meditation: MeditationDto) =
-        meditation.file_female_voice.isNotEmpty() || meditation.file_male_voice.isNotEmpty()
+        !meditation.file_female_voice.isNullOrEmpty() || !meditation.file_male_voice.isNullOrEmpty()
 
     private fun observeViewState(parentFragment: Fragment?) {
         (parentFragment?.view as? ViewGroup)?.findViewWithTag<View>("playList")?.let {
