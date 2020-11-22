@@ -37,7 +37,6 @@ class HelpFragment : Fragment() {
                     successAlert()
                 } else {
                     profileViewModel.observeErrorSubject().subscribe {
-
                     }
                 }
             }, {
