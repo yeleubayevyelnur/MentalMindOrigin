@@ -22,7 +22,7 @@ class NotificationsMessagingService : MessagingService() {
             .setContentTitle(getString(R.string.app_name))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setColor(ContextCompat.getColor(this, R.color.gray))
-            .setSmallIcon(R.drawable.ic_menatal_mind)
+            .setSmallIcon(R.drawable.ic_mental_mind)
             .setAutoCancel(true)
 
         val notificationManager =
