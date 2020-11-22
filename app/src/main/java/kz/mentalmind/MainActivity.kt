@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideBottomNavigation() {
-        navigation.visibility = View.GONE
+        navigation.visibility = View.INVISIBLE
     }
 
     private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener =

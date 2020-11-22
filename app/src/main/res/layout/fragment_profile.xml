@@ -168,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:checked="true"
+            android:checked="false"
             app:layout_constraintBottom_toBottomOf="@id/tvNotifyMeditation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvNotifyMeditation"
@@ -347,7 +347,7 @@
                 android:padding="16dp">
 
                 <CalendarView
-                    android:id="@+id/calendar"
+                    android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -427,7 +427,9 @@
             android:text="@string/txt_buy_subscription"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            android:layout_marginBottom="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUnblock" />
     </androidx.constraintlayout.widget.ConstraintLayout>

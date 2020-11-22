@@ -1,9 +1,11 @@
 package kz.mentalmind.ui.profile
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,18 +19,16 @@ import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
-import kz.mentalmind.ui.profile.settings.ChangeLanguageFragment
-import kz.mentalmind.ui.profile.settings.FaqFragment
-import kz.mentalmind.ui.profile.settings.HelpFragment
-import kz.mentalmind.ui.profile.settings.PromocodeFragment
+import kz.mentalmind.ui.profile.settings.*
+import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-    private lateinit var meditationsAdapter: MeditationsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,11 +95,40 @@ class ProfileFragment : Fragment() {
                 )
             }
         }
+        switchNotify.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) (activity as? MainActivity)?.replaceFragment(
+                MeditationNotifyFragment(),
+                MeditationNotifyFragment::class.simpleName
+            )
+        }
+        val calendar = Calendar.getInstance()
+        calendarView.maxDate = calendar.timeInMillis
+        var calendarDate = ""
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            calendar.set(year, month, dayOfMonth)
+            calendarView.date = calendar.timeInMillis
+            calendarDate = "$year-$month-$dayOfMonth"
+            Log.d("yel", calendarDate)
+        }
+
+        btnShow.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                HistoryFragment.newInstance(
+                    calendarDate
+                ), HistoryFragment::class.simpleName
+            )
+        }
+        btnBuy.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                TrialFragment(),
+                TrialFragment::class.simpleName
+            )
+        }
     }
 
     private fun observeData(token: String) {
         compositeDisposable.add(
-            profileViewModel.observeLevelDetailSubject().subscribe {
+            profileViewModel.observeLevelDetailSubject().subscribe ({
                 if (it.error == null) {
                     Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                     tvLevel.text = it.levelsDetailData.name
@@ -112,7 +141,9 @@ class ProfileFragment : Fragment() {
                         (activity as? MainActivity)?.alertDialog(requireContext(), error)
                     }
                 }
-            }
+            }, {
+
+            })
         )
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {
@@ -139,7 +170,13 @@ class ProfileFragment : Fragment() {
             })
     }
 
-    companion object {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as? MainActivity)?.showBottomNavigation()
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        (activity as? MainActivity)?.hideBottomNavigation()
     }
 }

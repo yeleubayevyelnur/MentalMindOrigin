@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.profile.settings
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_faq.btnBack
 import kotlinx.android.synthetic.main.fragment_help.*
-import kotlinx.android.synthetic.main.fragment_login_with_email.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.profile.ProfileViewModel
@@ -37,7 +37,6 @@ class HelpFragment : Fragment() {
                     successAlert()
                 } else {
                     profileViewModel.observeErrorSubject().subscribe {
-
                     }
                 }
             }, {
@@ -81,6 +80,16 @@ class HelpFragment : Fragment() {
         }
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as? MainActivity)?.hideBottomNavigation()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        (activity as? MainActivity)?.showBottomNavigation()
     }
 
     companion object {

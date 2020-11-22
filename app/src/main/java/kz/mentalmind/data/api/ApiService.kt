@@ -4,6 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.LoginResponse
@@ -12,6 +13,7 @@ import kz.mentalmind.data.entrance.RegisterData
 import kz.mentalmind.data.entrance.SocialLoginRequest
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
+import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 
@@ -61,15 +63,21 @@ interface ApiService {
     ): Single<PassRecoveryData>
 
     @FormUrlEncoded
-    @POST("users/me/")
-    fun updateUserInfo()
+    @PUT("users/me/")
+    fun updateUserInfo(
+        @Field("full_name") fullName: String?,
+        @Field("birthday") birthday: String?,
+        @Field("country") country: String?,
+        @Field("city") city: String?
+    ): Observable<ProfileResponse>
 
     @FormUrlEncoded
     @PUT("users/reset_password/")
     fun resetPassword(
+        @Header("Authorization") token: String,
         @Field("old_password") oldPassword: String,
         @Field("new_password") newPassword: String
-    )
+    ): Observable<PassResetResponse>
 
     @GET("users/me/")
     fun getUserInfo(
@@ -80,8 +88,12 @@ interface ApiService {
     fun getSubscriptionStatus()
 
     @GET("api/v1/history/")
-    fun getHistory()
+    fun getHistory(
+        @Header("Authorization") token: String,
+        @Query("date") date: String
+    ): Observable<Meditations>
 
+    /** Работа с ресурсами */
     @GET("api/v1/affirmations/")
     fun getAffirmations(
         @Header("Accept-Language") language: String,

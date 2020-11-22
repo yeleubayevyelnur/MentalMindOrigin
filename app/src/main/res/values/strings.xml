@@ -125,4 +125,5 @@
     <string name="pusher_beam_interest_ru">COMMON_RU</string>
     <string name="pusher_beam_interest_kz">COMMON_KZ</string>
     <string name="pusher_beam_interest_en">COMMON_EN</string>
+    <string name="empty_history">История пуста</string>
 </resources>

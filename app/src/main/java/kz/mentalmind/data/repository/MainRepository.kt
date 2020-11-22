@@ -7,12 +7,14 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
+import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.utils.Constants
 
@@ -116,6 +118,12 @@ class MainRepository(
         sPrefs.edit().putInt(Constants.FEELING, id).apply()
     }
 
+    fun getHistory(token: String, date: String): Observable<Meditations> {
+        val accessToken = "Token $token"
+        return apiService.getHistory(accessToken, date)
+            .subscribeOn(Schedulers.io())
+    }
+
     fun getFavorites(token: String): Single<CommonResponse<Pagination<FavoriteMeditationDto>>> {
         return apiService.getFavorites("ru", "Token $token")
             .subscribeOn(Schedulers.io())
@@ -138,4 +146,15 @@ class MainRepository(
         return apiService.getAffirmations("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
+
+    fun passReset(
+        token: String,
+        oldPass: String,
+        newPass: String
+    ): Observable<PassResetResponse> {
+        val accessToken = "Token $token"
+        return apiService.resetPassword(accessToken, oldPass, newPass)
+            .subscribeOn(Schedulers.io())
+    }
+
 }
