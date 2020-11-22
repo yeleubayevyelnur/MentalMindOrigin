@@ -62,6 +62,13 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
+    <style name="TariffDuration" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontWeight">600</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
     <style name="TariffDescription" parent="AppTheme">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
@@ -145,6 +152,7 @@
         <item name="android:minHeight">24dp</item>
         <item name="android:maxHeight">40dp</item>
     </style>
+
     <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/white</item>
         <item name="android:layout_width">wrap_content</item>
