@@ -183,4 +183,11 @@ interface ApiService {
         @Path("id") id: Int
     ): Single<CommonResponse<CollectionDetailsDto>>
 
+    @GET("api/v1/challenges/{id}")
+    fun getChallengeDetails(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Single<CommonResponse<ChallengeDetailsDto>>
+
 }

@@ -138,31 +138,33 @@
             app:layout_constraintTop_toBottomOf="@id/tvFavorites" />
 
         <TextView
-            android:id="@+id/tvChallenge"
+            android:id="@+id/tvChallenges"
             style="@style/CollectionTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="16dp"
-            android:text="Осенний челлендж"
+            android:text="Челленджи"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvFavorites" />
 
         <View
-            android:id="@+id/challengeTopDivider"
+            android:id="@+id/challengesTopDivider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_mood"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvChallenge" />
+            app:layout_constraintTop_toBottomOf="@id/tvChallenges" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChallenge"
+            android:id="@+id/rvChallenges"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -170,19 +172,21 @@
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
             android:overScrollMode="never"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/challengeTopDivider" />
+            app:layout_constraintTop_toBottomOf="@id/challengesTopDivider" />
 
         <View
-            android:id="@+id/challengeBottomDivider"
+            android:id="@+id/challengesBottomDivider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="23dp"
             android:background="@drawable/bg_mood"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvChallenge" />
+            app:layout_constraintTop_toBottomOf="@id/rvChallenges" />
 
         <TextView
             android:id="@+id/tvOnlineEducationTitle"
@@ -196,7 +200,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvChallenge" />
+            app:layout_constraintTop_toBottomOf="@id/rvChallenges" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvOnlineEducation"

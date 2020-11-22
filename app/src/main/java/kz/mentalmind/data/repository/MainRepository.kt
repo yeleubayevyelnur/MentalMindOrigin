@@ -126,4 +126,12 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun getChallengeDetails(
+        token: String,
+        challengeId: Int
+    ): Single<CommonResponse<ChallengeDetailsDto>> {
+        return apiService.getChallengeDetails("ru", "Token $token", challengeId)
+            .subscribeOn(Schedulers.io())
+    }
+
 }

@@ -17,6 +17,7 @@ import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.CourseDto
 import kz.mentalmind.data.dto.FavoriteMeditationDto
 import kz.mentalmind.ui.main.challenges.ChallengeClickListener
+import kz.mentalmind.ui.main.challenges.ChallengeInstrumentsFragment
 import kz.mentalmind.ui.main.challenges.ChallengesAdapter
 import kz.mentalmind.ui.main.courses.CourseClickListener
 import kz.mentalmind.ui.main.courses.CoursesAdapter
@@ -118,14 +119,23 @@ class MainFragment : Fragment() {
         compositeDisposable.add(
             viewModel.observeChallengesResponse().subscribe({
                 if (it.isNullOrEmpty()) {
-
+                    tvChallenges.visibility = View.GONE
+                    rvChallenges.visibility = View.GONE
+                    challengesTopDivider.visibility = View.GONE
+                    challengesBottomDivider.visibility = View.GONE
+                } else {
+                    rvChallenges.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
+                        override fun onChallengeClicked(challenge: ChallengeDto) {
+                            (activity as? MainActivity)?.replaceFragment(
+                                ChallengeInstrumentsFragment.newInstance(challenge.id)
+                            )
+                        }
+                    })
+                    tvChallenges.visibility = View.VISIBLE
+                    rvChallenges.visibility = View.VISIBLE
+                    challengesTopDivider.visibility = View.VISIBLE
+                    challengesBottomDivider.visibility = View.VISIBLE
                 }
-
-                rvChallenge.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
-                    override fun onChallengeClicked(challenge: ChallengeDto) {
-
-                    }
-                })
             }, {})
         )
 
