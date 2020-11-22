@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.player
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,9 +15,7 @@ class PlayerViewModel(private val mainRepository: MainRepository) : ViewModel() 
                 mainRepository.addToFavorites(it, AddToFavorites(meditationId, collectionId))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        Log.d("yel","compleate")
                     }, {
-                        Log.d("yel","error")
                     })
             )
         }
@@ -31,5 +28,17 @@ class PlayerViewModel(private val mainRepository: MainRepository) : ViewModel() 
     override fun onCleared() {
         disposable.dispose()
         super.onCleared()
+    }
+
+    fun setRating(meditationId: Int, star: Int) {
+        getToken()?.let {
+            disposable.add(
+                mainRepository.setRating(it, meditationId, star)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                    }, {
+                    })
+            )
+        }
     }
 }

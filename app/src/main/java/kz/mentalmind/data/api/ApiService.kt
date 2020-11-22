@@ -196,4 +196,10 @@ interface ApiService {
         @Path("id") id: Int
     ): Single<CommonResponse<ChallengeDetailsDto>>
 
+    @POST("api/v1/rating/")
+    fun setRating(
+        @Header("Authorization") token: String,
+        @Body rateMeditation: RateMeditationDto
+    ): Completable
+
 }
