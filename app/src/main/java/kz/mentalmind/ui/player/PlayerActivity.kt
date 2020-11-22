@@ -8,6 +8,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -99,10 +100,11 @@ class PlayerActivity : AppCompatActivity() {
 
             speakerFemale.performClick()
 
-
-            findViewById<AppCompatImageView>(R.id.addToFavorite).setOnClickListener {
+            val favorite = findViewById<AppCompatImageView>(R.id.favorite)
+            favorite.setOnClickListener {
                 val collectionId = intent.getIntExtra(COLLECTION_ID, 0)
                 viewModel.addToFavorites(meditationDto.id, collectionId)
+                Glide.with(this).load(R.drawable.ic_favorite).into(favorite)
             }
         }
     }
