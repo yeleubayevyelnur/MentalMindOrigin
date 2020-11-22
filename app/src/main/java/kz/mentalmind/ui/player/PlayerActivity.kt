@@ -166,8 +166,8 @@ class PlayerActivity : AppCompatActivity() {
             setMediaItem(
                 MediaItem.fromUri(
                     when (speaker) {
-                        SPEAKER.MALE -> meditation.file_male_voice
-                        SPEAKER.FEMALE -> meditation.file_female_voice
+                        SPEAKER.MALE -> meditation.file_male_voice.orEmpty()
+                        SPEAKER.FEMALE -> meditation.file_female_voice.orEmpty()
                     }
                 )
             )
