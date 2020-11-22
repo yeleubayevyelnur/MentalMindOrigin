@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_home"
-        android:title="@string/menu_home"
-        android:icon="@drawable/ic_home" />
-    <item android:id="@+id/nav_instruments"
-        android:title="@string/menu_instruments"
-        android:icon="@drawable/ic_instruments" />
-    <item android:id="@+id/nav_create"
-        android:title="@string/menu_create"
-        android:icon="@drawable/ic_build_up" />
-    <item android:id="@+id/nav_profile"
-        android:title="@string/menu_profile"
-        android:icon="@drawable/ic_profile" />
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/animated_home"
+        android:title="@string/menu_home" />
+    <item
+        android:id="@+id/nav_instruments"
+        android:icon="@drawable/animated_instruments"
+        android:title="@string/menu_instruments" />
+    <item
+        android:id="@+id/nav_create"
+        android:icon="@drawable/animated_create"
+        android:title="@string/menu_create" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/animated_profile"
+        android:title="@string/menu_profile" />
 </menu>

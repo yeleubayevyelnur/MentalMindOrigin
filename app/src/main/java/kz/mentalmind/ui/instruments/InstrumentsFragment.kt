@@ -12,7 +12,6 @@ import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.KeyValuePairDto
 import kz.mentalmind.ui.main.instruments.InstrumentClickListener
-import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.main.MainAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,9 +25,9 @@ class InstrumentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_instruments, container, false)
-        val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter>>()
+        val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter1>>()
         val tags = ArrayList<KeyValuePairDto>()
-        val adapter = MainAdapter(tags, instrumentAdapters)
+        val adapter = MainAdapter1(tags, instrumentAdapters)
 
         compositeDisposable.add(viewModel.observeTagsSubject().subscribe({
             tags.addAll(it.results.subList(1, it.results.size))
@@ -41,7 +40,7 @@ class InstrumentsFragment : Fragment() {
             instrumentAdapters.add(
                 Pair(
                     it.first,
-                    InstrumentsAdapter(
+                    InstrumentsAdapter1(
                         it.second.results,
                         object : InstrumentClickListener {
                             override fun onInstrumentClicked(meditation: CollectionDto) {
