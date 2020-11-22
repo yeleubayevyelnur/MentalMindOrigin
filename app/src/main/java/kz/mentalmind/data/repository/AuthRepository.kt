@@ -49,6 +49,10 @@ class AuthRepository(
 
     fun getUser(): User? {
         val userString = sPrefs.getString(Constants.USER, null)
-        return gson.fromJson(userString, User::class.java)
+        return if (userString != null) {
+            gson.fromJson(userString, User::class.java)
+        } else {
+            null
+        }
     }
 }
