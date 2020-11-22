@@ -48,8 +48,16 @@ class PlayerActivity : AppCompatActivity() {
                 settingsView.visibility = View.GONE
             }
 
+            closeRateView.setOnClickListener {
+                rateView.visibility = View.GONE
+            }
+
             back.setOnClickListener {
                 onBackPressed()
+            }
+
+            ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+                viewModel.setRating(meditationDto.id, rating.toInt())
             }
 
             volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -136,6 +144,9 @@ class PlayerActivity : AppCompatActivity() {
                         soundsPlayer?.play()
                     }
                 } else {
+                    if (exoPlayer?.playbackState == Player.STATE_ENDED) {
+                        rateView.visibility = View.VISIBLE
+                    }
                     soundsPlayer?.pause()
                 }
             }

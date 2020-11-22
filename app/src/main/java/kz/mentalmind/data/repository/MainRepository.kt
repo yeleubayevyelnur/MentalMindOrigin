@@ -157,4 +157,9 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun setRating(token: String, meditationId: Int, star: Int): Completable {
+        return apiService.setRating("Token $token", RateMeditationDto(star, meditationId))
+            .subscribeOn(Schedulers.io())
+    }
+
 }
