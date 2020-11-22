@@ -2,7 +2,6 @@ package kz.mentalmind.ui.profile
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -34,6 +33,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         profileSubject.onNext(it)
                     } else {
+                        errorsSubject.onNext(it.error)
                     }
                 }, {
                 })
@@ -109,7 +109,8 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     fun passReset(token: String, oldPass: String, newPass: String) {
         disposable.add(
-            mainRepository.passReset(token, oldPass, newPass).observeOn(AndroidSchedulers.mainThread())
+            mainRepository.passReset(token, oldPass, newPass)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null && it.helpData.success) resetPassSubject.onNext(it)
                     else it.error?.let { it1 -> errorsSubject.onNext(it1) }
