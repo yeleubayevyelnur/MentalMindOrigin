@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.purchase
 
+import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
@@ -59,6 +60,16 @@ class TrialFragment : Fragment() {
         )
         btnSub1.paint.shader = textShader1
         btnSub2.paint.shader = textShader2
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as? MainActivity)?.hideBottomNavigation()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        (activity as? MainActivity)?.showBottomNavigation()
     }
 
     companion object {
