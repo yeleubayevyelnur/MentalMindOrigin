@@ -1,10 +1,10 @@
 package kz.mentalmind.ui.profile.settings
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
@@ -54,6 +54,7 @@ class HistoryFragment : Fragment() {
                 (activity as? MainActivity)?.alertDialog(requireContext(), it)
             }
         )
+
         compositeDisposable.add(
             profileViewModel.observeHistorySubject().subscribe({
                 historyList = it.meditationData.results
