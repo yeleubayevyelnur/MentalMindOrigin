@@ -34,20 +34,15 @@ class LoginWithEmailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe({
-                if (it.error == null) {
-                    authViewModel.saveUser(requireContext(), it.loginData.user)
-                    authViewModel.saveToken(requireContext(), it.loginData.access_token)
-                    PushNotifications.addDeviceInterest(it.loginData.user.email)
-                    (activity as? AuthActivity)?.openMainActivity()
-                } else {
-                    authViewModel.observeErrorSubject().subscribe { error ->
-                        (activity as? AuthActivity)?.alertDialog(requireContext(), error)
-                    }
-                }
+                PushNotifications.addDeviceInterest(it.user.email)
+                (activity as? AuthActivity)?.openMainActivity()
             }, {
 
             })
         )
+        compositeDisposable.add(authViewModel.observeErrorSubject().subscribe { error ->
+            (activity as? AuthActivity)?.alertDialog(requireContext(), error)
+        })
         tvRegistration.setOnClickListener {
             (activity as? AuthActivity)?.replaceFragment(
                 RegistrationFragment(),
@@ -61,9 +56,7 @@ class LoginWithEmailFragment : Fragment() {
             )
         }
         btnNext.setOnClickListener {
-            authViewModel.login("sultan_0029@mail.ru", "testUser1")
-            PushNotifications.addDeviceInterest("sultan_0029@mail.ru")
-//            login()
+            login()
         }
         btnBack.setOnClickListener {
             (activity as? AuthActivity)?.onBackPressed()

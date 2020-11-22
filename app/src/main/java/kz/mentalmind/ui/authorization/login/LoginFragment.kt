@@ -53,20 +53,14 @@ class LoginFragment : Fragment() {
         initFacebook(view)
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe({
-                if (it.error == null) {
-                    authViewModel.saveUser(requireContext(), it.loginData.user)
-                    authViewModel.saveToken(requireContext(), it.loginData.access_token)
-                    PushNotifications.addDeviceInterest(it.loginData.user.email)
-                    (activity as? AuthActivity)?.openMainActivity()
-                } else {
-                    authViewModel.observeErrorSubject().subscribe {
-                        (activity as? AuthActivity)?.alertDialog(requireContext(), it)
-                    }
-                }
-            }, {
-
-            })
+                PushNotifications.addDeviceInterest(it.user.email)
+                (activity as? AuthActivity)?.openMainActivity()
+            }, {})
         )
+
+        compositeDisposable.add(authViewModel.observeErrorSubject().subscribe {
+            (activity as? AuthActivity)?.alertDialog(requireContext(), it)
+        })
 
         tvRegistration.setOnClickListener {
             (activity as? AuthActivity)?.replaceFragment(
