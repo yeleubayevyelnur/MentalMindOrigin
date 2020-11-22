@@ -13,6 +13,7 @@ import kz.mentalmind.data.entrance.RegisterData
 import kz.mentalmind.data.entrance.SocialLoginRequest
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
+import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 
@@ -73,9 +74,10 @@ interface ApiService {
     @FormUrlEncoded
     @PUT("users/reset_password/")
     fun resetPassword(
+        @Header("Authorization") token: String,
         @Field("old_password") oldPassword: String,
         @Field("new_password") newPassword: String
-    )
+    ): Observable<PassResetResponse>
 
     @GET("users/me/")
     fun getUserInfo(

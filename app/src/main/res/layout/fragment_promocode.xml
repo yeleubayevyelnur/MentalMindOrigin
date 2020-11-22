@@ -69,10 +69,12 @@
                     android:background="@drawable/bg_edittext_gray_stroke"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/enter_promocode"
+                    android:imeOptions="actionDone"
                     android:paddingStart="12dp"
                     android:paddingTop="14dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="14dp"
+                    android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -89,8 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="16dp"
+            android:imeOptions="actionDone"
+            android:layout_marginBottom="32dp"
             android:enabled="false"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_send"

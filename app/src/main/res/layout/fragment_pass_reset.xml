@@ -57,8 +57,10 @@
         android:hint="@string/enter_your_email"
         android:paddingStart="12dp"
         android:paddingTop="14dp"
+        android:imeOptions="actionDone"
         android:paddingEnd="12dp"
-        android:paddingBottom="14dp" />
+        android:paddingBottom="14dp"
+        android:singleLine="true" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNext"

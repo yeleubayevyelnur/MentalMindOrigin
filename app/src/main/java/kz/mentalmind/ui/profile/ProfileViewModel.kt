@@ -2,6 +2,7 @@ package kz.mentalmind.ui.profile
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -10,6 +11,7 @@ import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
+import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.data.repository.MainRepository
 
@@ -17,6 +19,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
+    private val resetPassSubject = PublishSubject.create<PassResetResponse>()
     private val promocodeSubject = PublishSubject.create<PromocodeResponse>()
     private val profileSubject = PublishSubject.create<ProfileResponse>()
     private val levelsSubject = PublishSubject.create<LevelsResponse>()
@@ -58,7 +61,6 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                 .subscribe({
                     if (it.error == null) {
                         levelsDetailSubject.onNext(it)
-                    } else {
                     }
                 }, {
 
@@ -103,6 +105,22 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
 
                 })
         )
+    }
+
+    fun passReset(token: String, oldPass: String, newPass: String) {
+        disposable.add(
+            mainRepository.passReset(token, oldPass, newPass).observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null && it.helpData.success) resetPassSubject.onNext(it)
+                    else it.error?.let { it1 -> errorsSubject.onNext(it1) }
+                }, {
+
+                })
+        )
+    }
+
+    fun observePassResetSubject(): Observable<PassResetResponse> {
+        return resetPassSubject
     }
 
     fun observePromocodeSubject(): Observable<PromocodeResponse> {

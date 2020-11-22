@@ -128,7 +128,7 @@ class ProfileFragment : Fragment() {
 
     private fun observeData(token: String) {
         compositeDisposable.add(
-            profileViewModel.observeLevelDetailSubject().subscribe {
+            profileViewModel.observeLevelDetailSubject().subscribe ({
                 if (it.error == null) {
                     Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                     tvLevel.text = it.levelsDetailData.name
@@ -141,7 +141,9 @@ class ProfileFragment : Fragment() {
                         (activity as? MainActivity)?.alertDialog(requireContext(), error)
                     }
                 }
-            }
+            }, {
+
+            })
         )
         compositeDisposable.add(
             profileViewModel.observeProfileSubject().subscribe {

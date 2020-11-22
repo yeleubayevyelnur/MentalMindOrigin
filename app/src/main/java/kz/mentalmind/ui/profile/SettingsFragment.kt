@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,23 +32,17 @@ class SettingsFragment : Fragment() {
             (activity as? MainActivity)?.onBackPressed()
         }
         changePassword.setOnClickListener {
-            (activity as? MainActivity)?.replaceFragment(
-                ChangePasswordFragment(),
-                ChangePasswordFragment::class.simpleName
-            )
+            (activity as? MainActivity)?.replaceFragment(ChangePasswordFragment(), ChangePasswordFragment::class.simpleName)
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         (activity as? MainActivity)?.hideBottomNavigation()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDetach() {
+        super.onDetach()
         (activity as? MainActivity)?.showBottomNavigation()
-    }
-
-    companion object {
     }
 }

@@ -14,6 +14,7 @@ import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
+import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.utils.Constants
 
@@ -145,4 +146,15 @@ class MainRepository(
         return apiService.getAffirmations("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
+
+    fun passReset(
+        token: String,
+        oldPass: String,
+        newPass: String
+    ): Observable<PassResetResponse> {
+        val accessToken = "Token $token"
+        return apiService.resetPassword(accessToken, oldPass, newPass)
+            .subscribeOn(Schedulers.io())
+    }
+
 }
