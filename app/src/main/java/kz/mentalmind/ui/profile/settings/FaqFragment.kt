@@ -1,14 +1,16 @@
 package kz.mentalmind.ui.profile.settings
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_faq.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+
 
 class FaqFragment : Fragment() {
 
@@ -21,6 +23,11 @@ class FaqFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val clkRotate = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_clockwise)
+        val antiClkRotate = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.rotate_anticlockwise
+        )
         about.setOnClickListener {
             setVisibility(aboutDescription)
         }
@@ -42,9 +49,17 @@ class FaqFragment : Fragment() {
         when (view.visibility) {
             View.GONE -> {
                 view.visibility = View.VISIBLE
+                view.animation = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.rotate_anticlockwise
+                )
             }
             View.VISIBLE -> {
                 view.visibility = View.GONE
+                view.animation = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.rotate_clockwise
+                )
             }
             View.INVISIBLE -> {
             }

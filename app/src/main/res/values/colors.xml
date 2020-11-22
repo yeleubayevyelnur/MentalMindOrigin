@@ -14,4 +14,8 @@
     <color name="blackText">#333333</color>
     <color name="green">#6BD9BF</color>
     <color name="gray">#848781</color>
+    <color name="gr1">#EF8D82</color>
+    <color name="gr2">#A83D5E</color>
+    <color name="gr3">#92F6C7</color>
+    <color name="gr4">#306AEE</color>
 </resources>

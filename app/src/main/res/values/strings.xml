@@ -127,4 +127,14 @@
     <string name="pusher_beam_interest_en">COMMON_EN</string>
     <string name="empty_history">История пуста</string>
     <string name="rate_meditation">Оцените медитацию</string>
+    <string name="ft_cost">3 249</string>
+    <string name="tenge_symbol">₸</string>
+    <string name="ft_description">Доступ ко всем\n медитациям\n на целый месяц</string>
+    <string name="ft_secondary_description">Новые аффирмации\n каждый день</string>
+    <string name="ft_duration">1 месяц</string>
+    <string name="subscribe">Подписаться</string>
+    <string name="st_cost">33 216</string>
+    <string name="st_description">+ 1 месяц доступа в\n подарок</string>
+    <string name="st_secondary_description">Доступ ко всем\n медитациям\n на целый год</string>
+    <string name="st_duration">1 год + 1 месяц</string>
 </resources>

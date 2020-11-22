@@ -31,10 +31,11 @@ class ChangePasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeData()
         btnSave.setOnClickListener {
-            if (enterPassword.text.toString().isEmpty() || etNewPass.text.toString().isEmpty() || etRepPass.text.toString().isEmpty()){
+            if (enterPassword.text.toString().isEmpty() || etNewPass.text.toString().isEmpty() || etRepPass.text.toString().isEmpty()) {
                 showToast("Заполните все поля")
-            }
-            else {
+            } else if (etNewPass.text.toString() != etRepPass.text.toString()) {
+                showToast("Парли не совпадают")
+            } else {
                 profileViewModel.getToken().let { token ->
                     token?.let { it1 ->
                         profileViewModel.passReset(
@@ -45,7 +46,6 @@ class ChangePasswordFragment : Fragment() {
                     }
                 }
             }
-
         }
         btnBack.setOnClickListener {
             (activity as? MainActivity)?.onBackPressed()

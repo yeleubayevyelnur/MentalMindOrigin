@@ -72,7 +72,7 @@ interface ApiService {
     ): Observable<ProfileResponse>
 
     @FormUrlEncoded
-    @PUT("users/reset_password/")
+    @PUT("users/password_reset/")
     fun resetPassword(
         @Header("Authorization") token: String,
         @Field("old_password") oldPassword: String,

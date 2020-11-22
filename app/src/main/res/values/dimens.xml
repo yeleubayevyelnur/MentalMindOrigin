@@ -9,6 +9,7 @@
     <dimen name="font_normal">16sp</dimen>
     <dimen name="font_extra_normal">18sp</dimen>
     <dimen name="font_big">20sp</dimen>
+    <dimen name="font_22">22sp</dimen>
     <dimen name="font_extra_big">24sp</dimen>
     <dimen name="font_large">28sp</dimen>
     <dimen name="font_extra_large">40sp</dimen>
