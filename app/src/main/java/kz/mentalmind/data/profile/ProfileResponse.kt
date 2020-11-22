@@ -1,7 +1,7 @@
 package kz.mentalmind.data.profile
 
 import com.google.gson.annotations.SerializedName
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.MeditationDto
 
 data class ProfileResponse(
     @SerializedName("data")

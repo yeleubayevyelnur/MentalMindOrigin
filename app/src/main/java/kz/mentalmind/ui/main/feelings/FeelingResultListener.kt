@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main.feelings
 
-import kz.mentalmind.data.Feeling
+import kz.mentalmind.data.dto.FeelingDto
 
 interface FeelingResultListener {
-    fun onMoodClickedResult(feeling: Feeling)
+    fun onMoodClickedResult(feeling: FeelingDto)
 }

@@ -5,7 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.repository.MeditationRepository
-import kz.mentalmind.domain.dto.CollectionDetailsDto
+import kz.mentalmind.data.dto.CollectionDetailsDto
 
 class MeditationsViewModel(private val meditationRepository: MeditationRepository) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()

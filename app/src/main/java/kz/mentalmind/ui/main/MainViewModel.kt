@@ -5,17 +5,16 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.Challenge
-import kz.mentalmind.data.CollectionsResponse
+import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.repository.MainRepository
-import kz.mentalmind.domain.dto.CourseDto
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
-    private val streamOfLifeSubject = PublishSubject.create<CollectionsResponse>()
-    private val instrumentsForFeeling = PublishSubject.create<CollectionsResponse>()
-    private val challengesResponse = PublishSubject.create<List<Challenge>>()
+    private val streamOfLife = PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
+    private val favorites = PublishSubject.create<CommonResponse<Pagination<FavoriteMeditationDto>>>()
+    private val instrumentsForFeeling = PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
+    private val challenges = PublishSubject.create<List<ChallengeDto>>()
     private val courses = PublishSubject.create<List<CourseDto>>()
 
     fun saveFeeling(id: Int) {
@@ -28,7 +27,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
-                        streamOfLifeSubject.onNext(it)
+                        streamOfLife.onNext(it)
                     } else {
                         errorsSubject.onNext(it.error)
                     }
@@ -58,6 +57,22 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         )
     }
 
+    fun getFavorites(token: String) {
+        disposable.add(
+            mainRepository.getFavorites(token)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        favorites.onNext(it)
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
+                    errorsSubject.onNext(it.message ?: "")
+                })
+        )
+    }
+
     fun getCourses(token: String) {
         courses
         disposable.add(
@@ -77,11 +92,33 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         )
     }
 
-    fun observeStreamOfLife(): PublishSubject<CollectionsResponse> {
-        return streamOfLifeSubject
+    fun getChallenges(token: String) {
+        disposable.add(
+            mainRepository.getChallenges(token)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        if (it.data?.results != null) {
+                            challenges.onNext(it.data.results)
+                        }
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
+                    errorsSubject.onNext(it.message ?: "")
+                })
+        )
     }
 
-    fun observeInstrumentsForFeeling(): PublishSubject<CollectionsResponse> {
+    fun observeStreamOfLife(): PublishSubject<CommonResponse<Pagination<CollectionDto>>> {
+        return streamOfLife
+    }
+
+    fun observeFavorites(): PublishSubject<CommonResponse<Pagination<FavoriteMeditationDto>>> {
+        return favorites
+    }
+
+    fun observeInstrumentsForFeeling(): PublishSubject<CommonResponse<Pagination<CollectionDto>>> {
         return instrumentsForFeeling
     }
 
@@ -93,29 +130,11 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         return errorsSubject
     }
 
-    fun observeChallengesResponse(): Observable<List<Challenge>> {
-        return challengesResponse
+    fun observeChallengesResponse(): Observable<List<ChallengeDto>> {
+        return challenges
     }
 
     fun getToken(): String? {
         return mainRepository.getToken()
-    }
-
-    fun getChallenges(token: String) {
-        disposable.add(
-            mainRepository.getChallenges(token)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (it.error == null) {
-                        if (it.data?.results != null) {
-                            challengesResponse.onNext(it.data.results)
-                        }
-                    } else {
-                        errorsSubject.onNext(it.error)
-                    }
-                }, {
-                    errorsSubject.onNext(it.message ?: "")
-                })
-        )
     }
 }

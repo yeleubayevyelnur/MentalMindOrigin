@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.MeditationDto
 
 class MeditationsAdapter(
     private var meditations: List<MeditationDto>,

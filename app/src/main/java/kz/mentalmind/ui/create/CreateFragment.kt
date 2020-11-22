@@ -9,10 +9,10 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_instruments.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.CollectionItem
-import kz.mentalmind.data.KeyValuePair
-import kz.mentalmind.ui.main.InstrumentClickListener
-import kz.mentalmind.ui.main.InstrumentsAdapter
+import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.data.dto.KeyValuePairDto
+import kz.mentalmind.ui.main.instruments.InstrumentClickListener
+import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +25,7 @@ class CreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
-        val types = ArrayList<KeyValuePair>()
+        val types = ArrayList<KeyValuePairDto>()
         val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter>>()
         val adapter = CreationAdapter(types, instrumentAdapters)
 
@@ -45,7 +45,7 @@ class CreateFragment : Fragment() {
                     InstrumentsAdapter(
                         it.second.results,
                         object : InstrumentClickListener {
-                            override fun onInstrumentClicked(meditation: CollectionItem) {
+                            override fun onInstrumentClicked(meditation: CollectionDto) {
                                 (activity as MainActivity).replaceFragment(
                                     MeditationsFragment.newInstance(meditation.id),
                                     MeditationsFragment::class.simpleName

@@ -1,6 +1,6 @@
 package kz.mentalmind.ui.meditations
 
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.MeditationDto
 
 interface MeditationClickListener {
     fun onMeditationClicked(meditation: MeditationDto)

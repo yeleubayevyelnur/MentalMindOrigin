@@ -1,6 +1,6 @@
-package kz.mentalmind.data
+package kz.mentalmind.data.dto
 
-data class Challenge(
+data class ChallengeDto(
     val id: Int,
     val name: String,
     val description: String,
@@ -8,11 +8,4 @@ data class Challenge(
     val date_begin: String,
     val date_end: String,
     val collections: List<String>
-)
-
-data class ChallengesResponse(
-    val count: Int,
-    val next: String?,
-    val previous: String?,
-    val results: List<Challenge>
 )

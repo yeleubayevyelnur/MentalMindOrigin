@@ -10,8 +10,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_play_list.*
 import kz.mentalmind.R
-import kz.mentalmind.domain.dto.CollectionDetailsDto
-import kz.mentalmind.domain.dto.MeditationDto
+import kz.mentalmind.data.dto.CollectionDetailsDto
+import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.utils.Constants.MEDITATION
 

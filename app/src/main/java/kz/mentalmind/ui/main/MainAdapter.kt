@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
-import kz.mentalmind.data.KeyValuePair
+import kz.mentalmind.data.dto.KeyValuePairDto
+import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 
 class MainAdapter(
-    private var tags: List<KeyValuePair>,
+    private var tags: List<KeyValuePairDto>,
     private var instrumentsAdapters: List<Pair<Int, InstrumentsAdapter>>
 ) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
