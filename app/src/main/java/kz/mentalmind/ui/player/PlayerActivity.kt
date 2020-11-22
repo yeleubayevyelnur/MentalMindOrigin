@@ -33,87 +33,95 @@ class PlayerActivity : AppCompatActivity() {
         val meditation: MeditationDto? = intent?.getParcelableExtra(MEDITATION)
         meditation?.let { meditationDto ->
             initializePlayer()
+            initView(meditationDto)
+            setUpVoices(meditationDto)
+            findViewById<RadioGroup>(R.id.bg_musics).check(R.id.bg_music1)
+            speakerFemale.performClick()
+        }
+    }
 
-            findViewById<AppCompatTextView>(R.id.title).text = meditationDto.name
-            findViewById<AppCompatTextView>(R.id.description).text = meditationDto.description
-            backgroundMusic.setOnClickListener {
-                settingsView.visibility = View.VISIBLE
-            }
+    private fun initView(meditationDto: MeditationDto) {
+        findViewById<AppCompatTextView>(R.id.title).text = meditationDto.name
+        findViewById<AppCompatTextView>(R.id.description).text = meditationDto.description
+        backgroundMusic.setOnClickListener {
+            settingsView.visibility = View.VISIBLE
+        }
 
-            speakerVoice.setOnClickListener {
-                settingsView.visibility = View.VISIBLE
-            }
+        speakerVoice.setOnClickListener {
+            settingsView.visibility = View.VISIBLE
+        }
 
-            close.setOnClickListener {
-                settingsView.visibility = View.GONE
-            }
+        close.setOnClickListener {
+            settingsView.visibility = View.GONE
+        }
 
-            closeRateView.setOnClickListener {
-                rateView.visibility = View.GONE
-            }
+        closeRateView.setOnClickListener {
+            rateView.visibility = View.GONE
+        }
 
-            back.setOnClickListener {
-                onBackPressed()
-            }
+        back.setOnClickListener {
+            onBackPressed()
+        }
 
-            ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-                viewModel.setRating(meditationDto.id, rating.toInt())
-            }
+        ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+            viewModel.setRating(meditationDto.id, rating.toInt())
+        }
 
-            volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                    soundsPlayer?.volume = when (p1) {
-                        0 -> 0f
-                        100 -> 1f
-                        else -> p1.toFloat() / 100.toFloat()
-                    }
+        volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                soundsPlayer?.volume = when (p1) {
+                    0 -> 0f
+                    100 -> 1f
+                    else -> p1.toFloat() / 100.toFloat()
                 }
+            }
 
-                override fun onStartTrackingTouch(p0: SeekBar?) {
-                }
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
 
-                override fun onStopTrackingTouch(p0: SeekBar?) {
-                }
-            })
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
 
-            bg_musics.setOnCheckedChangeListener { _, checkedId ->
-                val radioButton = findViewById<RadioButton>(checkedId)
-                soundsPlayer?.setMediaItem(
-                    MediaItem.fromUri(
-                        String.format(
-                            backgroundMusicPathFormat,
-                            radioButton.tag
-                        )
+        bg_musics.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = findViewById<RadioButton>(checkedId)
+            soundsPlayer?.setMediaItem(
+                MediaItem.fromUri(
+                    String.format(
+                        backgroundMusicPathFormat,
+                        radioButton.tag
                     )
                 )
-                backgroundMusicTitle.text = radioButton.text
-            }
+            )
+            backgroundMusicTitle.text = radioButton.text
+        }
 
-            findViewById<RadioGroup>(R.id.bg_musics).check(R.id.bg_music1)
+        val favorite = findViewById<AppCompatImageView>(R.id.favorite)
+        favorite.setOnClickListener {
+            val collectionId = intent.getIntExtra(COLLECTION_ID, 0)
+            viewModel.addToFavorites(meditationDto.id, collectionId)
+            Glide.with(this).load(R.drawable.ic_favorite).into(favorite)
+        }
+    }
 
-            speakerFemale.setOnClickListener {
-                play(meditationDto, SPEAKER.FEMALE)
-                speakerFemale.isSelected = true
-                speakerMale.isSelected = false
-                speakerVoiceTitle.text = speakerFemale.text
-            }
+    private fun setUpVoices(meditationDto: MeditationDto) {
+        when {
+            meditationDto.file_male_voice.isNullOrEmpty() -> speakerMale.visibility = View.GONE
+            meditationDto.file_female_voice.isNullOrEmpty() -> speakerFemale.visibility = View.GONE
+        }
 
-            speakerMale.setOnClickListener {
-                play(meditationDto, SPEAKER.MALE)
-                speakerMale.isSelected = true
-                speakerFemale.isSelected = false
+        speakerFemale.setOnClickListener {
+            play(meditationDto, SPEAKER.FEMALE)
+            speakerFemale.isSelected = true
+            speakerMale.isSelected = false
+            speakerVoiceTitle.text = speakerFemale.text
+        }
 
-                speakerVoiceTitle.text = speakerMale.text
-            }
-
-            speakerFemale.performClick()
-
-            val favorite = findViewById<AppCompatImageView>(R.id.favorite)
-            favorite.setOnClickListener {
-                val collectionId = intent.getIntExtra(COLLECTION_ID, 0)
-                viewModel.addToFavorites(meditationDto.id, collectionId)
-                Glide.with(this).load(R.drawable.ic_favorite).into(favorite)
-            }
+        speakerMale.setOnClickListener {
+            play(meditationDto, SPEAKER.MALE)
+            speakerMale.isSelected = true
+            speakerFemale.isSelected = false
+            speakerVoiceTitle.text = speakerMale.text
         }
     }
 
