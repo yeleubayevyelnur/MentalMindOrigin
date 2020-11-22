@@ -127,7 +127,8 @@ class MainFragment : Fragment() {
                     rvChallenges.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
                         override fun onChallengeClicked(challenge: ChallengeDto) {
                             (activity as? MainActivity)?.replaceFragment(
-                                ChallengeInstrumentsFragment.newInstance(challenge.id)
+                                ChallengeInstrumentsFragment.newInstance(challenge.id),
+                                ChallengeInstrumentsFragment::class.simpleName
                             )
                         }
                     })

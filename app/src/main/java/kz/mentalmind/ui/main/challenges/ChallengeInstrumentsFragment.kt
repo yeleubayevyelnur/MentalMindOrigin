@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_player.*
 import kotlinx.android.synthetic.main.fragment_challenge_instruments.*
+import kotlinx.android.synthetic.main.fragment_challenge_instruments.back
+import kotlinx.android.synthetic.main.fragment_challenge_instruments.title
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDto
@@ -63,6 +66,11 @@ class ChallengeInstrumentsFragment : Fragment() {
                 (activity as? MainActivity)?.alertDialog(requireContext(), it)
             }
         )
+
+        back.setOnClickListener {
+            activity?.onBackPressed()
+        }
+
         viewModel.getChallengeDetails(challengeId)
     }
 

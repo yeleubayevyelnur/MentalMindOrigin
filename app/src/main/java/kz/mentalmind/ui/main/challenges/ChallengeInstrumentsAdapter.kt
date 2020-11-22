@@ -35,7 +35,7 @@ class ChallengeInstrumentsAdapter(
         }
         Glide.with(holder.itemView)
             .load(instrument.file_image)
-            .placeholder(R.drawable.ic_menatal_mind)
+            .placeholder(R.drawable.ic_placeholder_challenge)
             .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
     }
