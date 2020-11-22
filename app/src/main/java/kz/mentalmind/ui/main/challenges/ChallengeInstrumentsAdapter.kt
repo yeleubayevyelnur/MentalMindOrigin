@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.instruments
+package kz.mentalmind.ui.main.challenges
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +10,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.ui.main.instruments.InstrumentClickListener
 import kz.mentalmind.utils.dpToPixelInt
 
-class InstrumentsAdapter(
+class ChallengeInstrumentsAdapter(
     private var instruments: List<CollectionDto>,
     private val clickListener: InstrumentClickListener
 ) :
-    RecyclerView.Adapter<InstrumentsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ChallengeInstrumentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_instrument, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_challenge_instrument, parent, false)
         return ViewHolder(v)
     }
 
@@ -33,7 +35,7 @@ class InstrumentsAdapter(
         }
         Glide.with(holder.itemView)
             .load(instrument.file_image)
-            .placeholder(R.drawable.ic_placeholder_instrument)
+            .placeholder(R.drawable.ic_placeholder_challenge)
             .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
     }

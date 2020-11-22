@@ -2,6 +2,7 @@ package kz.mentalmind.data.repository
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -124,6 +125,19 @@ class MainRepository(
 
     fun getFavorites(token: String): Single<CommonResponse<Pagination<FavoriteMeditationDto>>> {
         return apiService.getFavorites("ru", "Token $token")
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun addToFavorites(token: String, addToFavorites: AddToFavorites): Completable {
+        return apiService.addToFavorites("Token $token", addToFavorites)
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getChallengeDetails(
+        token: String,
+        challengeId: Int
+    ): Single<CommonResponse<ChallengeDetailsDto>> {
+        return apiService.getChallengeDetails("ru", "Token $token", challengeId)
             .subscribeOn(Schedulers.io())
     }
 

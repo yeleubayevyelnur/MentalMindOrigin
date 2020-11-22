@@ -28,11 +28,6 @@ class MeditationsFragment : Fragment() {
         (activity as? MainActivity)?.hideBottomNavigation()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        (activity as? MainActivity)?.showBottomNavigation()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,6 +54,7 @@ class MeditationsFragment : Fragment() {
             collectionDetails?.let { collectionDetails ->
                 startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
                     putExtra(Constants.MEDITATION, collectionDetails.meditations.first())
+                    putExtra(Constants.COLLECTION_ID, collectionDetails.id)
                 })
             }
         }

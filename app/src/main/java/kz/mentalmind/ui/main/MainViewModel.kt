@@ -12,8 +12,11 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
     private val streamOfLife = PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
-    private val favorites = PublishSubject.create<CommonResponse<Pagination<FavoriteMeditationDto>>>()
-    private val instrumentsForFeeling = PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
+    private val challengeDetails = PublishSubject.create<CommonResponse<ChallengeDetailsDto>>()
+    private val favorites =
+        PublishSubject.create<CommonResponse<Pagination<FavoriteMeditationDto>>>()
+    private val instrumentsForFeeling =
+        PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
     private val challenges = PublishSubject.create<List<ChallengeDto>>()
     private val courses = PublishSubject.create<List<CourseDto>>()
 
@@ -110,6 +113,27 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         )
     }
 
+    fun getChallengeDetails(challengeId: Int) {
+        val token = getToken()
+        if (token != null) {
+            disposable.add(
+                mainRepository.getChallengeDetails(token, challengeId)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        if (it.error == null) {
+                            challengeDetails.onNext(it)
+                        } else {
+                            errorsSubject.onNext(it.error)
+                        }
+                    }, {
+                        errorsSubject.onNext(it.message ?: "")
+                    })
+            )
+        } else {
+            // TODO разлогинить
+        }
+    }
+
     fun observeStreamOfLife(): PublishSubject<CommonResponse<Pagination<CollectionDto>>> {
         return streamOfLife
     }
@@ -134,7 +158,16 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         return challenges
     }
 
+    fun observeChallengeDetails(): Observable<CommonResponse<ChallengeDetailsDto>> {
+        return challengeDetails
+    }
+
     fun getToken(): String? {
         return mainRepository.getToken()
+    }
+
+    override fun onCleared() {
+        disposable.dispose()
+        super.onCleared()
     }
 }

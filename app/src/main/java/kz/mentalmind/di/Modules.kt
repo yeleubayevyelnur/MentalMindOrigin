@@ -13,6 +13,7 @@ import kz.mentalmind.ui.create.CreateViewModel
 import kz.mentalmind.ui.instruments.InstrumentsViewModel
 import kz.mentalmind.ui.main.MainViewModel
 import kz.mentalmind.ui.meditations.MeditationsViewModel
+import kz.mentalmind.ui.player.PlayerViewModel
 import kz.mentalmind.ui.profile.ProfileViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -66,7 +67,7 @@ val networkModule = module {
     }
 }
 
-val viewModel = module {
+val viewModelsModule = module {
     viewModel {
         AuthViewModel(authRepository = get())
     }
@@ -84,5 +85,8 @@ val viewModel = module {
     }
     viewModel {
         ProfileViewModel(mainRepository = get())
+    }
+    viewModel {
+        PlayerViewModel(mainRepository = get())
     }
 }

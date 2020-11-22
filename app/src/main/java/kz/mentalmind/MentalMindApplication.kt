@@ -5,7 +5,7 @@ import com.facebook.stetho.Stetho
 import com.pusher.pushnotifications.PushNotifications
 import kz.mentalmind.di.appModule
 import kz.mentalmind.di.networkModule
-import kz.mentalmind.di.viewModel
+import kz.mentalmind.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,7 +25,7 @@ class MentalMindApplication : Application() {
                 listOf(
                     appModule,
                     networkModule,
-                    viewModel
+                    viewModelsModule
                 )
             )
         }
