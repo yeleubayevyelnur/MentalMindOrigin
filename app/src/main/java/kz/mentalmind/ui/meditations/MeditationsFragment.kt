@@ -59,6 +59,7 @@ class MeditationsFragment : Fragment() {
             collectionDetails?.let { collectionDetails ->
                 startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
                     putExtra(Constants.MEDITATION, collectionDetails.meditations.first())
+                    putExtra(Constants.COLLECTION_ID, collectionDetails.id)
                 })
             }
         }

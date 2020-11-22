@@ -1,8 +1,10 @@
 package kz.mentalmind.data.api
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import kz.mentalmind.data.*
+import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
@@ -14,7 +16,7 @@ import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 
 interface ApiService {
-   //USER
+    //USER
 
     @FormUrlEncoded
     @POST("users/register/")
@@ -34,11 +36,19 @@ interface ApiService {
     @POST("users/social_login/")
     fun socialLogin(@Body socialLoginRequest: SocialLoginRequest): Single<LoginResponse>
 
+    //User favorites
+
     @GET("users/me/favorites/")
     fun getFavorites(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<FavoriteMeditationDto>>>
+
+    @POST("users/me/favorites/")
+    fun addToFavorites(
+        @Header("Authorization") language: String,
+        @Body addToFavorites: AddToFavorites
+    ): Completable
 
     @FormUrlEncoded
     @POST("api/v1/history/")

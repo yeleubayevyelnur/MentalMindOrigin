@@ -6,6 +6,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -14,13 +15,16 @@ import com.google.android.exoplayer2.ui.PlayerControlView
 import kotlinx.android.synthetic.main.activity_player.*
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.utils.Constants.COLLECTION_ID
 import kz.mentalmind.utils.Constants.MEDITATION
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlayerActivity : AppCompatActivity() {
     private val backgroundMusicPathFormat = "file:///android_asset/%s"
     private var exoPlayer: SimpleExoPlayer? = null
     private var soundsPlayer: SimpleExoPlayer? = null
     private var playerView: PlayerControlView? = null
+    private val viewModel: PlayerViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +98,12 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             speakerFemale.performClick()
+
+
+            findViewById<AppCompatImageView>(R.id.addToFavorite).setOnClickListener {
+                val collectionId = intent.getIntExtra(COLLECTION_ID, 0)
+                viewModel.addToFavorites(meditationDto.id, collectionId)
+            }
         }
     }
 

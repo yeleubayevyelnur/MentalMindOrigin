@@ -13,6 +13,7 @@ import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDetailsDto
 import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.ui.player.PlayerActivity
+import kz.mentalmind.utils.Constants
 import kz.mentalmind.utils.Constants.MEDITATION
 
 
@@ -37,13 +38,14 @@ class PlayListFragment : BottomSheetDialogFragment() {
         observeViewState(parentFragment)
     }
 
-    fun setData(data: CollectionDetailsDto) {
-        title.text = data.name
-        description.text = data.description
-        val adapter = MeditationsAdapter(data.meditations, object : MeditationClickListener {
+    fun setData(collection: CollectionDetailsDto) {
+        title.text = collection.name
+        description.text = collection.description
+        val adapter = MeditationsAdapter(collection.meditations, object : MeditationClickListener {
             override fun onMeditationClicked(meditation: MeditationDto) {
                 startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
                     putExtra(MEDITATION, meditation)
+                    putExtra(Constants.COLLECTION_ID, collection.id)
                 })
             }
         })
