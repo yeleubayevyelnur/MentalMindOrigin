@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class RegisterData(
     @SerializedName("data")
-    val NewUserInfo: NewUserInfo?,
-    val error: String?
+    val NewUserInfo: User,
+    val error: String? = null
 )
 
 data class NewUserInfo(

@@ -23,6 +23,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 .subscribe({
                     if (it.error == null) {
                         registerSubject.onNext(it)
+                        saveUser(it.NewUserInfo)
                     } else {
                         errorsSubject.onNext(it.error)
                     }

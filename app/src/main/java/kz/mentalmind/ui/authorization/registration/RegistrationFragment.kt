@@ -29,7 +29,17 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         compositeDisposable.add(
+            authViewModel.observeErrorSubject().subscribe {
+                (activity as? AuthActivity)?.alertDialog(requireContext(), it)
+            }
+        )
+        compositeDisposable.add(
             authViewModel.observeRegisterSubject().subscribe {
+                if (it.error.isNullOrEmpty()){
+                    successDialog()
+                } else {
+                    (activity as? AuthActivity)?.alertDialog(requireContext(), it.error)
+                }
             }
         )
         btnNext.setOnClickListener {
@@ -68,8 +78,7 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun successPassCheck() {
-        authViewModel.register(email.text.toString(), repPassword.text.toString(), "kk-KZ")
-        successDialog()
+        authViewModel.register(email.text.toString(), repPassword.text.toString(), "ru")
     }
 
     private fun successDialog() {
