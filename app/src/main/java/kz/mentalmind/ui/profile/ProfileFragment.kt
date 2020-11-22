@@ -1,6 +1,7 @@
 package kz.mentalmind.ui.profile
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +20,7 @@ import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.profile.settings.*
+import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -94,7 +96,10 @@ class ProfileFragment : Fragment() {
             }
         }
         switchNotify.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) (activity as? MainActivity)?.replaceFragment(MeditationNotifyFragment(), MeditationNotifyFragment::class.simpleName)
+            if (isChecked) (activity as? MainActivity)?.replaceFragment(
+                MeditationNotifyFragment(),
+                MeditationNotifyFragment::class.simpleName
+            )
         }
         val calendar = Calendar.getInstance()
         calendarView.maxDate = calendar.timeInMillis
@@ -108,8 +113,15 @@ class ProfileFragment : Fragment() {
 
         btnShow.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
-                HistoryFragment.newInstance(calendarDate),
-                HistoryFragment::class.simpleName
+                HistoryFragment.newInstance(
+                    calendarDate
+                ), HistoryFragment::class.simpleName
+            )
+        }
+        btnBuy.setOnClickListener {
+            (activity as? MainActivity)?.replaceFragment(
+                TrialFragment(),
+                TrialFragment::class.simpleName
             )
         }
     }
@@ -156,7 +168,13 @@ class ProfileFragment : Fragment() {
             })
     }
 
-    companion object {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as? MainActivity)?.showBottomNavigation()
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        (activity as? MainActivity)?.hideBottomNavigation()
     }
 }

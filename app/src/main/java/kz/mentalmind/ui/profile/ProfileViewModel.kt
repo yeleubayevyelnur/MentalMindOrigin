@@ -44,6 +44,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
                     if (it.error == null) {
                         levelsSubject.onNext(it)
                     } else {
+                        errorsSubject.onNext(it.error)
                     }
                 }, {
 

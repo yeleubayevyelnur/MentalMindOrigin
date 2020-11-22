@@ -1,5 +1,6 @@
 package kz.mentalmind.ui.profile.settings
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -82,13 +83,13 @@ class HelpFragment : Fragment() {
         dialog.show()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         (activity as? MainActivity)?.hideBottomNavigation()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDetach() {
+        super.onDetach()
         (activity as? MainActivity)?.showBottomNavigation()
     }
 

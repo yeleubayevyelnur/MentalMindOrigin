@@ -4,6 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.LoginResponse
