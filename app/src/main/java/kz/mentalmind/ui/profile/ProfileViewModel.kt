@@ -69,11 +69,8 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
         disposable.add(
             mainRepository.getHistory(token, date).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (it.error == null) {
-                        historySubject.onNext(it)
-                    } else {
-                        errorsSubject.onNext(it.error)
-                    }
+                    if (it.meditationData.results.isNotEmpty()) historySubject.onNext(it)
+                    else errorsSubject.onNext("История пуста")
                 }, {
                 })
         )

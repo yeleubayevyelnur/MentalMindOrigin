@@ -12,7 +12,6 @@ data class MeditationData(
     val count: Int,
     val next: String?,
     val previous: String?,
-    @SerializedName("result")
     val results: ArrayList<MeditationResult>
 )
 

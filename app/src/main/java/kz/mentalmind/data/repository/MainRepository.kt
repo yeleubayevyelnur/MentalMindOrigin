@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.dto.*

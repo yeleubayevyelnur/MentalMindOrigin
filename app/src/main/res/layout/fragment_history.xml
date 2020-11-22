@@ -19,10 +19,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
-                android:layout_marginTop="32dp"
                 android:src="@drawable/ic_back_black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@id/title"
+                app:layout_constraintBottom_toBottomOf="@id/title"
+                app:layout_constraintTop_toTopOf="@id/title" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
@@ -46,4 +47,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmptyHistory"
+            style="@style/RegularTextSize20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty_history"
+            android:visibility="gone" />
 </FrameLayout>

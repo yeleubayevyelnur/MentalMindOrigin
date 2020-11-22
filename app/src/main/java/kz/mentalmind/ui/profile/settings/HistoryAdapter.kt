@@ -11,8 +11,8 @@ import kz.mentalmind.data.MeditationResult
 class HistoryAdapter(private val history: ArrayList<MeditationResult>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
-        return ViewHolder(v)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
