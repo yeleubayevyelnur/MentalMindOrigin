@@ -1,12 +1,10 @@
 package kz.mentalmind.data.entrance
 
-import com.google.gson.annotations.SerializedName
 import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.data.dto.Pagination
 
 data class LoginResponse(
-    @SerializedName("data")
-    val loginData: LoginData,
+    val data: LoginData,
     val error: String?
 )
 

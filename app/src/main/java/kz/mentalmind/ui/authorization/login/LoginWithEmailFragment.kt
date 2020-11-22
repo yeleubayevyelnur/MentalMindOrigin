@@ -35,9 +35,9 @@ class LoginWithEmailFragment : Fragment() {
         compositeDisposable.add(
             authViewModel.observeLoginSubject().subscribe({
                 if (it.error == null) {
-                    authViewModel.saveUser(requireContext(), it.loginData.user)
-                    authViewModel.saveToken(requireContext(), it.loginData.access_token)
-                    PushNotifications.addDeviceInterest(it.loginData.user.email)
+                    authViewModel.saveUser(it.data.user)
+                    authViewModel.saveToken(it.data.access_token)
+                    PushNotifications.addDeviceInterest(it.data.user.email)
                     (activity as? AuthActivity)?.openMainActivity()
                 } else {
                     authViewModel.observeErrorSubject().subscribe { error ->

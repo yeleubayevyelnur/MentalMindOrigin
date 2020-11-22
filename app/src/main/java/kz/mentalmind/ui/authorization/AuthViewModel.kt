@@ -14,7 +14,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
     private val registerSubject = PublishSubject.create<RegisterData>()
-    private val loginSubject = PublishSubject.create<LoginResponse>()
+    private val loginSubject = PublishSubject.create<LoginData>()
     private val passwordRecoverySubject = PublishSubject.create<PassRecoveryData>()
 
     fun register(email: String, password: String, language: String) {
@@ -39,7 +39,9 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
-                        loginSubject.onNext(it)
+                        saveUser(it.data.user)
+                        saveToken(it.data.access_token)
+                        loginSubject.onNext(it.data)
                     } else {
                         errorsSubject.onNext(it.error)
                     }
@@ -55,7 +57,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it.error == null) {
-                        loginSubject.onNext(it)
+                        loginSubject.onNext(it.data)
                     } else {
                         errorsSubject.onNext(it.error)
                     }
@@ -77,10 +79,6 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         )
     }
 
-    fun loginWithGoogle(token: String) {
-
-    }
-
     fun observePassRecoverySubject(): PublishSubject<PassRecoveryData> {
         return passwordRecoverySubject
     }
@@ -89,15 +87,15 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         return registerSubject
     }
 
-    fun observeLoginSubject(): Observable<LoginResponse> {
+    fun observeLoginSubject(): Observable<LoginData> {
         return loginSubject
     }
 
-    fun saveUser(context: Context, user: User) {
+    private fun saveUser(user: User) {
         authRepository.saveUser(user)
     }
 
-    fun saveToken(context: Context, accessToken: String) {
+    private fun saveToken(accessToken: String) {
         authRepository.saveToken(accessToken)
     }
 
