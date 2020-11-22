@@ -7,23 +7,28 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.pusher.pushnotifications.PushNotifications
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.login.LoginFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AuthActivity : AppCompatActivity() {
     private var loginFragment: LoginFragment? = null
+    private val authViewModel: AuthViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
-        loginFragment = LoginFragment()
-        loginFragment?.let {
-            replaceFragment(it)
+        if (authViewModel.getUser() != null) {
+            openMainActivity()
+        } else {
+            setContentView(R.layout.activity_auth)
+            loginFragment = LoginFragment()
+            loginFragment?.let {
+                replaceFragment(it)
+            }
         }
     }
 

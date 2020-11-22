@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.authorization
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
@@ -101,11 +100,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         authRepository.saveToken(accessToken)
     }
 
-    fun getToken(context: Context): String? {
-        return authRepository.getToken()
-    }
-
-    fun getUser(context: Context): User? {
+    fun getUser(): User? {
         return authRepository.getUser()
     }
 

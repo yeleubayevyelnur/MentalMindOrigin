@@ -1,10 +1,10 @@
 package kz.mentalmind.ui.authorization.resetPass
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_pass_reset.*
 import kz.mentalmind.R
@@ -29,8 +29,12 @@ class PassResetFragment : Fragment() {
         (activity as? AuthActivity)?.supportActionBar?.title = "Восстановление пароля"
         compositeDisposable.add(
             authViewModel.observePassRecoverySubject().subscribe {
-                if (it.success){
-                    (activity as? AuthActivity)?.successDialog(requireContext(), "Отлично", "Письмо успешно отправлено, проверьте Ваш почтовый ящик")
+                if (it.success) {
+                    (activity as? AuthActivity)?.successDialog(
+                        requireContext(),
+                        "Отлично",
+                        "Письмо успешно отправлено, проверьте Ваш почтовый ящик"
+                    )
                 }
             }
         )
@@ -40,9 +44,5 @@ class PassResetFragment : Fragment() {
         btnBack.setOnClickListener {
             (activity as? AuthActivity)?.onBackPressed()
         }
-    }
-
-    companion object {
-
     }
 }
