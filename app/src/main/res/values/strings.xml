@@ -20,6 +20,7 @@
     <string name="menu_instruments">Инструменты</string>
     <string name="menu_create">Созидай</string>
     <string name="menu_profile">Профиль</string>
+    <string name="affirmations">Аффирмации</string>
 
     <string name="enter_with_email">Войти с помощью Email</string>
     <string name="enter_with_google">Войти с помощью Google</string>

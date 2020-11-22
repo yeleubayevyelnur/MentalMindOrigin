@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_instruments.*
+import kotlinx.android.synthetic.main.fragment_create.*
+import kotlinx.android.synthetic.main.fragment_instruments.instruments
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.data.dto.Affirmation
 import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.KeyValuePairDto
 import kz.mentalmind.ui.main.instruments.InstrumentClickListener
@@ -32,7 +34,7 @@ class CreateFragment : Fragment() {
         compositeDisposable.add(viewModel.observeCollectionTypesSubject().subscribe({
             types.addAll(it.results.subList(1, it.results.size))
             for (i in 1 until it.results.size) {
-                viewModel.getCollectionsByTypes(requireContext(), it.results[i].id)
+                viewModel.getCollectionsByTypes(it.results[i].id)
             }
         }, {
 
@@ -60,7 +62,20 @@ class CreateFragment : Fragment() {
             }
         }, {}))
 
-        viewModel.getCollectionTypes(requireContext())
+        compositeDisposable.add(viewModel.observeAffirmations().subscribe({
+            rvAffirmations.adapter =
+                AffirmationsAdapter(it.results, object : AffirmationClickListener {
+                    override fun onAffirmationClicked(affirmation: Affirmation) {
+                        (activity as MainActivity).replaceFragment(
+                            AffirmationFragment.newInstance(affirmation),
+                            AffirmationFragment::class.simpleName
+                        )
+                    }
+                })
+        }, {}))
+
+        viewModel.getCollectionTypes()
+        viewModel.getAffirmations()
         return view
     }
 

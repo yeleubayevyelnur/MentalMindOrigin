@@ -1,20 +1,21 @@
 package kz.mentalmind.ui.create
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
+import kz.mentalmind.data.dto.Affirmation
+import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.KeyValuePairDto
 import kz.mentalmind.data.dto.Pagination
-import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.repository.MainRepository
 
 class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val collectionTypes = PublishSubject.create<Pagination<KeyValuePairDto>>()
     private val instruments = PublishSubject.create<Pair<Int, Pagination<CollectionDto>>>()
+    private val affirmations = PublishSubject.create<Pagination<Affirmation>>()
     private val errorsSubject = PublishSubject.create<String>()
 
-    fun getCollectionTypes(context: Context) {
+    fun getCollectionTypes() {
         getToken()?.let {
             mainRepository.getCollectionsTypes(it)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -33,7 +34,7 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
         }
     }
 
-    fun getCollectionsByTypes(context: Context, type: Int) {
+    fun getCollectionsByTypes(type: Int) {
         getToken()?.let {
             mainRepository.getCollectionsByTypes(it, type)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,6 +50,28 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
                     errorsSubject.onNext(it.message ?: "")
                 })
         }
+    }
+
+    fun getAffirmations() {
+        getToken()?.let {
+            mainRepository.getAffirmations(it)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ response ->
+                    if (response.error == null) {
+                        if (response.data != null) {
+                            affirmations.onNext(response.data)
+                        }
+                    } else {
+                        errorsSubject.onNext(response.error)
+                    }
+                }, {
+                    errorsSubject.onNext(it.message ?: "")
+                })
+        }
+    }
+
+    fun observeAffirmations(): PublishSubject<Pagination<Affirmation>> {
+        return affirmations
     }
 
     fun observeCollectionTypesSubject(): PublishSubject<Pagination<KeyValuePairDto>> {

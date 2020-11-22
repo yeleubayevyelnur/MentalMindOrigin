@@ -134,4 +134,8 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun getAffirmations(token: String): Single<CommonResponse<Pagination<Affirmation>>> {
+        return apiService.getAffirmations("ru", "Token $token")
+            .subscribeOn(Schedulers.io())
+    }
 }

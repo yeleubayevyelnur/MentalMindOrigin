@@ -82,17 +82,11 @@ interface ApiService {
     @GET("api/v1/history/")
     fun getHistory()
 
-
-    /** Работа с ресурсами */
     @GET("api/v1/affirmations/")
-    fun getAffirmation(
-        @Field("id") id: Int? = null
-    )
-
-    @GET("api/v1/meditations/")
-    fun getMeditations(
-        @Field("id") id: Int? = null
-    )
+    fun getAffirmations(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
+    ): Single<CommonResponse<Pagination<Affirmation>>>
 
     @GET("api/v1/tags/")
     fun getTags(
