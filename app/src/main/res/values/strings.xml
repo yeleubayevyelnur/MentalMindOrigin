@@ -137,4 +137,13 @@
     <string name="st_description">+ 1 месяц доступа в\n подарок</string>
     <string name="st_secondary_description">Доступ ко всем\n медитациям\n на целый год</string>
     <string name="st_duration">1 год + 1 месяц</string>
+
+    //Weekend days
+    <string name="Monday">Понедельник</string>
+    <string name="Tuesday">Вторник</string>
+    <string name="Wednesday">Среда</string>
+    <string name="Thursday">Четверг</string>
+    <string name="Friday">Пятница</string>
+    <string name="Saturday">Суббота</string>
+    <string name="Sunday">Воскресенье</string>
 </resources>
