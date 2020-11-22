@@ -15,9 +15,16 @@ import kz.mentalmind.R
 import kz.mentalmind.data.dto.ChallengeDto
 import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.CourseDto
+import kz.mentalmind.data.dto.FavoriteMeditationDto
 import kz.mentalmind.ui.main.challenges.ChallengeClickListener
 import kz.mentalmind.ui.main.challenges.ChallengesAdapter
+import kz.mentalmind.ui.main.courses.CourseClickListener
+import kz.mentalmind.ui.main.courses.CoursesAdapter
+import kz.mentalmind.ui.main.favorites.FavoriteClickListener
+import kz.mentalmind.ui.main.favorites.FavoritesAdapter
 import kz.mentalmind.ui.main.feelings.FeelingsActivity
+import kz.mentalmind.ui.main.instruments.InstrumentClickListener
+import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,6 +48,7 @@ class MainFragment : Fragment() {
             viewModel.getStreamOfLife(it)
             viewModel.getCourses(it)
             viewModel.getChallenges(it)
+            viewModel.getFavorites(it)
         }
         getCollectionsByFeeling()
 
@@ -139,6 +147,31 @@ class MainFragment : Fragment() {
             )
             tvOnlineEducationTitle.visibility = View.VISIBLE
             rvOnlineEducation.visibility = View.VISIBLE
+        }, {}))
+
+        compositeDisposable.add(viewModel.observeFavorites().subscribe({
+            val collections = it.data?.results
+            when {
+                collections.isNullOrEmpty() -> {
+                    rvFavorites.visibility = View.GONE
+                    tvFavorites.visibility = View.GONE
+                }
+                else -> {
+                    rvFavorites.adapter = FavoritesAdapter(
+                        collections,
+                        object : FavoriteClickListener {
+                            override fun onFavoriteClicked(meditation: FavoriteMeditationDto) {
+                                (activity as MainActivity).replaceFragment(
+                                    MeditationsFragment.newInstance(meditation.collection_id),
+                                    MeditationsFragment::class.simpleName
+                                )
+                            }
+                        }
+                    )
+                    rvFavorites.visibility = View.VISIBLE
+                    tvFavorites.visibility = View.VISIBLE
+                }
+            }
         }, {}))
     }
 

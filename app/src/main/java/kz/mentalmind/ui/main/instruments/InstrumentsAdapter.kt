@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.main.instruments
 
 import android.view.LayoutInflater
 import android.view.View

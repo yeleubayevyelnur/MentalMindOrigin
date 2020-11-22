@@ -14,7 +14,8 @@ import kz.mentalmind.data.profile.ProfileResponse
 import retrofit2.http.*
 
 interface ApiService {
-    /** Регистрация и Логин пользователя */
+   //USER
+
     @FormUrlEncoded
     @POST("users/register/")
     fun register(
@@ -32,10 +33,6 @@ interface ApiService {
 
     @POST("users/social_login/")
     fun socialLogin(@Body socialLoginRequest: SocialLoginRequest): Single<LoginResponse>
-
-    @FormUrlEncoded
-    @POST("users/refresh_token/")
-    fun refreshToken()
 
     @GET("users/me/favorites/")
     fun getFavorites(

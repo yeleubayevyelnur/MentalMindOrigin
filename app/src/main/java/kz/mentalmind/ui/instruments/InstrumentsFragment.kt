@@ -11,8 +11,8 @@ import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.CollectionDto
 import kz.mentalmind.data.dto.KeyValuePairDto
-import kz.mentalmind.ui.main.InstrumentClickListener
-import kz.mentalmind.ui.main.InstrumentsAdapter
+import kz.mentalmind.ui.main.instruments.InstrumentClickListener
+import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.main.MainAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -5,7 +5,8 @@ import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import kz.mentalmind.data.*
+import kz.mentalmind.data.HelpResponse
+import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.dto.*
 import kz.mentalmind.data.entrance.User
@@ -112,6 +113,11 @@ class MainRepository(
 
     fun saveFeeling(id: Int) {
         sPrefs.edit().putInt(Constants.FEELING, id).apply()
+    }
+
+    fun getFavorites(token: String): Single<CommonResponse<Pagination<FavoriteMeditationDto>>> {
+        return apiService.getFavorites("ru", "Token $token")
+            .subscribeOn(Schedulers.io())
     }
 
 }
