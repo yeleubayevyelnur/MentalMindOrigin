@@ -36,7 +36,10 @@ interface ApiService {
     ): Observable<LoginResponse>
 
     @POST("users/social_login/")
-    fun socialLogin(@Body socialLoginRequest: SocialLoginRequest): Single<LoginResponse>
+    fun socialLogin(
+        @Header("Accept-Language") language: String,
+        @Body socialLoginRequest: SocialLoginRequest
+    ): Single<LoginResponse>
 
     //User favorites
 
@@ -201,5 +204,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body rateMeditation: RateMeditationDto
     ): Completable
+
+    //tariffs
+    @GET("api/v1/payments/tariffs/")
+    fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponseDto>>
 
 }

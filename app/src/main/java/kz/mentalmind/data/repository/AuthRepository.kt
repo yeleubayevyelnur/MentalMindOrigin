@@ -30,7 +30,7 @@ class AuthRepository(
     }
 
     fun socialLogin(socialInfo: SocialInfo): Single<LoginResponse> {
-        return apiService.socialLogin(SocialLoginRequest(socialInfo))
+        return apiService.socialLogin("ru", SocialLoginRequest(socialInfo))
             .subscribeOn(Schedulers.io())
     }
 
