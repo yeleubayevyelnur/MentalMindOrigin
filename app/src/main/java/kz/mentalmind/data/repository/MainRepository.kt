@@ -162,4 +162,8 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    fun getTariffs(token: String): Single<CommonResponse<TariffsResponseDto>> {
+        return apiService.getTariffs("Token $token")
+            .subscribeOn(Schedulers.io())
+    }
 }

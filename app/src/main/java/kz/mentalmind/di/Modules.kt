@@ -15,6 +15,7 @@ import kz.mentalmind.ui.main.MainViewModel
 import kz.mentalmind.ui.meditations.MeditationsViewModel
 import kz.mentalmind.ui.player.PlayerViewModel
 import kz.mentalmind.ui.profile.ProfileViewModel
+import kz.mentalmind.ui.purchase.TariffsViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -88,5 +89,8 @@ val viewModelsModule = module {
     }
     viewModel {
         PlayerViewModel(mainRepository = get())
+    }
+    viewModel {
+        TariffsViewModel(mainRepository = get())
     }
 }

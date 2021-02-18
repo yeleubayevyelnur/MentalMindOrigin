@@ -25,7 +25,7 @@ class TrialFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_tariffs, container, false)
+        return inflater.inflate(R.layout.fragment_trial, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,8 +58,8 @@ class TrialFragment : Fragment() {
             floatArrayOf(0F, 1F),
             Shader.TileMode.CLAMP
         )
-        btnSub1.paint.shader = textShader1
-        btnSub2.paint.shader = textShader2
+//        btnSub1.paint.shader = textShader1
+//        btnSub2.paint.shader = textShader2
     }
 
     override fun onAttach(context: Context) {

@@ -20,6 +20,7 @@ import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.profile.settings.*
+import kz.mentalmind.ui.purchase.TariffsFragment
 import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -120,8 +121,8 @@ class ProfileFragment : Fragment() {
         }
         btnBuy.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
-                TrialFragment(),
-                TrialFragment::class.simpleName
+                TariffsFragment(),
+                TariffsFragment::class.simpleName
             )
         }
     }

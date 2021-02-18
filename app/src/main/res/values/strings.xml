@@ -112,8 +112,8 @@
     <string name="txt_pass_reset">Восстановление пароля</string>
     <string name="trial_version_title">Попробуй 3 дня бесплатно</string>
     <string name="trial_first_condition">Бесплатная пробная версия</string>
-    <string name="trial_second_condition">Неограниченный доступ к более, чем 200+ инструментам для вашего развития и роста</string>
-    <string name="trial_third_condition">Система ежедневного встраивания сверхчеловеческой продуктивности</string>
+    <string name="trial_second_condition">Неограниченный доступ ко всем инструментам на выбранный период для вашего развития и роста</string>
+    <string name="trial_third_condition">Ежедневные рекомендации для повышения уровня жизни и благосостоянияЕжедневные рекомендации для повышения уровня жизни и благосостояния</string>
     <string name="try_now">Попробовать</string>
     <string name="privacy_policy"><u>Политика конфеденциальности</u></string>
     <string name="unblock_title">Разблокируй безграничные возможности себя и приложения Mentalmind</string>
@@ -132,7 +132,7 @@
     <string name="ft_description">Доступ ко всем\n медитациям\n на целый месяц</string>
     <string name="ft_secondary_description">Новые аффирмации\n каждый день</string>
     <string name="ft_duration">1 месяц</string>
-    <string name="subscribe">Подписаться</string>
+    <string name="buy">Купить</string>
     <string name="st_cost">33 216 ₸</string>
     <string name="st_description">+ 1 месяц доступа в\n подарок</string>
     <string name="st_secondary_description">Доступ ко всем\n медитациям\n на целый год</string>

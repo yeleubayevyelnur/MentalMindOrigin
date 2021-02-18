@@ -111,6 +111,10 @@ class MainActivity : AppCompatActivity() {
         loadingDialog.hideLoading()
     }
 
+    fun logout() {
+
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

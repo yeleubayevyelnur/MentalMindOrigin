@@ -1,5 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/purchase_background"
@@ -11,8 +12,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/close"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="62dp"
             android:src="@drawable/ic_back_transparent"
@@ -29,208 +30,32 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/unblock_title"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/close" />
 
-        <LinearLayout
-            android:id="@+id/llTariffContainer"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tariffs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="8dp"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintTop_toBottomOf="@id/trialVersionTitle">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/first_tariff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:background="@drawable/ic_first_tariff_background"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/monthSum1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/ft_cost"
-                        android:textColor="@color/white"
-                        android:textSize="28sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tariffDesc1"
-                        style="@style/TariffDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="38dp"
-                        android:gravity="center"
-                        android:lines="3"
-                        android:text="@string/ft_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/monthSum1" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tariffSecondaryDesc1"
-                        style="@style/TariffDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        android:lines="3"
-                        android:text="@string/ft_secondary_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tariffDesc1" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/duration1"
-                        style="@style/TariffDuration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="32dp"
-                        android:gravity="center"
-                        android:text="@string/ft_duration"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnSub1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="280dp"
-                    android:background="@drawable/subscribe_bg"
-                    android:gravity="center"
-                    android:paddingStart="26dp"
-                    android:paddingTop="14dp"
-                    android:paddingEnd="26dp"
-                    android:paddingBottom="11dp"
-                    android:text="@string/subscribe"
-                    android:textSize="9sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/second_tariff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="33dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:background="@drawable/ic_second_tariff_background"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/monthSum2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/st_cost"
-                        android:textColor="@color/white"
-                        android:textSize="28sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tariffDesc2"
-                        style="@style/TariffDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="38dp"
-                        android:gravity="center"
-                        android:lines="3"
-                        android:text="@string/st_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/monthSum2" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tariffSecondaryDesc2"
-                        style="@style/TariffDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        android:lines="3"
-                        android:text="@string/st_secondary_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tariffDesc2" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/duration2"
-                        style="@style/TariffDuration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="32dp"
-                        android:gravity="center"
-                        android:text="@string/st_duration"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnSub2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="280dp"
-                    android:background="@drawable/subscribe_bg"
-                    android:gravity="center"
-                    android:paddingStart="26dp"
-                    android:paddingTop="14dp"
-                    android:paddingEnd="26dp"
-                    android:paddingBottom="11dp"
-                    android:text="@string/subscribe"
-                    android:textSize="9sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trialVersionTitle"
+            tools:listitem="@layout/item_tariff" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/firstCondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_checked"
             android:drawablePadding="13dp"
@@ -240,14 +65,14 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llTariffContainer" />
+            app:layout_constraintTop_toBottomOf="@id/tariffs" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/secondCondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="26dp"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_checked"
             android:drawablePadding="13dp"
@@ -256,6 +81,7 @@
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/firstCondition" />
 
