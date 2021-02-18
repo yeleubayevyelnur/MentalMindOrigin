@@ -11,8 +11,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_play_list.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.CollectionDetailsDto
-import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.data.dto.CollectionDetails
+import kz.mentalmind.data.dto.Meditation
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
@@ -40,11 +40,11 @@ class PlayListFragment : BottomSheetDialogFragment() {
         observeViewState(parentFragment)
     }
 
-    fun setData(collection: CollectionDetailsDto) {
+    fun setData(collection: CollectionDetails) {
         title.text = collection.name
         description.text = collection.description
         val adapter = MeditationsAdapter(collection.meditations, object : MeditationClickListener {
-            override fun onMeditationClicked(meditation: MeditationDto) {
+            override fun onMeditationClicked(meditation: Meditation) {
                 if (isMeditationAvailable(meditation)) {
                     startActivity(Intent(requireActivity(), PlayerActivity::class.java).apply {
                         putExtra(MEDITATION, meditation)
@@ -61,7 +61,7 @@ class PlayListFragment : BottomSheetDialogFragment() {
         meditations.adapter = adapter
     }
 
-    private fun isMeditationAvailable(meditation: MeditationDto) =
+    private fun isMeditationAvailable(meditation: Meditation) =
         !meditation.file_female_voice.isNullOrEmpty() || !meditation.file_male_voice.isNullOrEmpty()
 
     private fun observeViewState(parentFragment: Fragment?) {

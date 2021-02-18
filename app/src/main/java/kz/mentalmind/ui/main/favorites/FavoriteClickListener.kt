@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main.favorites
 
-import kz.mentalmind.data.dto.FavoriteMeditationDto
+import kz.mentalmind.data.dto.FavoriteMeditation
 
 interface FavoriteClickListener {
-    fun onFavoriteClicked(meditation: FavoriteMeditationDto)
+    fun onFavoriteClicked(meditation: FavoriteMeditation)
 }

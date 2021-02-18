@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.utils.dpToPixelInt
 
 class InstrumentsAdapter(
-    private var instruments: List<CollectionDto>,
+    private var instruments: List<Collection>,
     private val clickListener: InstrumentClickListener
 ) :
     RecyclerView.Adapter<InstrumentsAdapter.ViewHolder>() {

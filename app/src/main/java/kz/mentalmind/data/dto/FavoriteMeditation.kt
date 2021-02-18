@@ -1,6 +1,6 @@
 package kz.mentalmind.data.dto
 
-data class FavoriteMeditationDto(
+data class FavoriteMeditation(
     val meditation_id: Int,
     val meditation_name: String,
     val meditation_description: String,

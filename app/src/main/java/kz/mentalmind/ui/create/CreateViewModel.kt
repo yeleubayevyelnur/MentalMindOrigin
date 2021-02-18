@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.dto.Affirmation
-import kz.mentalmind.data.dto.CollectionDto
-import kz.mentalmind.data.dto.KeyValuePairDto
+import kz.mentalmind.data.dto.Collection
+import kz.mentalmind.data.dto.KeyValuePair
 import kz.mentalmind.data.dto.Pagination
 import kz.mentalmind.data.repository.MainRepository
 
 class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() {
-    private val collectionTypes = PublishSubject.create<Pagination<KeyValuePairDto>>()
-    private val instruments = PublishSubject.create<Pair<Int, Pagination<CollectionDto>>>()
+    private val collectionTypes = PublishSubject.create<Pagination<KeyValuePair>>()
+    private val instruments = PublishSubject.create<Pair<Int, Pagination<Collection>>>()
     private val affirmations = PublishSubject.create<Pagination<Affirmation>>()
     private val errorsSubject = PublishSubject.create<String>()
 
@@ -74,11 +74,11 @@ class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() 
         return affirmations
     }
 
-    fun observeCollectionTypesSubject(): PublishSubject<Pagination<KeyValuePairDto>> {
+    fun observeCollectionTypesSubject(): PublishSubject<Pagination<KeyValuePair>> {
         return collectionTypes
     }
 
-    fun observeInstruments(): PublishSubject<Pair<Int, Pagination<CollectionDto>>> {
+    fun observeInstruments(): PublishSubject<Pair<Int, Pagination<Collection>>> {
         return instruments
     }
 

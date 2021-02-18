@@ -7,5 +7,5 @@ data class ChallengeDetailsDto(
     val file_image: String,
     val date_begin: String,
     val date_end: String,
-    val collections: List<CollectionDto>
+    val collections: List<Collection>
 )

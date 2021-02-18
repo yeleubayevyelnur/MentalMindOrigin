@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.dto.KeyValuePairDto
+import kz.mentalmind.data.dto.KeyValuePair
 import kz.mentalmind.data.dto.Pagination
-import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.repository.MainRepository
 
 class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewModel() {
-    private val tagsSubject = PublishSubject.create<Pagination<KeyValuePairDto>>()
-    private val instruments = PublishSubject.create<Pair<Int, Pagination<CollectionDto>>>()
+    private val tagsSubject = PublishSubject.create<Pagination<KeyValuePair>>()
+    private val instruments = PublishSubject.create<Pair<Int, Pagination<Collection>>>()
     private val errorsSubject = PublishSubject.create<String>()
 
     fun getTags(context: Context) {
@@ -48,11 +48,11 @@ class InstrumentsViewModel(private val mainRepository: MainRepository) : ViewMod
         }
     }
 
-    fun observeTagsSubject(): PublishSubject<Pagination<KeyValuePairDto>> {
+    fun observeTagsSubject(): PublishSubject<Pagination<KeyValuePair>> {
         return tagsSubject
     }
 
-    fun observeInstruments(): PublishSubject<Pair<Int, Pagination<CollectionDto>>> {
+    fun observeInstruments(): PublishSubject<Pair<Int, Pagination<Collection>>> {
         return instruments
     }
 

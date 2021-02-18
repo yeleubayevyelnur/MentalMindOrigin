@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_player.back
 import kotlinx.android.synthetic.main.fragment_meditations.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.CollectionDetailsDto
+import kz.mentalmind.data.dto.CollectionDetails
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.utils.Constants
 import kz.mentalmind.utils.Constants.ID
@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MeditationsFragment : Fragment() {
     private val meditationsViewModel: MeditationsViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
-    private var collectionDetails: CollectionDetailsDto? = null
+    private var collectionDetails: CollectionDetails? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

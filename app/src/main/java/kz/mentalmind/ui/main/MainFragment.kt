@@ -12,10 +12,10 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.ChallengeDto
-import kz.mentalmind.data.dto.CollectionDto
-import kz.mentalmind.data.dto.CourseDto
-import kz.mentalmind.data.dto.FavoriteMeditationDto
+import kz.mentalmind.data.dto.Challenge
+import kz.mentalmind.data.dto.Collection
+import kz.mentalmind.data.dto.Course
+import kz.mentalmind.data.dto.FavoriteMeditation
 import kz.mentalmind.ui.main.challenges.ChallengeClickListener
 import kz.mentalmind.ui.main.challenges.ChallengeInstrumentsFragment
 import kz.mentalmind.ui.main.challenges.ChallengesAdapter
@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
                     rvStreamOfLife.adapter = InstrumentsAdapter(
                         collections,
                         object : InstrumentClickListener {
-                            override fun onInstrumentClicked(meditation: CollectionDto) {
+                            override fun onInstrumentClicked(meditation: Collection) {
                                 (activity as MainActivity).replaceFragment(
                                     MeditationsFragment.newInstance(meditation.id),
                                     MeditationsFragment::class.simpleName
@@ -94,7 +94,7 @@ class MainFragment : Fragment() {
                         rvRecommended.adapter = InstrumentsAdapter(
                             collections,
                             object : InstrumentClickListener {
-                                override fun onInstrumentClicked(meditation: CollectionDto) {
+                                override fun onInstrumentClicked(meditation: Collection) {
                                     (activity as MainActivity).replaceFragment(
                                         MeditationsFragment.newInstance(meditation.id),
                                         MeditationsFragment::class.simpleName
@@ -125,7 +125,7 @@ class MainFragment : Fragment() {
                     challengesBottomDivider.visibility = View.GONE
                 } else {
                     rvChallenges.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
-                        override fun onChallengeClicked(challenge: ChallengeDto) {
+                        override fun onChallengeClicked(challenge: Challenge) {
                             (activity as? MainActivity)?.replaceFragment(
                                 ChallengeInstrumentsFragment.newInstance(challenge.id),
                                 ChallengeInstrumentsFragment::class.simpleName
@@ -149,7 +149,7 @@ class MainFragment : Fragment() {
             rvOnlineEducation.adapter = CoursesAdapter(
                 it,
                 object : CourseClickListener {
-                    override fun onCourseClicked(course: CourseDto) {
+                    override fun onCourseClicked(course: Course) {
                         val i = Intent(Intent.ACTION_VIEW)
                         i.data = Uri.parse(course.url)
                         startActivity(i)
@@ -171,7 +171,7 @@ class MainFragment : Fragment() {
                     rvFavorites.adapter = FavoritesAdapter(
                         collections,
                         object : FavoriteClickListener {
-                            override fun onFavoriteClicked(meditation: FavoriteMeditationDto) {
+                            override fun onFavoriteClicked(meditation: FavoriteMeditation) {
                                 (activity as MainActivity).replaceFragment(
                                     MeditationsFragment.newInstance(meditation.collection_id),
                                     MeditationsFragment::class.simpleName

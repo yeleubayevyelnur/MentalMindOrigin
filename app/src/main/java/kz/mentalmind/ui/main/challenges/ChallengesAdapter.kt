@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.ChallengeDto
+import kz.mentalmind.data.dto.Challenge
 import kz.mentalmind.utils.dpToPixelInt
 
 class ChallengesAdapter(
-    private val challenges: List<ChallengeDto>,
+    private val challenges: List<Challenge>,
     private val clickListener: ChallengeClickListener
 ) :
     RecyclerView.Adapter<ChallengesAdapter.ViewHolder>() {

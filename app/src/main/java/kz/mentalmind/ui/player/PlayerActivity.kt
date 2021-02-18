@@ -15,7 +15,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerControlView
 import kotlinx.android.synthetic.main.activity_player.*
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.data.dto.Meditation
 import kz.mentalmind.utils.Constants.COLLECTION_ID
 import kz.mentalmind.utils.Constants.MEDITATION
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,7 +30,7 @@ class PlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
-        val meditation: MeditationDto? = intent?.getParcelableExtra(MEDITATION)
+        val meditation: Meditation? = intent?.getParcelableExtra(MEDITATION)
         meditation?.let { meditationDto ->
             initializePlayer()
             initView(meditationDto)
@@ -40,9 +40,9 @@ class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun initView(meditationDto: MeditationDto) {
-        findViewById<AppCompatTextView>(R.id.title).text = meditationDto.name
-        findViewById<AppCompatTextView>(R.id.description).text = meditationDto.description
+    private fun initView(meditation: Meditation) {
+        findViewById<AppCompatTextView>(R.id.title).text = meditation.name
+        findViewById<AppCompatTextView>(R.id.description).text = meditation.description
         backgroundMusic.setOnClickListener {
             settingsView.visibility = View.VISIBLE
         }
@@ -64,7 +64,7 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-            viewModel.setRating(meditationDto.id, rating.toInt())
+            viewModel.setRating(meditation.id, rating.toInt())
         }
 
         volumeBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -99,26 +99,26 @@ class PlayerActivity : AppCompatActivity() {
         val favorite = findViewById<AppCompatImageView>(R.id.favorite)
         favorite.setOnClickListener {
             val collectionId = intent.getIntExtra(COLLECTION_ID, 0)
-            viewModel.addToFavorites(meditationDto.id, collectionId)
+            viewModel.addToFavorites(meditation.id, collectionId)
             Glide.with(this).load(R.drawable.ic_favorite).into(favorite)
         }
     }
 
-    private fun setUpVoices(meditationDto: MeditationDto) {
+    private fun setUpVoices(meditation: Meditation) {
         when {
-            meditationDto.file_male_voice.isNullOrEmpty() -> speakerMale.visibility = View.GONE
-            meditationDto.file_female_voice.isNullOrEmpty() -> speakerFemale.visibility = View.GONE
+            meditation.file_male_voice.isNullOrEmpty() -> speakerMale.visibility = View.GONE
+            meditation.file_female_voice.isNullOrEmpty() -> speakerFemale.visibility = View.GONE
         }
 
         speakerFemale.setOnClickListener {
-            play(meditationDto, SPEAKER.FEMALE)
+            play(meditation, SPEAKER.FEMALE)
             speakerFemale.isSelected = true
             speakerMale.isSelected = false
             speakerVoiceTitle.text = speakerFemale.text
         }
 
         speakerMale.setOnClickListener {
-            play(meditationDto, SPEAKER.MALE)
+            play(meditation, SPEAKER.MALE)
             speakerMale.isSelected = true
             speakerFemale.isSelected = false
             speakerVoiceTitle.text = speakerMale.text
@@ -161,7 +161,7 @@ class PlayerActivity : AppCompatActivity() {
         })
     }
 
-    private fun play(meditation: MeditationDto, speaker: SPEAKER) {
+    private fun play(meditation: Meditation, speaker: SPEAKER) {
         exoPlayer?.apply {
             setMediaItem(
                 MediaItem.fromUri(

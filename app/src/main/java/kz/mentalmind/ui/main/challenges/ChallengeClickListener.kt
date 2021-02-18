@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main.challenges
 
-import kz.mentalmind.data.dto.ChallengeDto
+import kz.mentalmind.data.dto.Challenge
 
 interface ChallengeClickListener {
-    fun onChallengeClicked(challenge: ChallengeDto)
+    fun onChallengeClicked(challenge: Challenge)
 }

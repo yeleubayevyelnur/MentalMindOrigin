@@ -1,6 +1,6 @@
 package kz.mentalmind.data.entrance
 
-import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.data.dto.Meditation
 import kz.mentalmind.data.dto.Pagination
 
 data class LoginResponse(
@@ -32,6 +32,6 @@ data class User(
     val social_id: String?,
     val listened_minutes: Int,
     val days_with_us: Int,
-    val favorite_meditations: List<Pagination<MeditationDto>>,
+    val favorite_meditations: List<Pagination<Meditation>>,
     val profile_image: String?,
 )

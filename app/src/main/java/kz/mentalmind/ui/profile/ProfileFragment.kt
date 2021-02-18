@@ -15,13 +15,12 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.MeditationDto
+import kz.mentalmind.data.dto.Meditation
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.profile.settings.*
 import kz.mentalmind.ui.purchase.TariffsFragment
-import kz.mentalmind.ui.purchase.TrialFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -157,7 +156,7 @@ class ProfileFragment : Fragment() {
                 val adapter = MeditationsAdapter(
                     it.profileData.favorite_meditations,
                     object : MeditationClickListener {
-                        override fun onMeditationClicked(meditation: MeditationDto) {
+                        override fun onMeditationClicked(meditation: Meditation) {
                             startActivity(
                                 Intent(
                                     requireActivity(),

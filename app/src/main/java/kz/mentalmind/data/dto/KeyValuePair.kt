@@ -1,7 +1,7 @@
 package kz.mentalmind.data.dto
 
 
-data class KeyValuePairDto(
+data class KeyValuePair(
     val id: Int,
     val name: String
 )

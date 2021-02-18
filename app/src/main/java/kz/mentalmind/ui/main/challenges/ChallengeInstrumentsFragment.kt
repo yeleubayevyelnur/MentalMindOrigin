@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_player.*
 import kotlinx.android.synthetic.main.fragment_challenge_instruments.*
 import kotlinx.android.synthetic.main.fragment_challenge_instruments.back
 import kotlinx.android.synthetic.main.fragment_challenge_instruments.title
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.CollectionDto
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.ui.main.MainViewModel
 import kz.mentalmind.ui.main.instruments.InstrumentClickListener
 import kz.mentalmind.ui.meditations.MeditationsFragment
@@ -52,7 +51,7 @@ class ChallengeInstrumentsFragment : Fragment() {
             instruments.adapter = ChallengeInstrumentsAdapter(
                 it.data?.collections ?: emptyList(),
                 object : InstrumentClickListener {
-                    override fun onInstrumentClicked(meditation: CollectionDto) {
+                    override fun onInstrumentClicked(meditation: Collection) {
                         (activity as MainActivity).replaceFragment(
                             MeditationsFragment.newInstance(meditation.id),
                             MeditationsFragment::class.simpleName

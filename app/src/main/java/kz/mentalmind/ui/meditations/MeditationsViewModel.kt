@@ -5,11 +5,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.repository.MeditationRepository
-import kz.mentalmind.data.dto.CollectionDetailsDto
+import kz.mentalmind.data.dto.CollectionDetails
 
 class MeditationsViewModel(private val meditationRepository: MeditationRepository) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
-    private val collectionDetailsSubject = PublishSubject.create<CollectionDetailsDto>()
+    private val collectionDetailsSubject = PublishSubject.create<CollectionDetails>()
     private val errorsSubject = PublishSubject.create<String>()
 
 
@@ -28,7 +28,7 @@ class MeditationsViewModel(private val meditationRepository: MeditationRepositor
         )
     }
 
-    fun observeCollectionDetails(): PublishSubject<CollectionDetailsDto> {
+    fun observeCollectionDetails(): PublishSubject<CollectionDetails> {
         return collectionDetailsSubject
     }
 

@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.CourseDto
+import kz.mentalmind.data.dto.Course
 import kz.mentalmind.utils.dpToPixelInt
 
 class CoursesAdapter(
-    private var courses: List<CourseDto>,
+    private var courses: List<Course>,
     private val courseClickListener: CourseClickListener
 ) :
     RecyclerView.Adapter<CoursesAdapter.ViewHolder>() {

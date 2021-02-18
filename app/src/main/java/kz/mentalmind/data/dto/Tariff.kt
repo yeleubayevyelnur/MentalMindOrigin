@@ -6,9 +6,3 @@ data class Tariff(
     val description: String,
     val price: Long
 )
-
-
-data class TariffsResponseDto(
-    val count: Int,
-    val results: List<Tariff>
-)

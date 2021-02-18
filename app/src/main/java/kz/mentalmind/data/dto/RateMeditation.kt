@@ -1,6 +1,6 @@
 package kz.mentalmind.data.dto
 
-data class RateMeditationDto(
+data class RateMeditation(
     val star: Int,
     val meditation: Int
 )

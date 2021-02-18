@@ -1,7 +1,7 @@
 package kz.mentalmind.ui.main.courses
 
-import kz.mentalmind.data.dto.CourseDto
+import kz.mentalmind.data.dto.Course
 
 interface CourseClickListener {
-    fun onCourseClicked(course: CourseDto)
+    fun onCourseClicked(course: Course)
 }

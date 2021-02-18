@@ -1,6 +1,6 @@
 package kz.mentalmind.data.dto
 
-data class CollectionDto(
+data class Collection(
     val description: String,
     val file_image: String,
     val for_feeling: String,

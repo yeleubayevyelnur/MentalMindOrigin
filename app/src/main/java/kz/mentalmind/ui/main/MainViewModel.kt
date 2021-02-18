@@ -6,19 +6,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.dto.*
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.repository.MainRepository
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
-    private val streamOfLife = PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
+    private val streamOfLife = PublishSubject.create<CommonResponse<Pagination<Collection>>>()
     private val challengeDetails = PublishSubject.create<CommonResponse<ChallengeDetailsDto>>()
     private val favorites =
-        PublishSubject.create<CommonResponse<Pagination<FavoriteMeditationDto>>>()
+        PublishSubject.create<CommonResponse<Pagination<FavoriteMeditation>>>()
     private val instrumentsForFeeling =
-        PublishSubject.create<CommonResponse<Pagination<CollectionDto>>>()
-    private val challenges = PublishSubject.create<List<ChallengeDto>>()
-    private val courses = PublishSubject.create<List<CourseDto>>()
+        PublishSubject.create<CommonResponse<Pagination<Collection>>>()
+    private val challenges = PublishSubject.create<List<Challenge>>()
+    private val courses = PublishSubject.create<List<Course>>()
 
     fun saveFeeling(id: Int) {
         mainRepository.saveFeeling(id)
@@ -134,19 +135,19 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
-    fun observeStreamOfLife(): PublishSubject<CommonResponse<Pagination<CollectionDto>>> {
+    fun observeStreamOfLife(): PublishSubject<CommonResponse<Pagination<Collection>>> {
         return streamOfLife
     }
 
-    fun observeFavorites(): PublishSubject<CommonResponse<Pagination<FavoriteMeditationDto>>> {
+    fun observeFavorites(): PublishSubject<CommonResponse<Pagination<FavoriteMeditation>>> {
         return favorites
     }
 
-    fun observeInstrumentsForFeeling(): PublishSubject<CommonResponse<Pagination<CollectionDto>>> {
+    fun observeInstrumentsForFeeling(): PublishSubject<CommonResponse<Pagination<Collection>>> {
         return instrumentsForFeeling
     }
 
-    fun observeCourses(): PublishSubject<List<CourseDto>> {
+    fun observeCourses(): PublishSubject<List<Course>> {
         return courses
     }
 
@@ -154,7 +155,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         return errorsSubject
     }
 
-    fun observeChallengesResponse(): Observable<List<ChallengeDto>> {
+    fun observeChallengesResponse(): Observable<List<Challenge>> {
         return challenges
     }
 

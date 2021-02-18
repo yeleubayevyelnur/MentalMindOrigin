@@ -7,6 +7,7 @@ import kz.mentalmind.data.HelpResponse
 import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.dto.*
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.entrance.LoginResponse
 import kz.mentalmind.data.entrance.PassRecoveryData
 import kz.mentalmind.data.entrance.RegisterData
@@ -47,7 +48,7 @@ interface ApiService {
     fun getFavorites(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<Pagination<FavoriteMeditationDto>>>
+    ): Single<CommonResponse<Pagination<FavoriteMeditation>>>
 
     @POST("users/me/favorites/")
     fun addToFavorites(
@@ -107,19 +108,19 @@ interface ApiService {
     fun getTags(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<Pagination<KeyValuePairDto>>>
+    ): Single<CommonResponse<Pagination<KeyValuePair>>>
 
     @GET("api/v1/challenges/")
     fun getChallenges(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<Pagination<ChallengeDto>>>
+    ): Single<CommonResponse<Pagination<Challenge>>>
 
     @GET("api/v1/courses/")
     fun getCourses(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
-    ): Single<CommonResponse<Pagination<CourseDto>>>
+    ): Single<CommonResponse<Pagination<Course>>>
 
     @FormUrlEncoded
     @POST("api/v1/rating/")
@@ -162,14 +163,14 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("type") type: Int,
         @Query("tags") tag: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>>
+    ): Observable<CommonResponse<Pagination<Collection>>>
 
     @GET("api/v1/collections/")
     fun getCollectionsByTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Query("type") type: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>>
+    ): Observable<CommonResponse<Pagination<Collection>>>
 
     @GET("api/v1/collections/")
     fun getCollectionsByFeeling(
@@ -177,20 +178,20 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("type") type: Int = 1,
         @Query("for_feeling") feeling: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>>
+    ): Observable<CommonResponse<Pagination<Collection>>>
 
     @GET("api/v1/collection_types/")
     fun getCollectionTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
-    ): Single<CommonResponse<Pagination<KeyValuePairDto>>>
+    ): Single<CommonResponse<Pagination<KeyValuePair>>>
 
     @GET("api/v1/collections/{id}")
     fun getCollectionDetails(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Path("id") id: Int
-    ): Single<CommonResponse<CollectionDetailsDto>>
+    ): Single<CommonResponse<CollectionDetails>>
 
     @GET("api/v1/challenges/{id}")
     fun getChallengeDetails(
@@ -202,11 +203,14 @@ interface ApiService {
     @POST("api/v1/rating/")
     fun setRating(
         @Header("Authorization") token: String,
-        @Body rateMeditation: RateMeditationDto
+        @Body rateMeditation: RateMeditation
     ): Completable
 
     //tariffs
     @GET("api/v1/payments/tariffs/")
-    fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponseDto>>
+    fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponse>>
+
+    @POST("/api/v1/payments/android/init/")
+    fun payBoxInit(@Body paymentRequest: PaymentRequest): Single<CommonResponse<PaymentResponse>>
 
 }

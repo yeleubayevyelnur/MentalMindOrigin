@@ -1,6 +1,6 @@
 package kz.mentalmind.data.dto
 
-data class ChallengeDto(
+data class Challenge(
     val id: Int,
     val name: String,
     val description: String,

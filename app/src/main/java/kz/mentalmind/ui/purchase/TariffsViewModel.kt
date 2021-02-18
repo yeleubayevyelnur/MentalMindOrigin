@@ -5,14 +5,14 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import kz.mentalmind.data.dto.TariffsResponseDto
+import kz.mentalmind.data.dto.TariffsResponse
 import kz.mentalmind.data.repository.MainRepository
 
 class TariffsViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val errorsSubject = PublishSubject.create<String>()
-    private val tariffsSubject = PublishSubject.create<TariffsResponseDto>()
+    private val tariffsSubject = PublishSubject.create<TariffsResponse>()
 
 
     fun getTariffs(token: String) {
@@ -29,7 +29,7 @@ class TariffsViewModel(private val mainRepository: MainRepository) : ViewModel()
         )
     }
 
-    fun observeTariffsSubject(): Observable<TariffsResponseDto> {
+    fun observeTariffsSubject(): Observable<TariffsResponse> {
         return tariffsSubject
     }
 

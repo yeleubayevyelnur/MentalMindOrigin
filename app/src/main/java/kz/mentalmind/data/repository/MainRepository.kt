@@ -11,6 +11,7 @@ import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.dto.*
+import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
@@ -35,14 +36,14 @@ class MainRepository(
         token: String,
         type: Int,
         tag: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>> {
+    ): Observable<CommonResponse<Pagination<Collection>>> {
         return apiService.getCollections("ru", "Token $token", type, tag)
             .subscribeOn(Schedulers.io())
     }
 
     fun getCourses(
         token: String,
-    ): Single<CommonResponse<Pagination<CourseDto>>> {
+    ): Single<CommonResponse<Pagination<Course>>> {
         return apiService.getCourses("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
@@ -50,12 +51,12 @@ class MainRepository(
     fun getCollectionsByTypes(
         token: String,
         type: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>> {
+    ): Observable<CommonResponse<Pagination<Collection>>> {
         return apiService.getCollectionsByTypes("ru", "Token $token", type)
             .subscribeOn(Schedulers.io())
     }
 
-    fun getChallenges(token: String): Single<CommonResponse<Pagination<ChallengeDto>>> {
+    fun getChallenges(token: String): Single<CommonResponse<Pagination<Challenge>>> {
         return apiService.getChallenges("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
@@ -63,7 +64,7 @@ class MainRepository(
     fun getCollectionsByFeeling(
         token: String,
         feeling: Int
-    ): Observable<CommonResponse<Pagination<CollectionDto>>> {
+    ): Observable<CommonResponse<Pagination<Collection>>> {
         return apiService.getCollectionsByFeeling(
             language = "ru",
             token = "Token $token",
@@ -74,12 +75,12 @@ class MainRepository(
 
     fun getCollectionsTypes(
         token: String,
-    ): Single<CommonResponse<Pagination<KeyValuePairDto>>> {
+    ): Single<CommonResponse<Pagination<KeyValuePair>>> {
         return apiService.getCollectionTypes("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
-    fun getTags(token: String): Single<CommonResponse<Pagination<KeyValuePairDto>>> {
+    fun getTags(token: String): Single<CommonResponse<Pagination<KeyValuePair>>> {
         return apiService.getTags("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
@@ -124,7 +125,7 @@ class MainRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getFavorites(token: String): Single<CommonResponse<Pagination<FavoriteMeditationDto>>> {
+    fun getFavorites(token: String): Single<CommonResponse<Pagination<FavoriteMeditation>>> {
         return apiService.getFavorites("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
@@ -158,11 +159,11 @@ class MainRepository(
     }
 
     fun setRating(token: String, meditationId: Int, star: Int): Completable {
-        return apiService.setRating("Token $token", RateMeditationDto(star, meditationId))
+        return apiService.setRating("Token $token", RateMeditation(star, meditationId))
             .subscribeOn(Schedulers.io())
     }
 
-    fun getTariffs(token: String): Single<CommonResponse<TariffsResponseDto>> {
+    fun getTariffs(token: String): Single<CommonResponse<TariffsResponse>> {
         return apiService.getTariffs("Token $token")
             .subscribeOn(Schedulers.io())
     }

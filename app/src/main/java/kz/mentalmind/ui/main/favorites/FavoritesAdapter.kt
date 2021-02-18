@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.FavoriteMeditationDto
+import kz.mentalmind.data.dto.FavoriteMeditation
 import kz.mentalmind.utils.dpToPixelInt
 
 class FavoritesAdapter(
-    private var instruments: List<FavoriteMeditationDto>,
+    private var instruments: List<FavoriteMeditation>,
     private val clickListener: FavoriteClickListener
 ) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
