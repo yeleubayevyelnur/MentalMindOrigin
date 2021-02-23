@@ -3,6 +3,7 @@ package kz.mentalmind.ui.purchase
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -10,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Tariff
 
-class TariffsAdapter(private var tariffs: List<Tariff>) :
+class TariffsAdapter(
+    private var tariffs: List<Tariff>,
+    private val tariffClickListener: TariffClickListener
+) :
     RecyclerView.Adapter<TariffsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TariffsAdapter.ViewHolder {
@@ -30,6 +34,9 @@ class TariffsAdapter(private var tariffs: List<Tariff>) :
             holder.itemView.context,
             R.drawable.ic_first_tariff_background
         )
+        holder.buyBtn.setOnClickListener {
+            tariffClickListener.onTariffClicked(tariffs[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -41,5 +48,6 @@ class TariffsAdapter(private var tariffs: List<Tariff>) :
         val description: TextView = itemView.findViewById(R.id.description)
         val name: TextView = itemView.findViewById(R.id.name)
         val card: ConstraintLayout = itemView.findViewById(R.id.card)
+        val buyBtn: TextView = itemView.findViewById(R.id.btnBuy)
     }
 }

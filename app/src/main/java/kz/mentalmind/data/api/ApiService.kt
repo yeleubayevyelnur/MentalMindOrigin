@@ -211,6 +211,9 @@ interface ApiService {
     fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponse>>
 
     @POST("/api/v1/payments/android/init/")
-    fun payBoxInit(@Body paymentRequest: PaymentRequest): Single<CommonResponse<PaymentResponse>>
+    fun paymentInit(
+        @Header("Authorization") token: String,
+        @Body paymentRequest: PaymentRequest
+    ): Single<CommonResponse<PaymentResponse>>
 
 }

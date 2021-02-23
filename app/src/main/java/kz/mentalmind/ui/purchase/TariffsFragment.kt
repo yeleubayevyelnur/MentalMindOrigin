@@ -11,6 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_tariffs.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
+import kz.mentalmind.data.dto.PaymentRequest
 import kz.mentalmind.data.dto.Tariff
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +36,11 @@ class TariffsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tariffsRv = view.findViewById<RecyclerView>(R.id.tariffs)
-        val tariffsAdapter = TariffsAdapter(tariffList)
+        val tariffsAdapter = TariffsAdapter(tariffList, object : TariffClickListener {
+            override fun onTariffClicked(tariff: Tariff) {
+                initPayment(tariff)
+            }
+        })
         tariffsRv.adapter = tariffsAdapter
 
         tariffsViewModel.getToken()?.let {
@@ -81,11 +86,29 @@ class TariffsFragment : Fragment() {
 
             })
         )
+
+        compositeDisposable.add(
+            tariffsViewModel.observePaymentSubject().subscribe({
+                (activity as MainActivity).replaceFragment(PaymentFragment.newInstance(it.redirect_url),PaymentFragment::class.simpleName)
+            }, {
+
+            })
+        )
         compositeDisposable.add(tariffsViewModel.observeErrorSubject().subscribe { error ->
             (activity as? MainActivity)?.alertDialog(requireContext(), error)
         })
     }
 
+    private fun initPayment(tariff: Tariff) {
+        tariffsViewModel.getToken()?.let {
+            tariffsViewModel.paymentInit(it, PaymentRequest(tariff.id))
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        compositeDisposable.clear()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

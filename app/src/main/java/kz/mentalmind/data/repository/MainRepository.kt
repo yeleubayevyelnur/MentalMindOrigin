@@ -167,4 +167,12 @@ class MainRepository(
         return apiService.getTariffs("Token $token")
             .subscribeOn(Schedulers.io())
     }
+
+    fun paymentInit(
+        token: String,
+        paymentRequest: PaymentRequest
+    ): Single<CommonResponse<PaymentResponse>> {
+        return apiService.paymentInit("Token $token", paymentRequest)
+            .subscribeOn(Schedulers.io())
+    }
 }
