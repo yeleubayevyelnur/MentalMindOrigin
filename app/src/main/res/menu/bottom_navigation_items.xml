@@ -9,7 +9,7 @@
         android:icon="@drawable/animated_instruments"
         android:title="@string/menu_instruments" />
     <item
-        android:id="@+id/nav_create"
+        android:id="@+id/nav_creative"
         android:icon="@drawable/animated_create"
         android:title="@string/menu_create" />
     <item

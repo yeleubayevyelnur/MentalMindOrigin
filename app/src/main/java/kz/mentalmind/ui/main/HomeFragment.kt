@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Challenge
@@ -30,7 +30,7 @@ import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
     private val moodRequestCode = 777
     private val viewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

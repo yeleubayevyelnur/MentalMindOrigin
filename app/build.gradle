@@ -114,6 +114,7 @@ dependencies {
     //Push notifications
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation 'com.pusher:push-notifications-android:1.6.2'
+    implementation 'com.github.terrakok:cicerone:6.6'
 }
 
 apply plugin: 'com.google.gms.google-services'

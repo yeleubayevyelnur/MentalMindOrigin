@@ -137,4 +137,6 @@
     <string name="st_description">+ 1 месяц доступа в\n подарок</string>
     <string name="st_secondary_description">Доступ ко всем\n медитациям\n на целый год</string>
     <string name="st_duration">1 год + 1 месяц</string>
+    <string name="warning">Предупреждение</string>
+    <string name="okay">Ок</string>
 </resources>

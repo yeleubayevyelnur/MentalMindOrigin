@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.creative
 
 import kz.mentalmind.data.dto.Affirmation
 

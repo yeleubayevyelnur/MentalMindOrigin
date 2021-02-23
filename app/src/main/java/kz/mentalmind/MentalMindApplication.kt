@@ -4,6 +4,7 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import com.pusher.pushnotifications.PushNotifications
 import kz.mentalmind.di.appModule
+import kz.mentalmind.di.navigationModule
 import kz.mentalmind.di.networkModule
 import kz.mentalmind.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext

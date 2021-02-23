@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.creative
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_create.*
+import kotlinx.android.synthetic.main.fragment_creative.*
 import kotlinx.android.synthetic.main.fragment_instruments.instruments
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
@@ -18,18 +18,18 @@ import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CreateFragment : Fragment() {
-    private val viewModel: CreateViewModel by viewModel()
+class CreativeFragment : Fragment() {
+    private val viewModel: CreativeViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_create, container, false)
+        val view = inflater.inflate(R.layout.fragment_creative, container, false)
         val types = ArrayList<KeyValuePair>()
         val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter>>()
-        val adapter = CreationAdapter(types, instrumentAdapters)
+        val adapter = CreativeAdapter(types, instrumentAdapters)
 
         compositeDisposable.add(viewModel.observeCollectionTypesSubject().subscribe({
             types.addAll(it.results.subList(1, it.results.size))

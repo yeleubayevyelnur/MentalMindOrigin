@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.creative
 
 import android.view.LayoutInflater
 import android.view.View

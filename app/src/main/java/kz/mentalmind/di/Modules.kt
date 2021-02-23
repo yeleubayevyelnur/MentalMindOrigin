@@ -2,6 +2,8 @@ package kz.mentalmind.di
 
 import android.preference.PreferenceManager
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.github.terrakok.cicerone.Cicerone
+import com.github.terrakok.cicerone.Router
 import com.google.gson.Gson
 import kz.mentalmind.data.api.ApiService
 import kz.mentalmind.data.repository.AuthRepository
@@ -9,7 +11,7 @@ import kz.mentalmind.data.repository.MainRepository
 import kz.mentalmind.data.repository.MeditationRepository
 import kz.mentalmind.data.repository.UserRepository
 import kz.mentalmind.ui.authorization.AuthViewModel
-import kz.mentalmind.ui.create.CreateViewModel
+import kz.mentalmind.ui.creative.CreativeViewModel
 import kz.mentalmind.ui.instruments.InstrumentsViewModel
 import kz.mentalmind.ui.main.MainViewModel
 import kz.mentalmind.ui.meditations.MeditationsViewModel
@@ -73,7 +75,7 @@ val viewModelsModule = module {
         AuthViewModel(authRepository = get())
     }
     viewModel {
-        CreateViewModel(mainRepository = get())
+        CreativeViewModel(mainRepository = get())
     }
     viewModel {
         InstrumentsViewModel(mainRepository = get())
@@ -92,5 +94,23 @@ val viewModelsModule = module {
     }
     viewModel {
         TariffsViewModel(mainRepository = get())
+    }
+}
+
+val navigationModule = module {
+    single {
+        val cic = Cicerone.create()
+    }
+
+    single {
+        get<Cicerone<Router>>(Cicerone::class.java).router
+    }
+
+    single {
+        get<Cicerone<Router>>(Cicerone::class.java).router
+    }
+
+    single {
+        get<Cicerone<Router>>(Cicerone::class.java).getNavigatorHolder()
     }
 }

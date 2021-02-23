@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.creative
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,7 +9,7 @@ import kz.mentalmind.data.dto.KeyValuePair
 import kz.mentalmind.data.dto.Pagination
 import kz.mentalmind.data.repository.MainRepository
 
-class CreateViewModel(private val mainRepository: MainRepository) : ViewModel() {
+class CreativeViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val collectionTypes = PublishSubject.create<Pagination<KeyValuePair>>()
     private val instruments = PublishSubject.create<Pair<Int, Pagination<Collection>>>()
     private val affirmations = PublishSubject.create<Pagination<Affirmation>>()

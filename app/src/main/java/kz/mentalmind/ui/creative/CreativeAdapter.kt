@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.create
+package kz.mentalmind.ui.creative
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +9,11 @@ import kz.mentalmind.R
 import kz.mentalmind.data.dto.KeyValuePair
 import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
 
-class CreationAdapter(
+class CreativeAdapter(
     private var types: List<KeyValuePair>,
     private var instrumentsAdapters: List<Pair<Int, InstrumentsAdapter>>
 ) :
-    RecyclerView.Adapter<CreationAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CreativeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_creation, parent, false)
