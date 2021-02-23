@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigation = findViewById(R.id.navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        bottomNavigation.selectedItemId = R.id.nav_home
+        showFragment(NavigationTab.getByItemId(R.id.nav_home))
     }
 
     fun showBottomNavigation() {
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home, R.id.nav_instruments, R.id.nav_creative, R.id.nav_profile -> {
-                    showFragment(NavigationTab.getByItemId(item.itemId))
+                    handleBottomNavigation(item.itemId, item.isChecked)
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -77,16 +77,16 @@ class MainActivity : AppCompatActivity() {
             }
         }.create().show()
     }
-//
-//    override fun onResumeFragments() {
-//        super.onResumeFragments()
-//        navigatorHolder.setNavigator(navigator)
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        navigatorHolder.removeNavigator()
-//    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
+    }
 
     fun openAuthorizationActivity() {
         val intent = Intent(this, AuthActivity::class.java)
@@ -151,6 +151,12 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.container, newFragment(newTab), newTab.fragmentTag)
                 .commit()
+        }
+    }
+
+    private fun handleBottomNavigation(resId: Int, isChecked: Boolean) {
+        if (!isChecked) {
+            showFragment(NavigationTab.getByItemId(resId))
         }
     }
 
