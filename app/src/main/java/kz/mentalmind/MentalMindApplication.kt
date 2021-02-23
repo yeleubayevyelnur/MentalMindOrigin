@@ -26,7 +26,8 @@ class MentalMindApplication : Application() {
                 listOf(
                     appModule,
                     networkModule,
-                    viewModelsModule
+                    viewModelsModule,
+                    navigationModule
                 )
             )
         }

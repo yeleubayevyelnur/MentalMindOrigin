@@ -99,11 +99,7 @@ val viewModelsModule = module {
 
 val navigationModule = module {
     single {
-        val cic = Cicerone.create()
-    }
-
-    single {
-        get<Cicerone<Router>>(Cicerone::class.java).router
+        Cicerone.create()
     }
 
     single {
