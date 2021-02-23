@@ -16,7 +16,7 @@ import kz.mentalmind.navigation.NavigationTab
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.creative.CreativeFragment
 import kz.mentalmind.ui.instruments.InstrumentsFragment
-import kz.mentalmind.ui.main.HomeFragment
+import kz.mentalmind.ui.home.HomeFragment
 import kz.mentalmind.ui.profile.ProfileFragment
 import kz.mentalmind.utils.LoadingDialogFragment
 import org.koin.android.ext.android.inject
@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val navigator = AppNavigator(this, R.id.container)
     private lateinit var bottomNavigation: BottomNavigationView
     private val navigatorHolder: NavigatorHolder by inject()
-    private val loadingDialog by lazy {
-        LoadingDialogFragment(this)
-    }
+    private val loadingDialog by lazy { LoadingDialogFragment(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

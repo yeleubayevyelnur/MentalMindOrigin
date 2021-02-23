@@ -32,7 +32,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.feelings.FeelingsActivity" />
+        <activity android:name=".ui.home.feelings.FeelingsActivity" />
         <activity android:name=".ui.onboarding.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

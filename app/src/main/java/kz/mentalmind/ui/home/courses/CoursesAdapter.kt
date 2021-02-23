@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.courses
+package kz.mentalmind.ui.home.courses
 
 import android.view.LayoutInflater
 import android.view.View

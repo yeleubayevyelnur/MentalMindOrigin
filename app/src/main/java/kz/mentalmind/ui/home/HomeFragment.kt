@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.home
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -16,16 +16,16 @@ import kz.mentalmind.data.dto.Challenge
 import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.dto.Course
 import kz.mentalmind.data.dto.FavoriteMeditation
-import kz.mentalmind.ui.main.challenges.ChallengeClickListener
-import kz.mentalmind.ui.main.challenges.ChallengeInstrumentsFragment
-import kz.mentalmind.ui.main.challenges.ChallengesAdapter
-import kz.mentalmind.ui.main.courses.CourseClickListener
-import kz.mentalmind.ui.main.courses.CoursesAdapter
-import kz.mentalmind.ui.main.favorites.FavoriteClickListener
-import kz.mentalmind.ui.main.favorites.FavoritesAdapter
-import kz.mentalmind.ui.main.feelings.FeelingsActivity
-import kz.mentalmind.ui.main.instruments.InstrumentClickListener
-import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
+import kz.mentalmind.ui.home.challenges.ChallengeClickListener
+import kz.mentalmind.ui.home.challenges.ChallengeInstrumentsFragment
+import kz.mentalmind.ui.home.challenges.ChallengesAdapter
+import kz.mentalmind.ui.home.courses.CourseClickListener
+import kz.mentalmind.ui.home.courses.CoursesAdapter
+import kz.mentalmind.ui.home.favorites.FavoriteClickListener
+import kz.mentalmind.ui.home.favorites.FavoritesAdapter
+import kz.mentalmind.ui.home.feelings.FeelingsActivity
+import kz.mentalmind.ui.home.instruments.InstrumentClickListener
+import kz.mentalmind.ui.home.instruments.InstrumentsAdapter
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel

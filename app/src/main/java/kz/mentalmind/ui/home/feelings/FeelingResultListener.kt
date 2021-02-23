@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.feelings
+package kz.mentalmind.ui.home.feelings
 
 import kz.mentalmind.data.dto.Feeling
 

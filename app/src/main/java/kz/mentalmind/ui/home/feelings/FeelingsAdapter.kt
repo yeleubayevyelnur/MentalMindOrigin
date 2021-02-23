@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.feelings
+package kz.mentalmind.ui.home.feelings
 
 import android.view.LayoutInflater
 import android.view.View

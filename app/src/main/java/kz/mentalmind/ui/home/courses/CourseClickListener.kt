@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.courses
+package kz.mentalmind.ui.home.courses
 
 import kz.mentalmind.data.dto.Course
 

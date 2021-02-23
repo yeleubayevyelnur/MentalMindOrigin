@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.challenges
+package kz.mentalmind.ui.home.challenges
 
 import android.view.LayoutInflater
 import android.view.View

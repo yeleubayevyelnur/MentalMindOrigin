@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.home
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable

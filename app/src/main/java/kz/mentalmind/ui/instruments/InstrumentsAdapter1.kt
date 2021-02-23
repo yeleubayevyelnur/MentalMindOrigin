@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Collection
-import kz.mentalmind.ui.main.instruments.InstrumentClickListener
+import kz.mentalmind.ui.home.instruments.InstrumentClickListener
 import kz.mentalmind.utils.dpToPixelInt
 
 class InstrumentsAdapter1(

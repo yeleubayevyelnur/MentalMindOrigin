@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.favorites
+package kz.mentalmind.ui.home.favorites
 
 import kz.mentalmind.data.dto.FavoriteMeditation
 

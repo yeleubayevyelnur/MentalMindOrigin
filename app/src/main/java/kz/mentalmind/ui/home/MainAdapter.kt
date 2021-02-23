@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main
+package kz.mentalmind.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.KeyValuePair
-import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
+import kz.mentalmind.ui.home.instruments.InstrumentsAdapter
 
 class MainAdapter(
     private var tags: List<KeyValuePair>,

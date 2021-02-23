@@ -13,7 +13,7 @@ import kz.mentalmind.data.repository.UserRepository
 import kz.mentalmind.ui.authorization.AuthViewModel
 import kz.mentalmind.ui.creative.CreativeViewModel
 import kz.mentalmind.ui.instruments.InstrumentsViewModel
-import kz.mentalmind.ui.main.MainViewModel
+import kz.mentalmind.ui.home.MainViewModel
 import kz.mentalmind.ui.meditations.MeditationsViewModel
 import kz.mentalmind.ui.player.PlayerViewModel
 import kz.mentalmind.ui.profile.ProfileViewModel

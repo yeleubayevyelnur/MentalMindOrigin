@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.instruments
+package kz.mentalmind.ui.home.instruments
 
 import kz.mentalmind.data.dto.Collection
 

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.KeyValuePair
-import kz.mentalmind.ui.main.instruments.InstrumentsAdapter
+import kz.mentalmind.ui.home.instruments.InstrumentsAdapter
 
 class CreativeAdapter(
     private var types: List<KeyValuePair>,

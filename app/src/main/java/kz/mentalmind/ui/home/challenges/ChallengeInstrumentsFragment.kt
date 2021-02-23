@@ -1,4 +1,4 @@
-package kz.mentalmind.ui.main.challenges
+package kz.mentalmind.ui.home.challenges
 
 import android.content.Context
 import android.os.Bundle
@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.fragment_challenge_instruments.title
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Collection
-import kz.mentalmind.ui.main.MainViewModel
-import kz.mentalmind.ui.main.instruments.InstrumentClickListener
+import kz.mentalmind.ui.home.MainViewModel
+import kz.mentalmind.ui.home.instruments.InstrumentClickListener
 import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants.CHALLENGE_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
