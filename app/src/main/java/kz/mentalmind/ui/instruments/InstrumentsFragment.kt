@@ -5,19 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.terrakok.cicerone.Router
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_instruments.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.dto.KeyValuePair
+import kz.mentalmind.navigation.Screens
 import kz.mentalmind.ui.home.instruments.InstrumentClickListener
-import kz.mentalmind.ui.meditations.MeditationsFragment
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InstrumentsFragment : Fragment() {
     private val viewModel: InstrumentsViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+    private val router: Router by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +46,11 @@ class InstrumentsFragment : Fragment() {
                         it.second.results,
                         object : InstrumentClickListener {
                             override fun onInstrumentClicked(meditation: Collection) {
-                                (activity as MainActivity).replaceFragment(
-                                    MeditationsFragment.newInstance(meditation.id),
-                                    MeditationsFragment::class.simpleName
-                                )
+                                router.navigateTo(Screens.meditationsFragment(meditation.id), false)
+//                                (activity as MainActivity).replaceFragment(
+//                                    MeditationsFragment.newInstance(meditation.id),
+//                                    MeditationsFragment::class.simpleName
+//                                )
                             }
                         })
                 )

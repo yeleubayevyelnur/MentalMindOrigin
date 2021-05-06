@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.terrakok.cicerone.Router
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_home.*
 import kz.mentalmind.MainActivity
@@ -16,8 +17,9 @@ import kz.mentalmind.data.dto.Challenge
 import kz.mentalmind.data.dto.Collection
 import kz.mentalmind.data.dto.Course
 import kz.mentalmind.data.dto.FavoriteMeditation
+import kz.mentalmind.navigation.Screens.challengeInstrumentsFragment
+import kz.mentalmind.navigation.Screens.meditationsFragment
 import kz.mentalmind.ui.home.challenges.ChallengeClickListener
-import kz.mentalmind.ui.home.challenges.ChallengeInstrumentsFragment
 import kz.mentalmind.ui.home.challenges.ChallengesAdapter
 import kz.mentalmind.ui.home.courses.CourseClickListener
 import kz.mentalmind.ui.home.courses.CoursesAdapter
@@ -26,14 +28,15 @@ import kz.mentalmind.ui.home.favorites.FavoritesAdapter
 import kz.mentalmind.ui.home.feelings.FeelingsActivity
 import kz.mentalmind.ui.home.instruments.InstrumentClickListener
 import kz.mentalmind.ui.home.instruments.InstrumentsAdapter
-import kz.mentalmind.ui.meditations.MeditationsFragment
 import kz.mentalmind.utils.Constants
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private val moodRequestCode = 777
     private val viewModel: MainViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+    private val router: Router by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,10 +71,11 @@ class HomeFragment : Fragment() {
                         collections,
                         object : InstrumentClickListener {
                             override fun onInstrumentClicked(meditation: Collection) {
-                                (activity as MainActivity).replaceFragment(
-                                    MeditationsFragment.newInstance(meditation.id),
-                                    MeditationsFragment::class.simpleName
-                                )
+                                router.navigateTo(meditationsFragment(meditation.id))
+//                                (activity as MainActivity).replaceFragment(
+//                                    MeditationsFragment.newInstance(meditation.id),
+//                                    MeditationsFragment::class.simpleName
+//                                )
                             }
                         }
                     )
@@ -95,10 +99,11 @@ class HomeFragment : Fragment() {
                             collections,
                             object : InstrumentClickListener {
                                 override fun onInstrumentClicked(meditation: Collection) {
-                                    (activity as MainActivity).replaceFragment(
-                                        MeditationsFragment.newInstance(meditation.id),
-                                        MeditationsFragment::class.simpleName
-                                    )
+                                    router.navigateTo(meditationsFragment(meditation.id))
+//                                    (activity as MainActivity).replaceFragment(
+//                                        MeditationsFragment.newInstance(meditation.id),
+//                                        MeditationsFragment::class.simpleName
+//                                    )
                                 }
                             }
                         )
@@ -126,10 +131,11 @@ class HomeFragment : Fragment() {
                 } else {
                     rvChallenges.adapter = ChallengesAdapter(it, object : ChallengeClickListener {
                         override fun onChallengeClicked(challenge: Challenge) {
-                            (activity as? MainActivity)?.replaceFragment(
-                                ChallengeInstrumentsFragment.newInstance(challenge.id),
-                                ChallengeInstrumentsFragment::class.simpleName
-                            )
+                            router.navigateTo(challengeInstrumentsFragment(challenge.id))
+//                            (activity as? MainActivity)?.replaceFragment(
+//                                ChallengeInstrumentsFragment.newInstance(challenge.id),
+//                                ChallengeInstrumentsFragment::class.simpleName
+//                            )
                         }
                     })
                     tvChallenges.visibility = View.VISIBLE
@@ -172,10 +178,11 @@ class HomeFragment : Fragment() {
                         collections,
                         object : FavoriteClickListener {
                             override fun onFavoriteClicked(meditation: FavoriteMeditation) {
-                                (activity as MainActivity).replaceFragment(
-                                    MeditationsFragment.newInstance(meditation.collection_id),
-                                    MeditationsFragment::class.simpleName
-                                )
+                                router.navigateTo(meditationsFragment(meditation.collection_id))
+//                                (activity as MainActivity).replaceFragment(
+//                                    MeditationsFragment.newInstance(meditation.collection_id),
+//                                    MeditationsFragment::class.simpleName
+//                                )
                             }
                         }
                     )

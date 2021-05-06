@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.terrakok.cicerone.Router
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_player.back
 import kotlinx.android.synthetic.main.fragment_meditations.*
@@ -16,12 +17,14 @@ import kz.mentalmind.data.dto.CollectionDetails
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.utils.Constants
 import kz.mentalmind.utils.Constants.ID
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MeditationsFragment : Fragment() {
     private val meditationsViewModel: MeditationsViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
     private var collectionDetails: CollectionDetails? = null
+    private val router: Router by inject()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -47,7 +50,8 @@ class MeditationsFragment : Fragment() {
             ?.let { meditationsViewModel.getCollectionDetails(it, requireArguments().getInt(ID)) }
 
         back.setOnClickListener {
-            activity?.onBackPressed()
+//            router.replaceScreen()
+//            activity?.onBackPressed()
         }
 
         play.setOnClickListener {
