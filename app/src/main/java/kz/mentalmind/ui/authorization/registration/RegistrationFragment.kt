@@ -1,6 +1,8 @@
 package kz.mentalmind.ui.authorization.registration
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +10,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_registration.*
+import kotlinx.android.synthetic.main.fragment_registration.btnBack
+import kotlinx.android.synthetic.main.fragment_registration.btnNext
 import kz.mentalmind.R
 import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.authorization.AuthViewModel
 import kz.mentalmind.ui.authorization.login.LoginWithEmailFragment
+import kz.mentalmind.utils.isValidEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment() {
@@ -32,6 +37,19 @@ class RegistrationFragment : Fragment() {
             authViewModel.observeRegisterSubject().subscribe {
             }
         )
+        email.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btnNext.isEnabled = s.isValidEmail()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
         btnNext.setOnClickListener {
             registrationErrors()
         }

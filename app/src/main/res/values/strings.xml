@@ -141,4 +141,7 @@
     <string name="st_duration">1 год + 1 месяц</string>
     <string name="warning">Предупреждение</string>
     <string name="okay">Ок</string>
+
+    <string name="http_403_message">Неправильный логин и пароль</string>
+    <string name="http_400_message">Ошибка. Повторите позже</string>
 </resources>

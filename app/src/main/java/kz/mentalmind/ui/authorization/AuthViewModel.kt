@@ -28,6 +28,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     }
                 }, {
                     Log.e("error", it.message.toString())
+                    it.message?.let { it1 -> errorsSubject.onNext(it1) }
                 })
         )
     }
@@ -46,6 +47,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     }
                 }, {
                     Log.e("error", it.message.toString())
+                    it.message?.let { it1 -> errorsSubject.onNext(it1) }
                 })
         )
     }
@@ -64,6 +66,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     }
                 }, {
                     Log.e("error", it.message.toString())
+                    it.message?.let { it1 -> errorsSubject.onNext(it1) }
                 })
         )
     }
@@ -76,6 +79,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     passwordRecoverySubject.onNext(it)
                 }, {
                     Log.e("error", it.message.toString())
+                    it.message?.let { it1 -> errorsSubject.onNext(it1) }
                 })
         )
     }

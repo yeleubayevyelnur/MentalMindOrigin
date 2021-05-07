@@ -13,4 +13,7 @@ object Constants {
     const val GOOGLE = "google"
     const val FACEBOOK = "facebook"
     const val VKONTAKTE = "vk"
+
+    const val error_400 = "HTTP 400 Bad Request"
+    const val error_403 = "HTTP 403 Forbidden"
 }

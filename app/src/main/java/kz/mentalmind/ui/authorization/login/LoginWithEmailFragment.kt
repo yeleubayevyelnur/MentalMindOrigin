@@ -15,6 +15,8 @@ import kz.mentalmind.ui.authorization.AuthActivity
 import kz.mentalmind.ui.authorization.AuthViewModel
 import kz.mentalmind.ui.authorization.registration.RegistrationFragment
 import kz.mentalmind.ui.authorization.resetPass.PassResetFragment
+import kz.mentalmind.utils.Constants
+import kz.mentalmind.utils.isValidEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -37,11 +39,15 @@ class LoginWithEmailFragment : Fragment() {
                 PushNotifications.addDeviceInterest(it.user.email)
                 (activity as? AuthActivity)?.openMainActivity()
             }, {
-
             })
         )
         compositeDisposable.add(authViewModel.observeErrorSubject().subscribe { error ->
-            (activity as? AuthActivity)?.alertDialog(requireContext(), error)
+            val errorMessage = when (error) {
+                Constants.error_400 -> getString(R.string.http_400_message)
+                Constants.error_403 -> getString(R.string.http_403_message)
+                else -> error
+            }
+            (activity as? AuthActivity)?.alertDialog(requireContext(), errorMessage)
         })
         tvRegistration.setOnClickListener {
             (activity as? AuthActivity)?.replaceFragment(
@@ -55,6 +61,19 @@ class LoginWithEmailFragment : Fragment() {
                 PassResetFragment::class.java.name
             )
         }
+        enterLogin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btnNext.isEnabled = s.isValidEmail()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
         btnNext.setOnClickListener {
             login()
         }

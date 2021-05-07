@@ -14,11 +14,11 @@
         android:src="@drawable/ic_back_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-¬
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         style="@style/MainTitle600"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="58dp"
@@ -26,6 +26,9 @@
         android:textColor="@color/blackText"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/back"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Челлендж" />
