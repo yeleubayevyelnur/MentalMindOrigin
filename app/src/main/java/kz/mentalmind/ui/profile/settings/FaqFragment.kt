@@ -49,17 +49,17 @@ class FaqFragment : Fragment() {
         when (view.visibility) {
             View.GONE -> {
                 view.visibility = View.VISIBLE
-                view.animation = AnimationUtils.loadAnimation(
-                    requireContext(),
-                    R.anim.rotate_anticlockwise
-                )
+//                view.animation = AnimationUtils.loadAnimation(
+//                    requireContext(),
+//                    R.anim.rotate_anticlockwise
+//                )
             }
             View.VISIBLE -> {
                 view.visibility = View.GONE
-                view.animation = AnimationUtils.loadAnimation(
-                    requireContext(),
-                    R.anim.rotate_clockwise
-                )
+//                view.animation = AnimationUtils.loadAnimation(
+//                    requireContext(),
+//                    R.anim.rotate_clockwise
+//                )
             }
             View.INVISIBLE -> {
             }

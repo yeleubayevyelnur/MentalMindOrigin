@@ -51,6 +51,8 @@
     <string name="ob_second_secondary_text">Три минуты вернут тебя в потоковое состояние</string>
     <string name="ob_third_main_text">Позволь удивительным\nпеременам войти в твою жизнь</string>
     <string name="ob_third_secondary_text">Сделай правильный выбор, начни использовать приложение\nуже сейчас!</string>
+    <string name="new_ob_third_main_text">Попробуй 3 дня бесплатно</string>
+    <string name="new_ob_third_secondary_text">После регистрации тебе будут доступны все медитации</string>
     <string name="txt_login">Логин</string>
 
     <string name="txt_faq">FAQ</string>

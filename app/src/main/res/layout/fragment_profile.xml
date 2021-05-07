@@ -125,18 +125,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/changeLanguage"
-                style="@style/RegularTextSize20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:gravity="start"
-                android:text="@string/txt_change_language"
-                app:drawableEndCompat="@drawable/ic_array_right"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/changeLanguage"-->
+<!--                style="@style/RegularTextSize20"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:fontFamily="@font/montserrat_regular"-->
+<!--                android:gravity="start"-->
+<!--                android:text="@string/txt_change_language"-->
+<!--                app:drawableEndCompat="@drawable/ic_array_right"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/addPromocode"

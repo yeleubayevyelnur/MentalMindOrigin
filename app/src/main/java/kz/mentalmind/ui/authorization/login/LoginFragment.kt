@@ -100,6 +100,7 @@ class LoginFragment : Fragment() {
             override fun onError(exception: FacebookException) {
             }
         })
+        mainFbButton.setOnClickListener { btnLoginFacebook.performClick() }
     }
 
     private fun loginWithGoogle() {

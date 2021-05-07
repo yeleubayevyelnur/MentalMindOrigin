@@ -94,6 +94,7 @@
                     android:background="@drawable/login_et_background"
                     android:hint="@string/enter_your_password"
                     android:imeOptions="actionDone"
+                    android:inputType="textPassword"
                     android:paddingStart="12dp"
                     android:paddingTop="14dp"
                     android:paddingEnd="12dp"

@@ -68,12 +68,12 @@ class ProfileFragment : Fragment() {
                 HelpFragment::class.simpleName
             )
         }
-        changeLanguage.setOnClickListener {
-            (activity as? MainActivity)?.replaceFragment(
-                ChangeLanguageFragment(),
-                ChangeLanguageFragment::class.simpleName
-            )
-        }
+//        changeLanguage.setOnClickListener {
+//            (activity as? MainActivity)?.replaceFragment(
+//                ChangeLanguageFragment(),
+//                ChangeLanguageFragment::class.simpleName
+//            )
+//        }
         addPromocode.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
                 PromocodeFragment(),

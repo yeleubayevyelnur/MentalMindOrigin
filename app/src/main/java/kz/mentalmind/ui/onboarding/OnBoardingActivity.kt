@@ -38,8 +38,8 @@ class OnBoardingActivity : AppCompatActivity() {
                     getString(R.string.ob_second_secondary_text)
                 ),
                 IntroSlide(
-                    getString(R.string.ob_third_main_text),
-                    getString(R.string.ob_third_secondary_text)
+                    getString(R.string.new_ob_third_main_text),
+                    getString(R.string.new_ob_third_secondary_text)
                 )
             )
         )
