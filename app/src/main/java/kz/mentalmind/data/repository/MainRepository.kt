@@ -175,4 +175,11 @@ class MainRepository(
         return apiService.paymentInit("Token $token", paymentRequest)
             .subscribeOn(Schedulers.io())
     }
+
+    fun getOnlineListeners(
+        token: String
+    ): Single<CommonResponse<OnlineListenersResponse>> {
+        return apiService.getOnlineListeners("Token $token")
+            .subscribeOn(Schedulers.io())
+    }
 }

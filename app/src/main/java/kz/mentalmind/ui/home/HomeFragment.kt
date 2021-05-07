@@ -191,6 +191,13 @@ class HomeFragment : Fragment() {
                 }
             }
         }, {}))
+        compositeDisposable.add(
+            viewModel.observeOnlineListeners().subscribe({
+                tvOnlineUsersCount.text = it.data?.amount?.toString()
+            }, {
+
+            })
+        )
     }
 
     override fun onResume() {

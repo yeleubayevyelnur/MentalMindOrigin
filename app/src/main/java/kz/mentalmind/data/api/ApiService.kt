@@ -216,4 +216,8 @@ interface ApiService {
         @Body paymentRequest: PaymentRequest
     ): Single<CommonResponse<PaymentResponse>>
 
+    @GET("api/v1/online_listeners/")
+    fun getOnlineListeners(
+        @Header("Authorization") token: String,
+    ): Single<CommonResponse<OnlineListenersResponse>>
 }
