@@ -142,11 +142,10 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }, {
-
             })
         )
         compositeDisposable.add(
-            profileViewModel.observeProfileSubject().subscribe {
+            profileViewModel.observeProfileSubject().subscribe({
                 tvEmail.text = it.profileData.email
                 it.profileData.profile_image?.let { profileUrl ->
                     Glide.with(requireContext()).load(profileUrl)
@@ -167,7 +166,9 @@ class ProfileFragment : Fragment() {
                         }
                     })
                 favMeditations.adapter = adapter
+            }, {
             })
+        )
     }
 
     override fun onAttach(context: Context) {

@@ -29,6 +29,7 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
     fun getProfile(token: String) {
         disposable.add(
             mainRepository.getProfile(token).observeOn(AndroidSchedulers.mainThread())
+                .doOnError { profileSubject.onError(it) }
                 .subscribe({
                     if (it.error == null) {
                         profileSubject.onNext(it)
