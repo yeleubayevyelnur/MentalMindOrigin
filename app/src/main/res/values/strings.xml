@@ -109,7 +109,7 @@
     <string name="kazakh_language">Казахский язык</string>
     <string name="female">Женский</string>
     <string name="male">Мужской</string>
-    <string name="show_history_by_day">посмотреть по дням</string>
+    <string name="show_history_by_day">Посмотреть по дням</string>
     <string name="self_education">самопознание</string>
     <string name="txt_pass_reset">Восстановление пароля</string>
     <string name="trial_version_title">Попробуй 3 дня бесплатно</string>
@@ -144,4 +144,10 @@
 
     <string name="http_403_message">Неправильный логин и пароль</string>
     <string name="http_400_message">Ошибка. Повторите позже</string>
+    <string name="daily_challenge">Ежедневный челлендж</string>
+    <string name="policy_agreement"><u>Договор</u> мною прочитан, понятен, согласен</string>
+    <string name="go_to_tariffs">Перейти к тарифам</string>
+
+    <string name="tariffs_first_desc">Неограниченный доступ к более, чем 200+ инструментам для вашего развития и роста</string>
+    <string name="tariffs_second_desc">Система ежедневного встраивания сверхчеловеческой продуктивности</string>
 </resources>

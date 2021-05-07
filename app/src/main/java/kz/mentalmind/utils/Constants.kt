@@ -14,6 +14,8 @@ object Constants {
     const val FACEBOOK = "facebook"
     const val VKONTAKTE = "vk"
 
+    const val PRIVACY_POLICY = "https://server.mentalmind.kz/media/privacy_policy_and_oferta.pdf"
+
     const val error_400 = "HTTP 400 Bad Request"
     const val error_403 = "HTTP 403 Forbidden"
 }

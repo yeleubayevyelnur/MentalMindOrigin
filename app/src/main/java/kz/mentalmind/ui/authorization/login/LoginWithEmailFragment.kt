@@ -38,6 +38,7 @@ class LoginWithEmailFragment : Fragment() {
             authViewModel.observeLoginSubject().subscribe({
                 PushNotifications.addDeviceInterest(it.user.email)
                 (activity as? AuthActivity)?.openMainActivity()
+                progress.visibility = View.GONE
             }, {
             })
         )
@@ -48,6 +49,7 @@ class LoginWithEmailFragment : Fragment() {
                 else -> error
             }
             (activity as? AuthActivity)?.alertDialog(requireContext(), errorMessage)
+            progress.visibility = View.GONE
         })
         tvRegistration.setOnClickListener {
             (activity as? AuthActivity)?.replaceFragment(
@@ -83,8 +85,10 @@ class LoginWithEmailFragment : Fragment() {
     }
 
     private fun login() {
+        progress.visibility = View.VISIBLE
         if (enterLogin.text.isNullOrEmpty() || enterPassword.text.isNullOrEmpty()) {
             (activity as? AuthActivity)?.alertDialog(requireContext(), "Заполните все поля")
+            progress.visibility = View.GONE
         } else {
             authViewModel.login(enterLogin.text.toString(), enterPassword.text.toString())
         }

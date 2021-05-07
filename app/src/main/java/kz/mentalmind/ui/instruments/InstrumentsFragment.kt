@@ -30,7 +30,7 @@ class InstrumentsFragment : Fragment() {
         val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter1>>()
         val tags = ArrayList<KeyValuePair>()
         val adapter = MainAdapter1(tags, instrumentAdapters)
-
+        (activity as MainActivity).progressVisible(true)
         compositeDisposable.add(viewModel.observeTagsSubject().subscribe({
             tags.addAll(it.results.subList(1, it.results.size))
             for (i in 1 until it.results.size) {
@@ -39,6 +39,7 @@ class InstrumentsFragment : Fragment() {
         }, {}))
 
         compositeDisposable.add(viewModel.observeInstruments().subscribe({
+            (activity as MainActivity).progressVisible(false)
             instrumentAdapters.add(
                 Pair(
                     it.first,
@@ -63,11 +64,6 @@ class InstrumentsFragment : Fragment() {
 
         viewModel.getTags(requireContext())
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).showBottomNavigation()
     }
 
     override fun onDestroyView() {

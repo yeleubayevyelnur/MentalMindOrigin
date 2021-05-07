@@ -20,7 +20,7 @@ import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
 import kz.mentalmind.ui.profile.settings.*
-import kz.mentalmind.ui.purchase.TariffsFragment
+import kz.mentalmind.ui.purchase.TariffsAgreementFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -120,8 +120,8 @@ class ProfileFragment : Fragment() {
         }
         btnBuy.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
-                TariffsFragment(),
-                TariffsFragment::class.simpleName
+                TariffsAgreementFragment(),
+                TariffsAgreementFragment::class.simpleName
             )
         }
     }

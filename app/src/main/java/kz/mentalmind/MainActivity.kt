@@ -152,6 +152,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun progressVisible(visible: Boolean) {
+        if (visible) progress.visibility = View.VISIBLE
+        else progress.visibility = View.GONE
+    }
+
     private fun handleBottomNavigation(resId: Int, isChecked: Boolean) {
         if (!isChecked) {
             showFragment(NavigationTab.getByItemId(resId))

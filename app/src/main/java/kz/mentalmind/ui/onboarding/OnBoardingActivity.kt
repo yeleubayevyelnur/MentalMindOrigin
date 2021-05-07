@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_on_boarding.*
+import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.IntroSlide
 import kz.mentalmind.domain.OnBoardingPrefManager
@@ -58,9 +59,11 @@ class OnBoardingActivity : AppCompatActivity() {
                 introSliderViewPager.currentItem += 1
             } else {
                 Intent(applicationContext, AuthActivity::class.java).also {
+                    it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(it)
                     val pref = this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
                     pref.edit().putBoolean(IS_FIRST_TIME_LAUNCH, false).apply()
+                    finish()
                 }
             }
         }

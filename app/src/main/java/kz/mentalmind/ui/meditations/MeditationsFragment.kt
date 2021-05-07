@@ -26,11 +26,6 @@ class MeditationsFragment : Fragment() {
     private var collectionDetails: CollectionDetails? = null
     private val router: Router by inject()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as? MainActivity)?.hideBottomNavigation()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +46,7 @@ class MeditationsFragment : Fragment() {
 
         back.setOnClickListener {
 //            router.replaceScreen()
-//            activity?.onBackPressed()
+            activity?.onBackPressed()
         }
 
         play.setOnClickListener {
@@ -62,6 +57,16 @@ class MeditationsFragment : Fragment() {
                 })
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.hideBottomNavigation()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as? MainActivity)?.showBottomNavigation()
     }
 
     companion object {

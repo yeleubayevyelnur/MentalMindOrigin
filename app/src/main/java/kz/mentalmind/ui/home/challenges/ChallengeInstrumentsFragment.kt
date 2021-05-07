@@ -47,7 +47,7 @@ class ChallengeInstrumentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         compositeDisposable.add(viewModel.observeChallengeDetails().subscribe({
-            title.text = it.data?.name
+//            title.text = it.data?.name
             instruments.adapter = ChallengeInstrumentsAdapter(
                 it.data?.collections ?: emptyList(),
                 object : InstrumentClickListener {

@@ -50,57 +50,58 @@
             app:layout_constraintTop_toBottomOf="@id/trialVersionTitle"
             tools:listitem="@layout/item_tariff" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/firstDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_white_dot"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tariffs"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/firstCondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:drawableStart="@drawable/ic_checked"
             android:drawablePadding="13dp"
             android:fontFamily="@font/montserrat_regular"
-            android:text="@string/trial_first_condition"
+            android:text="@string/tariffs_first_desc"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/firstDot"
             app:layout_constraintTop_toBottomOf="@id/tariffs" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/secondDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_white_dot"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstCondition" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/secondCondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="16dp"
-            android:drawableStart="@drawable/ic_checked"
             android:drawablePadding="13dp"
             android:fontFamily="@font/montserrat_regular"
-            android:text="@string/trial_second_condition"
+            android:text="@string/tariffs_second_desc"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/secondDot"
             app:layout_constraintTop_toBottomOf="@id/firstCondition" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/thirdCondition"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:drawableStart="@drawable/ic_checked"
-            android:drawablePadding="13dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/trial_third_condition"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/secondCondition" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/privacyPolicy"
@@ -113,7 +114,7 @@
             android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/thirdCondition" />
+            app:layout_constraintTop_toBottomOf="@id/secondCondition" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
