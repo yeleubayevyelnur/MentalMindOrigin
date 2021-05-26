@@ -34,4 +34,13 @@ data class User(
     val days_with_us: Int,
     val favorite_meditations: List<Pagination<Meditation>>,
     val profile_image: String?,
+    val tariff: UserTariff?
+)
+
+data class UserTariff(
+    val apple_product_id: String,
+    val id: Int,
+    val name: String,
+    val description: String,
+    val price: Int
 )

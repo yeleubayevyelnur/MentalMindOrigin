@@ -3,6 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('/Users/ruslan/AndroidStudioProjects/keystore/mentalmind.jks')
+            storePassword 'MentalMind#1'
+            keyAlias 'MentalMind'
+            keyPassword 'MentalMind#1'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -25,6 +33,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            debuggable false
         }
     }
 

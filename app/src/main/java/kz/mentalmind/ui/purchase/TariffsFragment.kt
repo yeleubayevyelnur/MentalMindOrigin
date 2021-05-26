@@ -89,7 +89,9 @@ class TariffsFragment : Fragment() {
 
         compositeDisposable.add(
             tariffsViewModel.observePaymentSubject().subscribe({
-                (activity as MainActivity).replaceFragment(PaymentFragment.newInstance(it.redirect_url),PaymentFragment::class.simpleName)
+                (activity as MainActivity).replaceFragment(
+                    PaymentFragment.newInstance(it.redirect_url)
+                )
             }, {
 
             })

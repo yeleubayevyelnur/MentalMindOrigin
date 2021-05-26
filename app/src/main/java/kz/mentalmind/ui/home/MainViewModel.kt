@@ -22,10 +22,6 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val courses = PublishSubject.create<List<Course>>()
     private val onlineListeners = PublishSubject.create<CommonResponse<OnlineListenersResponse>>()
 
-    init {
-        getOnlineListeners()
-    }
-
     fun saveFeeling(id: Int) {
         mainRepository.saveFeeling(id)
     }
@@ -140,23 +136,20 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
-    fun getOnlineListeners() {
-        val token = getToken()
-        if (token != null) {
-            disposable.add(
-                mainRepository.getOnlineListeners(token)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        if (it.error == null) {
-                            onlineListeners.onNext(it)
-                        } else {
-                            errorsSubject.onNext(it.error)
-                        }
-                    }, {
+    fun getOnlineListeners(token: String) {
+        disposable.add(
+            mainRepository.getOnlineListeners(token)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.error == null) {
+                        onlineListeners.onNext(it)
+                    } else {
+                        errorsSubject.onNext(it.error)
+                    }
+                }, {
 
-                    })
-            )
-        }
+                })
+        )
     }
 
     fun observeStreamOfLife(): PublishSubject<CommonResponse<Pagination<Collection>>> {
@@ -187,7 +180,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         return challengeDetails
     }
 
-    fun observeOnlineListeners() : Observable<CommonResponse<OnlineListenersResponse>> {
+    fun observeOnlineListeners(): Observable<CommonResponse<OnlineListenersResponse>> {
         return onlineListeners
     }
 

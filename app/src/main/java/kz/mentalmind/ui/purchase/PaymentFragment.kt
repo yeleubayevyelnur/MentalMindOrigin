@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_payment.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 
@@ -45,6 +46,7 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).hideBottomNavigation()
+        close.setOnClickListener { activity?.onBackPressed() }
         val webView: WebView = view.findViewById(R.id.web_view)
         webView.settings.apply {
             javaScriptEnabled = true

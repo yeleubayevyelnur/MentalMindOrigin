@@ -8,11 +8,13 @@ import io.reactivex.subjects.PublishSubject
 import kz.mentalmind.data.HelpResponse
 import kz.mentalmind.data.Meditations
 import kz.mentalmind.data.PromocodeResponse
+import kz.mentalmind.data.entrance.User
 import kz.mentalmind.data.profile.LevelDetailResponse
 import kz.mentalmind.data.profile.LevelsResponse
 import kz.mentalmind.data.profile.PassResetResponse
 import kz.mentalmind.data.profile.ProfileResponse
 import kz.mentalmind.data.repository.MainRepository
+import kz.mentalmind.utils.Constants
 
 class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
@@ -155,6 +157,10 @@ class ProfileViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     fun observeLevelDetailSubject(): Observable<LevelDetailResponse> {
         return levelsDetailSubject
+    }
+
+    fun getUser(): User? {
+        return mainRepository.getUser()
     }
 
     override fun onCleared() {

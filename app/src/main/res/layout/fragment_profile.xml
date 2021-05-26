@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
 
         <TextView
             android:id="@+id/title"
@@ -158,7 +159,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_notify_meditation"
@@ -415,10 +415,24 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/unblock_opportunities"
+            tools:text="@string/unblock_opportunities"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llFavMeditationsContainer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSecondaryUnblock"
+            style="@style/MediumTitleTextSize18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            tools:text="@string/unblock_opportunities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUnblock" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBuy"
@@ -431,11 +445,11 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_buy_subscription"
             android:textAllCaps="false"
+            android:visibility="gone"
             android:textColor="@color/white"
-            android:layout_marginBottom="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvUnblock" />
+            app:layout_constraintTop_toBottomOf="@id/tvSecondaryUnblock" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

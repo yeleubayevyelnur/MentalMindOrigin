@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Meditation
+import kz.mentalmind.data.entrance.User
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
 import kz.mentalmind.ui.player.PlayerActivity
@@ -23,12 +24,15 @@ import kz.mentalmind.ui.profile.settings.*
 import kz.mentalmind.ui.purchase.TariffsAgreementFragment
 import kz.mentalmind.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+
+    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +43,27 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (profileViewModel.getUser() != null) {
+            user = profileViewModel.getUser()!!
+            when {
+                user.is_paid -> {
+                    tvUnblock.text = "Ваш тариф: ${user.tariff?.name}"
+                    tvSecondaryUnblock.text = "Действительно до: ${parseDate(user.subs_expiry_date)}"
+                    tvSecondaryUnblock.visibility = View.VISIBLE
+                    btnBuy.visibility = View.GONE
+                }
+                user.is_premium -> {
+                    tvUnblock.text = "Ваш тариф: Премиум аккаунт"
+                    btnBuy.visibility = View.GONE
+                }
+                else -> {
+                    tvSecondaryUnblock.visibility = View.GONE
+                    btnBuy.visibility = View.VISIBLE
+                    tvUnblock.text = getString(R.string.unblock_opportunities)
+                }
+            }
+
+        }
         profileViewModel.getToken()?.let {
             observeData(it)
             profileViewModel.getProfile(it)
@@ -128,7 +153,7 @@ class ProfileFragment : Fragment() {
 
     private fun observeData(token: String) {
         compositeDisposable.add(
-            profileViewModel.observeLevelDetailSubject().subscribe ({
+            profileViewModel.observeLevelDetailSubject().subscribe({
                 if (it.error == null) {
                     Glide.with(requireContext()).load(it.levelsDetailData.file_image).into(ivLevel)
                     tvLevel.text = it.levelsDetailData.name
@@ -169,6 +194,13 @@ class ProfileFragment : Fragment() {
             }, {
             })
         )
+    }
+
+    private fun parseDate(dateValue: String?): String? {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+        val date = inputFormat.parse(dateValue)
+        return outputFormat.format(date)
     }
 
     override fun onAttach(context: Context) {

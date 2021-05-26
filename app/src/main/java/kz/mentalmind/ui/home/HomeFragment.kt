@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
             viewModel.getCourses(it)
             viewModel.getChallenges(it)
             viewModel.getFavorites(it)
+            viewModel.getOnlineListeners(it)
         }
         getCollectionsByFeeling()
 

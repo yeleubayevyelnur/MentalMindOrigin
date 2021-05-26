@@ -28,8 +28,7 @@ class TariffsAgreementFragment : Fragment() {
         }
         tvPrivacyPolicy.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
-                PaymentFragment.newInstance(Constants.PRIVACY_POLICY),
-                PaymentFragment::class.simpleName
+                PaymentFragment.newInstance(Constants.PRIVACY_POLICY)
             )
         }
         btnNext.setOnClickListener {

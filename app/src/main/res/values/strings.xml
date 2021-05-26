@@ -41,16 +41,16 @@
     <string name="email">Электронная почта</string>
     <string name="forgot_password">Забыли пароль</string>
     <string name="pass_recovery_description">Введите адрес электронной почты, и мы отправим Вам ссылку для восстановления доступа к аккаунту</string>
-    <string name="what_are_you_now">Какой ты сейчас?</string>
+    <string name="what_are_you_now">Что беспокоит?</string>
     <string name="main">Главная</string>
 
     //OnBoardingText
     <string name="ob_first_main_text">Освободи свой мозг от всех ограничений</string>
     <string name="ob_first_secondary_text">С помощью простых и уникальных инструментов</string>
-    <string name="ob_second_main_text">Ежедневная проработка каждый день</string>
+    <string name="ob_second_main_text">Ценная проработка для повышения качества жизни на каждый день</string>
     <string name="ob_second_secondary_text">Три минуты вернут тебя в потоковое состояние</string>
     <string name="ob_third_main_text">Позволь удивительным\nпеременам войти в твою жизнь</string>
-    <string name="ob_third_secondary_text">Сделай правильный выбор, начни использовать приложение\nуже сейчас!</string>
+    <string name="ob_third_secondary_text">Сделай правильный выбор, начни использовать приложение уже сейчас!</string>
     <string name="new_ob_third_main_text">Попробуй 3 дня бесплатно</string>
     <string name="new_ob_third_secondary_text">После регистрации тебе будут доступны все медитации</string>
     <string name="txt_login">Логин</string>
@@ -119,7 +119,7 @@
     <string name="try_now">Попробовать</string>
     <string name="privacy_policy"><u>Политика конфеденциальности</u></string>
     <string name="unblock_title">Разблокируй безграничные возможности себя и приложения Mentalmind</string>
-    <string name="google_token">712578955819-3j2aj54vslg4mfvjoqu7jd5cc2ai43u9.apps.googleusercontent.com</string>
+    <string name="google_token">119718842009-dn727hgovj7nra2jibiinbt0p6f95mpo.apps.googleusercontent.com</string>
     <string name="facebook_app_id">3564330413611439</string>
     <string name="fb_login_protocol_scheme">fb3564330413611439</string>
     <integer name="com_vk_sdk_AppId">7630107</integer>
@@ -150,4 +150,14 @@
 
     <string name="tariffs_first_desc">Неограниченный доступ к более, чем 200+ инструментам для вашего развития и роста</string>
     <string name="tariffs_second_desc">Система ежедневного встраивания сверхчеловеческой продуктивности</string>
+
+    <string name="every_day">Каждый день</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+
 </resources>
