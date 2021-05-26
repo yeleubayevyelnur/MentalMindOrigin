@@ -8,7 +8,9 @@ data class Meditation(
     val id: Int,
     val name: String,
     val description: String,
-    val duration: Int,
+    val duration_male: Int,
+    val duration_female: Int,
+    val is_favorite: Boolean,
     val file_male_voice: String?,
     val file_female_voice: String?
 ) : Parcelable

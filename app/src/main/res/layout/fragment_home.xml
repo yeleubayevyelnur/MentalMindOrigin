@@ -239,7 +239,7 @@
                 android:id="@+id/tvOnlineUsersCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="32800"
+                tools:text="32800"
                 android:textColor="@color/blueColor"
                 android:textSize="34sp" />
 
