@@ -34,7 +34,7 @@ class MeditationsAdapter(
         holder.title.text = meditation.name
         holder.duration.text = String.format(
             "%s %s",
-            meditation.duration_female / 60,
+            meditation.duration / 60,
             holder.itemView.context.getString(R.string.minute)
         )
         holder.itemView.setOnClickListener {

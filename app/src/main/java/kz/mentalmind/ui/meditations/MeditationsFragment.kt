@@ -1,6 +1,5 @@
 package kz.mentalmind.ui.meditations
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,14 +34,14 @@ class MeditationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val playListFragment =
-            childFragmentManager.findFragmentByTag("playList") as? PlayListFragment
-        compositeDisposable.add(meditationsViewModel.observeCollectionDetails().subscribe({
+        val playListFragment = childFragmentManager.findFragmentByTag("playList") as? PlayListFragment
+
+        compositeDisposable.add(
+            meditationsViewModel.observeCollectionDetails().subscribe({
             collectionDetails = it
             playListFragment?.setData(it)
         }, {}))
-        meditationsViewModel.getToken()
-            ?.let { meditationsViewModel.getCollectionDetails(it, requireArguments().getInt(ID)) }
+        meditationsViewModel.getToken()?.let { meditationsViewModel.getCollectionDetails(it, requireArguments().getInt(ID)) }
 
         back.setOnClickListener {
 //            router.replaceScreen()

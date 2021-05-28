@@ -61,6 +61,11 @@ class LoginFragment : Fragment() {
         compositeDisposable.add(authViewModel.observeErrorSubject().subscribe {
             (activity as? AuthActivity)?.alertDialog(requireContext(), it)
         })
+        compositeDisposable.add(authViewModel.observeProgressVisibility().subscribe {
+            val visibility = if (it == true) View.VISIBLE
+            else View.GONE
+            progress.visibility = visibility
+        })
 
         tvRegistration.setOnClickListener {
             (activity as? AuthActivity)?.replaceFragment(
@@ -146,18 +151,14 @@ class LoginFragment : Fragment() {
     private fun handleGoogleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            account?.idToken?.let {
-                authViewModel.socialLogin(GOOGLE, it)
-            }
+            account?.idToken?.let { authViewModel.socialLogin(GOOGLE, it) }
         } catch (e: ApiException) {
         }
     }
 
     private fun handleFacebookSignInResult(accessToken: AccessToken?) {
         try {
-            accessToken?.token?.let {
-                authViewModel.socialLogin(FACEBOOK, it)
-            }
+            accessToken?.token?.let { authViewModel.socialLogin(FACEBOOK, it) }
         } catch (e: ApiException) {
         }
     }

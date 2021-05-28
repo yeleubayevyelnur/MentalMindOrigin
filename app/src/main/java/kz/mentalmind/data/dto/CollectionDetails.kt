@@ -6,7 +6,7 @@ data class CollectionDetails(
     val description: String,
     val type: String,
     val file_image: String,
-    val for_feeling: String,
+    val for_feeling: List<String>,
     val tags: List<String>,
     val meditations: List<Meditation>
 )

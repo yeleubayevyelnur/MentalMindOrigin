@@ -15,6 +15,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     private val registerSubject = PublishSubject.create<RegisterData>()
     private val loginSubject = PublishSubject.create<LoginData>()
     private val passwordRecoverySubject = PublishSubject.create<PassRecoveryData>()
+    private val progressVisible = PublishSubject.create<Boolean>()
 
     fun register(email: String, password: String, language: String) {
         disposable.add(
@@ -37,7 +38,10 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         disposable.add(
             authRepository.login(email, password)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progressVisible.onNext(true) }
+                .doOnComplete {  progressVisible.onNext(false) }
                 .subscribe({
+                    Log.d("yel", "subscribe")
                     if (it.error == null) {
                         saveUser(it.data.user)
                         saveToken(it.data.access_token)
@@ -94,6 +98,10 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     fun observeLoginSubject(): Observable<LoginData> {
         return loginSubject
+    }
+
+    fun observeProgressVisibility(): Observable<Boolean> {
+        return progressVisible
     }
 
     private fun saveUser(user: User) {

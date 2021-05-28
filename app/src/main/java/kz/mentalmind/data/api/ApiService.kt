@@ -22,7 +22,7 @@ interface ApiService {
     //USER
 
     @FormUrlEncoded
-    @POST("users/register/")
+    @POST("api/v2/users/register/")
     fun register(
         @Header("Accept-Language") language: String,
         @Field("email") email: String,
@@ -30,13 +30,13 @@ interface ApiService {
     ): Observable<RegisterData>
 
     @FormUrlEncoded
-    @POST("users/login/")
+    @POST("api/v2/users/login/")
     fun login(
         @Field("email") email: String,
         @Field("password") password: String
     ): Observable<LoginResponse>
 
-    @POST("users/social_login/")
+    @POST("api/v2/users/social_login/")
     fun socialLogin(
         @Header("Accept-Language") language: String,
         @Body socialLoginRequest: SocialLoginRequest
@@ -44,30 +44,30 @@ interface ApiService {
 
     //User favorites
 
-    @GET("users/me/favorites/")
+    @GET("api/v3/users/me/favorites/")
     fun getFavorites(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<FavoriteMeditation>>>
 
-    @POST("users/me/favorites/")
+    @POST("api/v3/users/me/favorites/")
     fun addToFavorites(
         @Header("Authorization") language: String,
         @Body addToFavorites: AddToFavorites
     ): Completable
 
     @FormUrlEncoded
-    @POST("api/v1/history/")
+    @POST("api/v2/history/")
     fun sendUserHistory()
 
     @FormUrlEncoded
-    @POST("users/password_recovery/")
+    @POST("api/v2/users/password_recovery/")
     fun passwordRecovery(
         @Field("email") email: String
     ): Single<PassRecoveryData>
 
     @FormUrlEncoded
-    @PUT("users/me/")
+    @PUT("api/v2/users/me/")
     fun updateUserInfo(
         @Field("full_name") fullName: String?,
         @Field("birthday") birthday: String?,
@@ -76,79 +76,79 @@ interface ApiService {
     ): Observable<ProfileResponse>
 
     @FormUrlEncoded
-    @PUT("users/password_reset/")
+    @PUT("api/v2/users/password_reset/")
     fun resetPassword(
         @Header("Authorization") token: String,
         @Field("old_password") oldPassword: String,
         @Field("new_password") newPassword: String
     ): Observable<PassResetResponse>
 
-    @GET("users/me/")
+    @GET("api/v2/users/me/")
     fun getUserInfo(
         @Header("Authorization") token: String
     ): Observable<ProfileResponse>
 
-    @GET("users/me/subscription_status/")
+    @GET("api/2/users/me/subscription_status/")
     fun getSubscriptionStatus()
 
-    @GET("api/v1/history/")
+    @GET("api/v2/history/")
     fun getHistory(
         @Header("Authorization") token: String,
         @Query("date") date: String
     ): Observable<Meditations>
 
     /** Работа с ресурсами */
-    @GET("api/v1/affirmations/")
+    @GET("api/v2/affirmations/")
     fun getAffirmations(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<Affirmation>>>
 
-    @GET("api/v1/tags/")
+    @GET("api/v2/tags/")
     fun getTags(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<KeyValuePair>>>
 
-    @GET("api/v1/challenges/")
+    @GET("api/v2/challenges/")
     fun getChallenges(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<Challenge>>>
 
-    @GET("api/v1/courses/")
+    @GET("api/v2/courses/")
     fun getCourses(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
     ): Single<CommonResponse<Pagination<Course>>>
 
     @FormUrlEncoded
-    @POST("api/v1/rating/")
+    @POST("api/v2/rating/")
     fun rateMeditation(
         @Field("star") star: Int,
         @Field("meditation") meditationId: Int
     )
 
     @FormUrlEncoded
-    @POST("api/v1/promocode/")
+    @POST("api/v2/promocode/")
     fun promocode(
         @Header("Authorization") token: String,
         @Field("promocode") promocode: String
     ): Observable<PromocodeResponse>
 
-    @GET("api/v1/levels/")
+    @GET("api/v2/levels/")
     fun getLevels(
         @Header("Authorization") token: String
     ): Observable<LevelsResponse>
 
-    @GET("api/v1/levels/{id}")
+    @GET("api/v2/levels/{id}")
     fun getLevelDetail(
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Observable<LevelDetailResponse>
 
     @FormUrlEncoded
-    @POST("api/v1/help/")
+    @POST("api/v2/help/")
     fun help(
         @Header("Authorization") token: String,
         @Field("text") text: String
@@ -157,7 +157,7 @@ interface ApiService {
 
     //Collections
 
-    @GET("api/v1/collections/")
+    @GET("api/v2/collections/")
     fun getCollections(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
@@ -165,14 +165,14 @@ interface ApiService {
         @Query("tags") tag: Int
     ): Observable<CommonResponse<Pagination<Collection>>>
 
-    @GET("api/v1/collections/")
+    @GET("api/v2/collections/")
     fun getCollectionsByTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Query("type") type: Int
     ): Observable<CommonResponse<Pagination<Collection>>>
 
-    @GET("api/v1/collections/")
+    @GET("api/v2/collections/")
     fun getCollectionsByFeeling(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
@@ -180,43 +180,43 @@ interface ApiService {
         @Query("for_feeling") feeling: Int
     ): Observable<CommonResponse<Pagination<Collection>>>
 
-    @GET("api/v1/collection_types/")
+    @GET("api/v2/collection_types/")
     fun getCollectionTypes(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Single<CommonResponse<Pagination<KeyValuePair>>>
 
-    @GET("api/v1/collections/{id}")
+    @GET("api/v2/collections/{id}")
     fun getCollectionDetails(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Single<CommonResponse<CollectionDetails>>
 
-    @GET("api/v1/challenges/{id}")
+    @GET("api/v2/challenges/{id}")
     fun getChallengeDetails(
         @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Single<CommonResponse<ChallengeDetailsDto>>
 
-    @POST("api/v1/rating/")
+    @POST("api/v2/rating/")
     fun setRating(
         @Header("Authorization") token: String,
         @Body rateMeditation: RateMeditation
     ): Completable
 
     //tariffs
-    @GET("api/v1/payments/tariffs/")
+    @GET("api/v2/payments/tariffs/")
     fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponse>>
 
-    @POST("/api/v1/payments/android/init/")
+    @POST("/api/v2/payments/android/init/")
     fun paymentInit(
         @Header("Authorization") token: String,
         @Body paymentRequest: PaymentRequest
     ): Single<CommonResponse<PaymentResponse>>
 
-    @GET("api/v1/online_listeners/")
+    @GET("api/v2/online_listeners/")
     fun getOnlineListeners(
         @Header("Authorization") token: String,
     ): Single<CommonResponse<OnlineListenersResponse>>
