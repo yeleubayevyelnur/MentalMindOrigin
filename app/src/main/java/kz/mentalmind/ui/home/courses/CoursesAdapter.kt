@@ -24,6 +24,7 @@ class CoursesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(holder.itemView).load(courses[position].file_image)
+            .placeholder(R.drawable.ic_placeholder_instrument)
             .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
         holder.itemView.setOnClickListener {

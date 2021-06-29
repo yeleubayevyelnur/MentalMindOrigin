@@ -21,6 +21,8 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         disposable.add(
             authRepository.register(email, password, language)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progressVisible.onNext(true) }
+                .doOnComplete { progressVisible.onNext(false) }
                 .subscribe({
                     if (it.error == null) {
                         registerSubject.onNext(it)
@@ -60,6 +62,7 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         disposable.add(
             authRepository.socialLogin(SocialInfo(type, token, email))
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progressVisible.onNext(true) }
                 .subscribe({
                     if (it.error == null) {
                         saveUser(it.data.user)
@@ -68,9 +71,11 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                     } else {
                         errorsSubject.onNext(it.error)
                     }
+                    progressVisible.onNext(false)
                 }, {
                     Log.e("error", it.message.toString())
                     it.message?.let { it1 -> errorsSubject.onNext(it1) }
+                    progressVisible.onNext(false)
                 })
         )
     }
@@ -79,11 +84,14 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         disposable.add(
             authRepository.passwordRecovery(email)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progressVisible.onNext(true) }
                 .subscribe({
                     passwordRecoverySubject.onNext(it)
+                    progressVisible.onNext(false)
                 }, {
                     Log.e("error", it.message.toString())
                     it.message?.let { it1 -> errorsSubject.onNext(it1) }
+                    progressVisible.onNext(false)
                 })
         )
     }

@@ -33,6 +33,7 @@ class ChallengesAdapter(
         }
         Glide.with(holder.itemView)
             .load(challenge.file_image)
+            .placeholder(R.drawable.ic_placeholder_instrument)
             .transform(RoundedCorners(holder.itemView.dpToPixelInt(15f)))
             .into(holder.banner)
     }

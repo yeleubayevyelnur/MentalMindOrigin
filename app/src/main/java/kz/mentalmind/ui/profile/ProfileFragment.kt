@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.mentalmind.MainActivity
 import kz.mentalmind.R
 import kz.mentalmind.data.dto.Meditation
+import kz.mentalmind.data.dto.MeditationDto
 import kz.mentalmind.data.entrance.User
 import kz.mentalmind.ui.meditations.MeditationClickListener
 import kz.mentalmind.ui.meditations.MeditationsAdapter
@@ -31,6 +32,8 @@ import java.util.*
 class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val compositeDisposable = CompositeDisposable()
+    private var duration: Int = 0
+    private var isFavorite: Boolean = true
 
     private lateinit var user: User
 
@@ -43,6 +46,10 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        profileViewModel.getToken()?.let {
+            observeData(it)
+            profileViewModel.getProfile(it)
+        }
         if (profileViewModel.getUser() != null) {
             user = profileViewModel.getUser()!!
             when {
@@ -63,10 +70,6 @@ class ProfileFragment : Fragment() {
                 }
             }
 
-        }
-        profileViewModel.getToken()?.let {
-            observeData(it)
-            profileViewModel.getProfile(it)
         }
         info.setOnClickListener {
             (activity as? MainActivity)?.replaceFragment(
@@ -178,9 +181,19 @@ class ProfileFragment : Fragment() {
                 }
                 profileViewModel.getLevelDetail(token, it.profileData.level)
                 val adapter = MeditationsAdapter(
-                    it.profileData.favorite_meditations,
+                    it.profileData.favorite_meditations.map {favMeditation ->
+                        Meditation(
+                            id = favMeditation.meditation_id,
+                            name = favMeditation.meditation_name,
+                            description = favMeditation.meditation_description,
+                            duration = favMeditation.duration,
+                            is_favorite = true,
+                            file_female_voice = favMeditation.meditation_file_female_voice,
+                            file_male_voice = favMeditation.meditation_file_male_voice
+                        )
+                    },
                     object : MeditationClickListener {
-                        override fun onMeditationClicked(meditation: Meditation) {
+                        override fun onMeditationClicked(meditation: MeditationDto) {
                             startActivity(
                                 Intent(
                                     requireActivity(),

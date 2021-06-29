@@ -8,10 +8,10 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kz.mentalmind.R
-import kz.mentalmind.data.dto.Meditation
+import kz.mentalmind.data.dto.MeditationDto
 
 class MeditationsAdapter(
-    private var meditations: List<Meditation>,
+    private var meditations: List<MeditationDto>,
     private val meditationClickListener: MeditationClickListener
 ) :
     RecyclerView.Adapter<MeditationsAdapter.ViewHolder>() {
@@ -42,7 +42,7 @@ class MeditationsAdapter(
         }
     }
 
-    private fun isAvailable(meditation: Meditation) =
+    private fun isAvailable(meditation: MeditationDto) =
         !meditation.file_female_voice.isNullOrEmpty() || !meditation.file_male_voice.isNullOrEmpty()
 
     override fun getItemCount(): Int {

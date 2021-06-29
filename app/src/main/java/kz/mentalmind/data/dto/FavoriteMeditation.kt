@@ -7,5 +7,9 @@ data class FavoriteMeditation(
     val meditation_file_male_voice: String,
     val meditation_file_female_voice: String,
     val collection_id: Int,
-    val file_image: String
+    val file_image: String,
+    val duration: Int,
+    val duration_female: Int,
+    val duration_male: Int
+
 )

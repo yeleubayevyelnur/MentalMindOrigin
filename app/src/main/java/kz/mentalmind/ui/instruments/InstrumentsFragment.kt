@@ -30,7 +30,13 @@ class InstrumentsFragment : Fragment() {
         val instrumentAdapters = ArrayList<Pair<Int, InstrumentsAdapter1>>()
         val tags = ArrayList<KeyValuePair>()
         val adapter = MainAdapter1(tags, instrumentAdapters)
-        (activity as MainActivity).progressVisible(true)
+        compositeDisposable.add(
+            viewModel.observeProgressVisibility().subscribe({
+                val visibility = if (it == true) View.VISIBLE
+                else View.GONE
+                progress.visibility = visibility
+            }, {})
+        )
         compositeDisposable.add(viewModel.observeTagsSubject().subscribe({
             tags.addAll(it.results.subList(1, it.results.size))
             for (i in 1 until it.results.size) {

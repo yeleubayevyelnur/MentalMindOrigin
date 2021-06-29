@@ -34,6 +34,13 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         compositeDisposable.add(
+            authViewModel.observeProgressVisibility().subscribe({
+                val visibility = if (it == true) View.VISIBLE
+                else View.GONE
+                progress.visibility = visibility
+            }, {})
+        )
+        compositeDisposable.add(
             authViewModel.observeRegisterSubject().subscribe {
             }
         )

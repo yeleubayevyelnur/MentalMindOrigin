@@ -86,7 +86,7 @@ class MainRepository(
     }
 
     fun getProfile(token: String): Observable<ProfileResponse> {
-        return apiService.getUserInfo("Token $token")
+        return apiService.getUserInfo("ru","Token $token" )
             .subscribeOn(Schedulers.io())
     }
 
@@ -159,12 +159,12 @@ class MainRepository(
     }
 
     fun setRating(token: String, meditationId: Int, star: Int): Completable {
-        return apiService.setRating("Token $token", RateMeditation(star, meditationId))
+        return apiService.setRating("ru", "Token $token", RateMeditation(star, meditationId))
             .subscribeOn(Schedulers.io())
     }
 
     fun getTariffs(token: String): Single<CommonResponse<TariffsResponse>> {
-        return apiService.getTariffs("Token $token")
+        return apiService.getTariffs("ru", "Token $token")
             .subscribeOn(Schedulers.io())
     }
 
@@ -172,14 +172,14 @@ class MainRepository(
         token: String,
         paymentRequest: PaymentRequest
     ): Single<CommonResponse<PaymentResponse>> {
-        return apiService.paymentInit("Token $token", paymentRequest)
+        return apiService.paymentInit("ru", "Token $token", paymentRequest)
             .subscribeOn(Schedulers.io())
     }
 
     fun getOnlineListeners(
         token: String
     ): Single<CommonResponse<OnlineListenersResponse>> {
-        return apiService.getOnlineListeners("Token $token")
+        return apiService.getOnlineListeners("ru","Token $token")
             .subscribeOn(Schedulers.io())
     }
 }

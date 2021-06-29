@@ -85,6 +85,7 @@ interface ApiService {
 
     @GET("api/v2/users/me/")
     fun getUserInfo(
+        @Header("Accept-Language") language: String,
         @Header("Authorization") token: String
     ): Observable<ProfileResponse>
 
@@ -202,22 +203,28 @@ interface ApiService {
 
     @POST("api/v2/rating/")
     fun setRating(
+        @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Body rateMeditation: RateMeditation
     ): Completable
 
     //tariffs
     @GET("api/v2/payments/tariffs/")
-    fun getTariffs(@Header("Authorization") token: String): Single<CommonResponse<TariffsResponse>>
+    fun getTariffs(
+        @Header("Accept-Language") language: String,
+        @Header("Authorization"
+        ) token: String): Single<CommonResponse<TariffsResponse>>
 
     @POST("/api/v2/payments/android/init/")
     fun paymentInit(
+        @Header("Accept-Language") language: String,
         @Header("Authorization") token: String,
         @Body paymentRequest: PaymentRequest
     ): Single<CommonResponse<PaymentResponse>>
 
     @GET("api/v2/online_listeners/")
     fun getOnlineListeners(
-        @Header("Authorization") token: String,
+        @Header("Accept-Language") language: String,
+        @Header("Authorization") token: String
     ): Single<CommonResponse<OnlineListenersResponse>>
 }

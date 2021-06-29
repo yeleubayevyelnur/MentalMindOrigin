@@ -1,7 +1,7 @@
 package kz.mentalmind.data.profile
 
 import com.google.gson.annotations.SerializedName
-import kz.mentalmind.data.dto.Meditation
+import kz.mentalmind.data.dto.FavoriteMeditation
 
 data class ProfileResponse(
     @SerializedName("data")
@@ -16,7 +16,7 @@ data class ProfileData(
     val date_joined: String?,
     val days_with_us: Int,
     val email: String,
-    val favorite_meditations: List<Meditation>,
+    val favorite_meditations: List<FavoriteMeditation>,
     val feeling: Int?,
     val full_name: String,
     val id: Int,

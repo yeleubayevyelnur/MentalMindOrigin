@@ -92,8 +92,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/login_et_background"
                     android:hint="@string/enter_your_password"
-                    android:inputType="textPassword"
                     android:imeOptions="actionNext"
+                    android:inputType="textPassword"
                     android:paddingStart="12dp"
                     android:paddingTop="14dp"
                     android:paddingEnd="12dp"
@@ -125,8 +125,8 @@
                     android:background="@drawable/login_et_background"
                     android:hint="@string/enter_your_password"
                     android:imeOptions="actionDone"
-                    android:paddingStart="12dp"
                     android:inputType="textPassword"
+                    android:paddingStart="12dp"
                     android:paddingTop="14dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="14dp"
@@ -141,10 +141,20 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="16dp"
-                android:enabled="false"
                 android:background="@drawable/login_button_bg"
+                android:enabled="false"
                 android:text="@string/next" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
